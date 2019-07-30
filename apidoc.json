@@ -1,0 +1,8 @@
+{
+    "name": "Bookshelf API documentation",
+    "version": "1.0.0",
+    "description": "A book trading platfrom API",
+    "template": {
+        "forceLanguage": "en"
+    }
+}
