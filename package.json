@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "repository": {
-    "type": "public",
-    "url": "https://github.com/alifaki077/easyhack-ctf.git"
+    "type": "private",
+    "url": "https://github.com/MustafaBalila44/bookshelf-api.git "
   },
   "main": "server.js",
   "engines": {
