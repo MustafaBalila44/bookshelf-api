@@ -28,5 +28,4 @@ app.use(fileUpload());
 app.use('/static', express.static('static'));
 
 app.use('/api', router);
-
 export default app;
