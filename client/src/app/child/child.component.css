@@ -12,10 +12,11 @@
     width:16px;
   }
   
-  li a:active{
-    background-color:rgb(82, 88, 94)!important;
+   a:active{
+    background-color:rgb(46, 50, 54)!important;
   
   }
+ 
   .logo{
      width:260px;
      padding-top:12% !important;

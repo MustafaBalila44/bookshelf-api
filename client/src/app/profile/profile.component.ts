@@ -8,12 +8,14 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class ProfileComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'price', 'date'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  ordersDataSource = new MatTableDataSource(ELEMENT_DATA);
+  tradingsDataSource = new MatTableDataSource(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
+  @ViewChild(MatPaginator, { static: true }) paginator_1: MatPaginator;
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.ordersDataSource.paginator = this.paginator;
+    this.tradingsDataSource.paginator = this.paginator;
     
   }
 }

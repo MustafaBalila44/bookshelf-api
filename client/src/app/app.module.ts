@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IndexComponent } from './index/index.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { WhoComponent } from './who/who.component';
@@ -66,6 +66,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotiComponent } from './noti/noti.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import { ChildComponent } from './child/child.component';
+import { GlobalService } from './app.globals';
+import { AuthService } from './auth/auth.service';
+import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.component';
+import { CpanelComponent } from './cpanel/cpanel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +91,8 @@ import { ChildComponent } from './child/child.component';
     JwPaginationComponent,
     NotiComponent,
     ChildComponent,
+    CheckoutexchangeComponent,
+    CpanelComponent,
   ],
   imports: [
       BrowserModule,
@@ -192,7 +198,10 @@ import { ChildComponent } from './child/child.component';
     ScrollingModule,
 
   ],
-  providers: [],
+  providers: [
+    GlobalService,
+    AuthService
+  ],
 
   bootstrap: [AppComponent]
 })

@@ -22,14 +22,14 @@
 <div  class="collapse navbar-collapse" id="collapsibleNavbar" dir="rtl" [ngClass]="{ 'show': navbarOpen }" >
 
 <ul class="nav navbar-nav ml-auto" style="font-size: 18px" >
-<li class="nav-item">
-  <a class=" ax nav-link" routerLink="/user/home" (click)="toggleNavbar()">تصفح المكتبة
+<li class="nav-item active " >
+  <a  class="ax nav-link" routerLink="/user/home" (click)="toggleNavbar()" >تصفح المكتبة
     <mat-icon >home</mat-icon>
    
   </a>
 
 </li>
-<li class=" nav-item " [matMenuTriggerFor]="menu" >
+<li class=" nav-item active" [matMenuTriggerFor]="menu" >
   <a class="ax nav-link " (click)="toggleNavbar()">  الفئات 
 
   <mat-menu #menu="matMenu"  >
@@ -85,7 +85,7 @@
 
 </ul>
 </div>
-<a class="navbar-brand"  routerLink="/user/home">
+<a class="navbar-brand"  routerLink="/user/home"   (click)="toggleNavbar()">
 
   <img  style="width:60px;padding-bottom:3px;"      src="assets/images/logoo.png" alt="logo" >
 </a>

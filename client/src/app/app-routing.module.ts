@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { TermsComponent } from './terms/terms.component';
 import {FaqsComponent} from './faqs/faqs.component';
 import {PrivacyComponent} from './privacy/privacy.component';
@@ -17,6 +17,8 @@ import { StatusComponent } from './status/status.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotiComponent } from './noti/noti.component';
 import { ChildComponent } from './child/child.component';
+import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.component';
+import { CpanelComponent } from './cpanel/cpanel.component';
 const routes: Routes = [
   {path: '' ,component:IndexComponent , pathMatch:'full' },
   {path: 'Index' ,component:IndexComponent },
@@ -41,6 +43,9 @@ children:[
   {path: 'status', component:StatusComponent},
   {path: 'profile' , component:ProfileComponent},
   {path: 'noti' , component:NotiComponent},
+  {path: 'checkoutexchange' , component:CheckoutexchangeComponent},
+  {path: 'cpanel' , component:CpanelComponent},
+
 
 ]
 
@@ -71,4 +76,4 @@ children:[
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents =[ChildComponent,NotiComponent,ProfileComponent,StatusComponent,CheckoutpurchaseComponent,ExchangeComponent,BasketComponent,BookdetailComponent,SignupComponent,HomeComponent,SigninComponent,IndexComponent,TermsComponent,PrivacyComponent,FaqsComponent,ContacusComponent,WhoComponent];
+export const routingComponents =[CpanelComponent,CheckoutexchangeComponent,ChildComponent,NotiComponent,ProfileComponent,StatusComponent,CheckoutpurchaseComponent,ExchangeComponent,BasketComponent,BookdetailComponent,SignupComponent,HomeComponent,SigninComponent,IndexComponent,TermsComponent,PrivacyComponent,FaqsComponent,ContacusComponent,WhoComponent];
