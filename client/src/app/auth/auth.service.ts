@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GlobalService } from '../app.globals';
 import { HttpClient } from '@angular/common/http';
+import { Signup, Signin } from './auth.model';
 
 @Injectable({
     providedIn: 'root'
@@ -9,12 +10,13 @@ export class AuthService {
 
     constructor(private globalsService: GlobalService, private httpClinet: HttpClient) { }
 
-    signup({ username, password }) {
+    signup(signup: Signup) {
+        console.log(signup)
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/signup',
-            { username, password });
+            signup);
     }
-            signin({ username, password }) {
+            signin(signin: Signin) {
                 return this.httpClinet.post(this.globalsService.apiUrl + 'users/login',
-                    { username, password });
+                    signin);
     }
 }
