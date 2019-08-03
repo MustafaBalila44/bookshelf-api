@@ -119,7 +119,8 @@ UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* 
         'email', 'password', 'firstName', 'lastName',
         'phone', 'dateOfBirth',
     ]);
-    const addressFields = lodash_1.default.pick(req.body.address, ['street', 'neighborhood', 'state', 'locallity']);
+    const addressFields = lodash_1.default.pick(req.body, ['street', 'neighborhood', 'state', 'locallity']);
+    console.log(addressFields);
     const errors = check_1.validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ error: errors.array() });

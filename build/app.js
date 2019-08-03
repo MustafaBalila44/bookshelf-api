@@ -20,7 +20,7 @@ const accessLogStream = fs_1.createWriteStream(path_1.join(__dirname, 'access.lo
 app.use(passport_1.default.initialize());
 app.use(morgan_1.default('common', { stream: accessLogStream }));
 app.use(compression_1.default());
-app.use(cors_1.default());
+app.use(cors_1.default({ preflightContinue: true }));
 // provide extra security features
 app.use(helmet_1.default());
 app.use(body_parser_1.default.json());

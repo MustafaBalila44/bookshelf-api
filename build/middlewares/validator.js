@@ -2,10 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const check_1 = require("express-validator/check");
 exports.emailPassword = [
-    check_1.check('email').isString(),
     check_1.check('password').isString(),
-    check_1.check('username').isEmail(),
-    check_1.check('username').isLength({ min: 5, max: 30 }),
+    check_1.check('email').isEmail(),
     check_1.check('password').isLength({ min: 8 }),
 ];
 exports.authorValidtors = [

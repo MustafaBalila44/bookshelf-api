@@ -115,9 +115,9 @@ export class UserController {
             'email', 'password', 'firstName', 'lastName',
             'phone', 'dateOfBirth',
         ]);
-        const addressFields = _.pick(req.body.address,
+        const addressFields = _.pick(req.body,
             ['street', 'neighborhood', 'state', 'locallity']);
-
+        console.log(addressFields)
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });

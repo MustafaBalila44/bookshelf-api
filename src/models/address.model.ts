@@ -11,27 +11,19 @@ export type AdressDocument = Document & {
 const addressSchema = new Schema({
     street: {
         type: String,
-        minlength: 5,
         required: true,
-        match: /[a-zA-Z0-9]/,
     },
     neighborhood: {
         type: String,
-        minlength: 5,
         required: true,
-        match: /[a-zA-Z0-9]/,
     },
     state: {
         type: String,
-        minlength: 5,
         required: true,
-        match: /[a-zA-Z0-9]/,
     },
     locallity: {
         type: String,
-        minlength: 5,
         required: true,
-        match: /[a-zA-Z0-9]/,
     },
 });
 

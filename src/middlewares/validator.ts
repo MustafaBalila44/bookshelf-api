@@ -1,10 +1,8 @@
 import { check } from "express-validator/check";
 
 export const emailPassword = [
-    check('email').isString(),
     check('password').isString(),
-    check('username').isEmail(),
-    check('username').isLength({ min: 5, max: 30 }),
+    check('email').isEmail(),
     check('password').isLength({ min: 8 }),
 ];
 

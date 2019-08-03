@@ -19,7 +19,7 @@ const accessLogStream = createWriteStream(
 app.use(passport.initialize());
 app.use(morgan('common', { stream: accessLogStream }));
 app.use(compression());
-app.use(cors());
+app.use(cors({preflightContinue: true}));
 // provide extra security features
 app.use(helmet());
 app.use(bodyParser.json());
