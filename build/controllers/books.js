@@ -11,7 +11,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const check_1 = require("express-validator/check");
 const lodash_1 = __importDefault(require("lodash"));
 const book_model_1 = require("../models/book.model");
 class BookController {
@@ -71,12 +70,17 @@ BookController.deleteOne = (req, res) => __awaiter(this, void 0, void 0, functio
  * @description create Creates a new book and save to the DB
  */
 BookController.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const fields = lodash_1.default.pick(req.body, ['name', 'priceSdg', 'priceXp', 'author']);
+    const fields = lodash_1.default.pick(req.body, [
+        'name', 'note',
+        'priceSdg', 'priceXp',
+        'author', 'description',
+        'category', 'pages',
+    ]);
     try {
-        const errors = check_1.validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ error: errors.array() });
-        }
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ error: errors.array() });
+        // }
         const book = yield book_model_1.Book.create(fields);
         return res.status(201).json({ book });
     }

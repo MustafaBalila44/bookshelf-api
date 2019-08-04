@@ -32,6 +32,24 @@ const bookSchema = new Schema({
         ref: 'Author',
         required: true,
     },
+    description: {
+        type: String,
+    },
+    note: {
+        type: String,
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    pages: {
+        type: Number,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    }
 });
 
 export const Book = model<BookDocument>("Book", bookSchema);

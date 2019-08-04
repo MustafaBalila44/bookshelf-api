@@ -60,17 +60,22 @@ export class BookController {
      * @description create Creates a new book and save to the DB
      */
     public static create = async (req: Request, res: Response) => {
-        const  fields = _.pick(req.body, ['name', 'priceSdg', 'priceXp', 'author']);
+        const fields = _.pick(req.body, [
+            'name', 'note',
+            'priceSdg', 'priceXp',
+            'author', 'description',
+            'category', 'pages',
+        ]);
         try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ error: errors.array() });
+            // const errors = validationResult(req);
+            // if (!errors.isEmpty()) {
+            //     return res.status(400).json({ error: errors.array() });
+            // }
+            const book = await Book.create(fields);
+            return res.status(201).json({ book });
+        } catch (error) {
+            return res.status(500).json({ error });
         }
-        const book = await Book.create(fields);
-        return res.status(201).json({ book });
-    } catch (error) {
-        return res.status(500).json({ error });
-    }
 
     }
 }

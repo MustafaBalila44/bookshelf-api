@@ -53,7 +53,7 @@ router.get('/', AuthorController.findAll);
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
  */
-router.post('/create', authorValidtors, AuthorController.create);
+router.post('/create', AuthorController.create);
 
 /**
  * @api {get} /authors/:id Get a single author

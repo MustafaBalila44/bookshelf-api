@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const passport_1 = __importDefault(require("passport"));
 const books_1 = require("../controllers/books");
-const validator_1 = require("../middlewares/validator");
 const router = express_1.Router();
 /**
  * @api {get} /books List all books
@@ -61,7 +60,7 @@ router.get('/', books_1.BookController.findAll);
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
  */
-router.post('/create', validator_1.authorValidtors, books_1.BookController.create);
+router.post('/create', books_1.BookController.create);
 /**
  * @api {get} /books/:id Get a single book
  * @apiGroup Books

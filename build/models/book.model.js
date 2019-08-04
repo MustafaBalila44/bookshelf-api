@@ -26,6 +26,24 @@ const bookSchema = new mongoose_1.Schema({
         ref: 'Author',
         required: true,
     },
+    description: {
+        type: String,
+    },
+    note: {
+        type: String,
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    pages: {
+        type: Number,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    }
 });
 exports.Book = mongoose_1.model("Book", bookSchema);
 //# sourceMappingURL=book.model.js.map

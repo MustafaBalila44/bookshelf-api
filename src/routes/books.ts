@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import passport from "passport";
 import { BookController } from '../controllers/books';
-import { authorValidtors } from '../middlewares/validator';
 
 const router = Router();
 
