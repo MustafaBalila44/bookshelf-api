@@ -59,7 +59,7 @@ router.get('/', BookController.findAll);
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
  */
-router.post('/create', authorValidtors, BookController.create);
+router.post('/create', BookController.create);
 
 /**
  * @api {get} /books/:id Get a single book
