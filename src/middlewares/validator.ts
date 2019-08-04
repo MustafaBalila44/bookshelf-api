@@ -7,10 +7,6 @@ export const emailPassword = [
 ];
 
 export const authorValidtors = [
-    check('firstName').isString(),
-    check('firstName').isLength({ min: 5}),
-    check('lastName').isString(),
-    check('lastName').isLength({ min: 5 }),
 ];
 
 export const bookValidators = [
