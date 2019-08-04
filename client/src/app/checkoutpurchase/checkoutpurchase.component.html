@@ -14,6 +14,10 @@
 <table class="table table-striped fony" style="font-size:30px">
    
     <tbody>
+        <tr>
+            <td>عدد الكتب</td>
+            <td class="text-success">12 كتاب</td>
+          </tr>
       <tr>
         <td> سعر الكتب:  </td>
         <td class="text-success">30ج <span> + 0 XP </span> </td>
@@ -27,6 +31,15 @@
         <td>الاجمالي:</td>
         <td class="text-success"> 70ج  <span> + 0 XP </span> </td>
       </tr>
+<br>
+      <hr>
+
+      <tr>
+
+          <td> عدد نقاطك الحالية:  </td>
+          <td class="text-success">10 xp </td>
+          
+        </tr>
     </tbody>
   </table>
 <br>
@@ -40,26 +53,26 @@
 <div class= "col-sm-6" style="text-align: justify" dir="rtl">
     <h3 style="padding-bottom:5%">تفاصيل مقدم الطلب:</h3>
 
-    <form>
+    <form [formGroup]="purchaseForm"  >
         <div class="form-group">
             <label for="Username">الاسم:</label>
             <br>
             <span style="display:inline-block;width:60%" class="feld">
         
-            <input disabled  required type="text" class="form-control" id="Username" placeholder="الاسم الاول" name="Username">
+            <input formControlName="firstName" disabled  required type="text" class="form-control" id="Username" placeholder="الاسم الاول" name="Username">
           </span>
         
           <span style=" display:inline-block;width:60%" class="feld">
-            <input disabled required type="text" class="form-control" id="Username" placeholder="الاسم الاخير" name="Username">
+            <input formControlName="lastName" disabled required type="text" class="form-control" id="Username" placeholder="الاسم الاخير" name="Username">
           </span>
         </div>
         
         <div class="form-group">
-            <label style="" for="email">البريد الالكتروني:</label>
+            <label  for="email">البريد الالكتروني:</label>
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
         
-            <input disabled required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="Username">
+            <input formControlName="email" disabled required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="Username">
           </span>
         </div>
         
@@ -79,7 +92,7 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
         
-            <input  disabled required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="date">
+            <input formControlName="phone" disabled required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="date">
           </span>
         
           
@@ -91,7 +104,7 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feld">
         
-        <select class="form-control" disabled >
+        <select formControlName="state" class="form-control" disabled >
           <option>
             الخرطوم
           </option>
@@ -100,7 +113,7 @@
         </span>
         <span style="display:inline-block;width:60%;" class="feld">
         
-        <select class="form-control" disabled>
+        <select formControlName="locallity" class="form-control" disabled>
         
         <option>
         بحري
@@ -135,33 +148,31 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feld">
         
-            <input disabled required type="text" class="form-control" id="street" placeholder="الحي" name="street">
+            <input formControlName="nigh" disabled required type="text" class="form-control" id="street" placeholder="الحي" name="street">
           </span>
         
           <span style=" display:inline-block;width:60%" class="feld">
-            <input disabled required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
+            <input formControlName="street" disabled required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
           </span>
         </div>
         
         
         <div class="form-group">
-            <label style="" for="street"> ادخل  العنوان:</label>
+            <label style="" for="street"> (اختياري) ادخل  العنوان:</label>
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
         
-            <input disabled required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
+            <input formControlName="address" disabled required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
           </span>
         
         </div>
-        <div class="form-group form-check">
-            <input dir="rtl" class="form-check-input-lg" type="checkbox" name="accept">  
-            <label class="form-check-label">
+        <div >
                 &nbsp;  اوافق على <a routerLink="/terms" style="color:#5A6268 !important"> شروط الاستخدام </a> و <a style="color:#5A6268 !important" routerLink="/privacy">سياسة الخصوصية </a> 
-            </label>
           </div>
+          <br>
         <div style="padding-right: 5px">
         
-        <button  type="submit" class="btn btn-danger bot">شراء الكتب</button>
+        <button   type="submit" class="btn btn-danger bot">شراء الكتب</button>
         </div>
         
         

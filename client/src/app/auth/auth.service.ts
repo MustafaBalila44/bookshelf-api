@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GlobalService } from '../app.globals';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 import { Signup, Signin } from './auth.model';
 
 @Injectable({
@@ -13,10 +15,18 @@ export class AuthService {
     signup(signup: Signup) {
         console.log(signup)
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/signup',
-            signup);
+            signup).pipe(catchError(this.errorHandler));
     }
-            signin(signin: Signin) {
-                return this.httpClinet.post(this.globalsService.apiUrl + 'users/login',
-                    signin);
+    signin(signin: Signin) {
+        return this.httpClinet.post(this.globalsService.apiUrl + 'users/login',
+            signin).pipe(catchError(this.errorHandler));
+
     }
+
+
+
+
+errorHandler(error : HttpErrorResponse)  {
+    return throwError(error);
+}  
 }

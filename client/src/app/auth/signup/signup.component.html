@@ -46,14 +46,17 @@
 <h3 style="text-align: center;padding-top:3%;padding-bottom:3%;">
   إنشاء حساب جديد
 </h3>
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" [matchValue]= "['password', 'passwordConfig']">
+  <div *ngIf="errorMSG" class="bg-danger">
+    {{errorMSG}}
+  </div>
 <div class="form-group">
     <label style="padding-right:5px;" for="Username">الاسم:</label>
     <br>
     <span style="display:inline-block;width:30%;padding:5px" class="feld">
 
     
-      <input #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched  " required class="form-control" id="Username" placeholder="الاسم الاول" name="firstName" [(ngModel)]="signup.firstName">
+      <input #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched  " required class="form-control" id="firstName" placeholder="الاسم الاول" name="firstName" [(ngModel)]="signup.firstName">
      
   
   
@@ -61,7 +64,7 @@
     </span>
   <span style=" display:inline-block;width:30%" class="feld">
   
-    <input #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched  "  required type="text" class="form-control" id="Username" placeholder="الاسم الاخير" name="lastName" [(ngModel)]="signup.lastName">
+    <input #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched  "  required type="text" class="form-control" id="lastName" placeholder="الاسم الاخير" name="lastName" [(ngModel)]="signup.lastName">
   
   
   </span>
@@ -73,10 +76,10 @@
     <br>
     <span style="display:inline-block;width:30%;padding:5px" class="feldd">
 
-    <input #username="ngModel" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"  [class.is-invalid]="username.invalid && username.touched  "  [class.is-valid]="username.valid"  required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="email" [(ngModel)]="signup.email">
-    <div *ngIf="username.errors && ( username.touched)">
-      <small class="text-danger" *ngIf="username.errors.pattern">البريد الالكتروني غير صحيح</small>
-      <small class="text-danger" *ngIf="username.errors.required">البريد الاكلتروني مطلوب</small>
+    <input #email="ngModel" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"  [class.is-invalid]="email.invalid && email.touched  "  [class.is-valid]="email.valid"  required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="email" [(ngModel)]="signup.email">
+    <div *ngIf="email.errors && ( email.touched)">
+      <small class="text-danger" *ngIf="email.errors.pattern">البريد الالكتروني غير صحيح</small>
+      <small class="text-danger" *ngIf="email.errors.required">البريد الاكلتروني مطلوب</small>
     
     
     
@@ -94,12 +97,12 @@
     <br>
     <span style="display:inline-block;width:30%;padding:5px" class="feld">
 
-    <input #password="ngModel" [class.is-invalid]="password.invalid && password.touched  "  [class.is-valid]="password.valid" pattern=".{6,}"  required type="text" class="form-control" id="pwd" placeholder=" كلمة السر" name="password" [(ngModel)]="signup.password">
+    <input  #password="ngModel" [class.is-invalid]="password.invalid && password.touched  "  [class.is-valid]="password.valid" pattern=".{8,}"  required type="password" class="form-control" id="password" placeholder=" كلمة السر" name="password" [(ngModel)]="signup.password">
   </span>
 
   <span style=" display:inline-block;width:30%" class="feld">
    
-    <input #passwordConfig="ngModel" [class.is-invalid]="passwordConfig.invalid && passwordConfig.touched " pattern=".{6,}"  required type="text" class="form-control" id="pwd" placeholder="تأكيد كلمة السر " name="passwordConfig" [(ngModel)]="signup.passwordConfig">
+    <input  #passwordConfig="ngModel" [class.is-invalid]="passwordConfig.invalid && passwordConfig.touched " pattern=".{8,}" [class.is-valid]="passwordConfig.valid" required type="password" class="form-control" id="passwordConfig" placeholder="تأكيد كلمة السر " name="passwordConfig" [(ngModel)]="signup.passwordConfig">
       
       
       
@@ -117,7 +120,7 @@
    
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <input  #date="ngModel"  class="form-control" [class.is-invalid]="date.invalid && date.touched "   required matInput [matDatepicker]="picker"  id="date" placeholder="  تاريخ الميلاد" name="date" [(ngModel)]="signup.date">
+        <input  #dateOfBirth="ngModel"  class="form-control" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched "   required matInput [matDatepicker]="picker"  id="dateOfBirth" placeholder="  تاريخ الميلاد" name="dateOfBirth" [(ngModel)]="signup.dateOfBirth">
         
  
     </span>
@@ -221,9 +224,7 @@
     <br>
     <span style="display:inline-block;width:30%;padding:5px" class="feld">
 
-    <input  required #neighborhood="ngModel" [class.is-invalid]="neighborhood.invalid && neighborhood.touched"   type="text" class="form-control" id="street" placeholder="الحي" name="neighborhood
-    " [(ngModel)]="signup.neighborhood
-    ">
+    <input  required #neighborhood="ngModel" [class.is-invalid]="neighborhood.invalid && neighborhood.touched"   type="text" class="form-control" id="street" placeholder="الحي" name="neighborhood" [(ngModel)]="signup.neighborhood ">
   </span>
 
   <span style=" display:inline-block;width:30%" class="feld">
@@ -242,7 +243,7 @@
 
 </div>
 <div class="form-group form-check">
-    <input   required [(ngModel)]="signup.accept"  class="form-check-input-lg" type="checkbox" name="accept">  
+    <input   required [(ngModel)]="accept"  class="form-check-input-lg" type="checkbox" name="accept">  
     <label class="form-check-label">
         &nbsp;  اوافق على <a routerLink="/terms" class="outline"  style="color:#5A6268"> شروط الاستخدام </a> و <a routerLink="/privacy" style="color:#5A6268" class="outline" >سياسة الخصوصية </a> 
     </label>

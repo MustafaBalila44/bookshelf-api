@@ -8,7 +8,7 @@ import {FaqsComponent} from './faqs/faqs.component';
 import {PrivacyComponent} from './privacy/privacy.component';
 import {ContacusComponent} from './contacus/contacus.component';
 import {WhoComponent} from './who/who.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './homeAuth/home/home.component';
 import { BookdetailComponent } from './bookdetail/bookdetail.component';
 import { BasketComponent } from './basket/basket.component';
 import { ExchangeComponent } from './exchange/exchange.component';
@@ -18,7 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotiComponent } from './noti/noti.component';
 import { ChildComponent } from './child/child.component';
 import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.component';
-import { CpanelComponent } from './cpanel/cpanel.component';
+import { CpanelComponent } from './cpanelAuth/cpanel/cpanel.component';
 const routes: Routes = [
   {path: '' ,component:IndexComponent , pathMatch:'full' },
   {path: 'Index' ,component:IndexComponent },

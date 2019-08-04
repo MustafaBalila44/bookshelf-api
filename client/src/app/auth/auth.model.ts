@@ -12,7 +12,6 @@ export class Signup {
     neighborhood: string;
     street: string;
     address?: string
-
 }
 
 export class Signin {
@@ -20,11 +19,3 @@ export class Signin {
     password: string;
 }
 
-export class Address {
-    state: string;
-    locallity: string;
-    neighborhood: string;
-    street: string;
-    address?: string
-
-}

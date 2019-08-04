@@ -9,7 +9,7 @@ import { TermsComponent } from './terms/terms.component';
 import { WhoComponent } from './who/who.component';
 import { ContacusComponent } from './contacus/contacus.component';
 import { FaqsComponent } from './faqs/faqs.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './homeAuth/home/home.component';
 import { BookdetailComponent } from './bookdetail/bookdetail.component';
 import { BasketComponent } from './basket/basket.component';
 import { ExchangeComponent } from './exchange/exchange.component';
@@ -69,10 +69,13 @@ import { ChildComponent } from './child/child.component';
 import { GlobalService } from './app.globals';
 import { AuthService } from './auth/auth.service';
 import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.component';
-import { CpanelComponent } from './cpanel/cpanel.component';
+import { CpanelComponent } from './cpanelAuth/cpanel/cpanel.component';
+import { MatchValueDirective } from './directives/match-value.directive';
+import { SendrequestService } from './homeAuth/sendrequest.service';
 @NgModule({
   declarations: [
     AppComponent,
+    MatchValueDirective,
     IndexComponent,
     SigninComponent,
     SignupComponent,
@@ -200,7 +203,8 @@ import { CpanelComponent } from './cpanel/cpanel.component';
   ],
   providers: [
     GlobalService,
-    AuthService
+    AuthService,
+    SendrequestService,
   ],
 
   bootstrap: [AppComponent]

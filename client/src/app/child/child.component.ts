@@ -7,12 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChildComponent implements OnInit {
   navbarOpen = false;
-  sticky = true
-
+  sticky = true;
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
-  
+
   constructor() { }
 
   ngOnInit() {

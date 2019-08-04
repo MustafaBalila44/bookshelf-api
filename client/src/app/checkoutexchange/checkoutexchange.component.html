@@ -25,8 +25,16 @@
               </tr>
               <tr>
                 <td>الاجمالي:</td>
-                <td class="text-success"> مجانا </td>
+                <td class="text-success"> مجانا  </td>
               </tr>
+              <br>
+
+
+              <tr>
+               
+                  <td> عدد نقاطك الحالية:  </td>
+                  <td class="text-success">10 xp </td>
+                </tr>
             </tbody>
           </table>
         <br>
@@ -40,133 +48,132 @@
         <div class= "col-sm-6" style="text-align: justify" dir="rtl">
             <h3 style="padding-bottom:5%">تفاصيل مقدم الطلب:</h3>
         
-            <form>
-                <div class="form-group">
-                    <label style="" for="Username">الاسم:</label>
-                    <br>
-                    <span style="display:inline-block;width:60%" class="feld">
-                
-                    <input disabled  required type="text" class="form-control" id="Username" placeholder="الاسم الاول" name="Username">
-                  </span>
-                
-                  <span style=" display:inline-block;width:60%" class="feld">
-                    <input disabled required type="text" class="form-control" id="Username" placeholder="الاسم الاخير" name="Username">
-                  </span>
-                </div>
-                
-                <div class="form-group">
-                    <label style="" for="email">البريد الالكتروني:</label>
-                    <br>
-                    <span style="display:inline-block;width:60%;" class="feldd">
-                
-                    <input disabled required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="Username">
-                  </span>
-                </div>
-                
-                
-                
-                
-             
-                
-                
-           
-                
-              
-                <div class="form-group" >
-                
+            <form [formGroup]="purchaseForm"  >
+              <div class="form-group">
+                  <label for="Username">الاسم:</label>
                   <br>
-                    <label style="" for="tel"> رقم الهاتف:</label>
-                    <br>
-                    <span style="display:inline-block;width:60%;" class="feldd">
-                
-                    <input disabled  required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="date">
-                  </span>
-                
-                  
-                </div>
+                  <span style="display:inline-block;width:60%" class="feld">
+              
+                  <input formControlName="firstName" disabled  required type="text" class="form-control" id="Username" placeholder="الاسم الاول" name="Username">
+                </span>
+              
+                <span style=" display:inline-block;width:60%" class="feld">
+                  <input formControlName="lastName" disabled required type="text" class="form-control" id="Username" placeholder="الاسم الاخير" name="Username">
+                </span>
+              </div>
+              
+              <div class="form-group">
+                  <label  for="email">البريد الالكتروني:</label>
+                  <br>
+                  <span style="display:inline-block;width:60%;" class="feldd">
+              
+                  <input formControlName="email" disabled required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="Username">
+                </span>
+              </div>
+              
+              
+              
+              
+           
+              
+              
+         
+              
+            
+              <div class="form-group" >
+              
+                <br>
+                  <label style="" for="tel"> رقم الهاتف:</label>
+                  <br>
+                  <span style="display:inline-block;width:60%;" class="feldd">
+              
+                  <input formControlName="phone" disabled required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="date">
+                </span>
               
                 
-                <div class="form-group" >
-                    <label style="" for=""> اختر الولاية والمحلية:</label>
-                    <br>
-                    <span style="display:inline-block;width:60%;" class="feld">
-                
-                <select class="form-control" disabled >
-                  <option>
-                    الخرطوم
-                  </option>
-                
-                </select>
-                </span>
-                <span style="display:inline-block;width:60%;" class="feld">
-                
-                <select class="form-control" disabled>
-                
+              </div>
+            
+              
+              <div class="form-group" >
+                  <label style="" for=""> اختر الولاية والمحلية:</label>
+                  <br>
+                  <span style="display:inline-block;width:60%;" class="feld">
+              
+              <select formControlName="state" class="form-control" disabled >
                 <option>
-                بحري
+                  الخرطوم
                 </option>
-                <option>
-                    شرق النيل
-                    </option>
-                    <option>
-                        كرري
-                        </option>
-                        <option>
-                            امدرمان
-                            </option>
-                            <option>
-                                جبل اولياء
-                                </option>
-                                <option>
-                                    بلا بلا بلا
-                                    </option>
-                                    <option>
-                                        بلا بلا بلا
-                                        </option>
-                </select>
-                
+              
+              </select>
+              </span>
+              <span style="display:inline-block;width:60%;" class="feld">
+              
+              <select formControlName="locallity" class="form-control" disabled>
+              
+              <option>
+              بحري
+              </option>
+              <option>
+                  شرق النيل
+                  </option>
+                  <option>
+                      كرري
+                      </option>
+                      <option>
+                          امدرمان
+                          </option>
+                          <option>
+                              جبل اولياء
+                              </option>
+                              <option>
+                                  بلا بلا بلا
+                                  </option>
+                                  <option>
+                                      بلا بلا بلا
+                                      </option>
+              </select>
+              
+              </span>
+              
+              </div>
+              
+              
+              <div class="form-group">
+                  <label style="" for="street"> ادخل الحي والشارع:</label>
+                  <br>
+                  <span style="display:inline-block;width:60%;" class="feld">
+              
+                  <input formControlName="nigh" disabled required type="text" class="form-control" id="street" placeholder="الحي" name="street">
                 </span>
-                
+              
+                <span style=" display:inline-block;width:60%" class="feld">
+                  <input formControlName="street" disabled required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
+                </span>
+              </div>
+              
+              
+              <div class="form-group">
+                  <label style="" for="street"> ادخل  العنوان:</label>
+                  <br>
+                  <span style="display:inline-block;width:60%;" class="feldd">
+              
+                  <input formControlName="address" disabled required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
+                </span>
+              
+              </div>
+              <div >
+                      &nbsp;  اوافق على <a routerLink="/terms" style="color:#5A6268 !important"> شروط الاستخدام </a> و <a style="color:#5A6268 !important" routerLink="/privacy">سياسة الخصوصية </a> 
                 </div>
-                
-                
-                <div class="form-group">
-                    <label style="" for="street"> ادخل الحي والشارع:</label>
-                    <br>
-                    <span style="display:inline-block;width:60%;" class="feld">
-                
-                    <input disabled  required type="text" class="form-control" id="street" placeholder="الحي" name="street">
-                  </span>
-                
-                  <span style=" display:inline-block;width:60%" class="feld">
-                    <input disabled  required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
-                  </span>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label style="" for="street"> ادخل  العنوان:</label>
-                    <br>
-                    <span style="display:inline-block;width:60%;" class="feldd">
-                
-                    <input disabled  required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
-                  </span>
-                
-                </div>
-                <div class="form-group form-check">
-                    <input dir="rtl" class="form-check-input-lg" type="checkbox" name="accept">  
-                    <label class="form-check-label">
-                        &nbsp;  اوافق على <a routerLink="/terms" style="color:#5A6268 !important"> شروط الاستخدام </a> و <a style="color:#5A6268 !important" routerLink="/privacy">سياسة الخصوصية </a> 
-                    </label>
-                  </div>
-                <div style="padding-right: 5px">
-                
-                <button  type="submit" class="btn btn-danger bot">شراء الكتب</button>
-                </div>
-                
-                
-                
-                </form>
+                <br>
+              <div style="padding-right: 5px">
+              
+              <button   type="submit" class="btn btn-danger bot">تبديل الكتب</button>
+              </div>
+              
+              
+              
+              </form>
+              
                 
         
         

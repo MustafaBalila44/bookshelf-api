@@ -1,5 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
+import { FormGroup, FormControl } from '@angular/forms';
+
 import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-profile',
@@ -7,6 +9,18 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  b = false;
+  purchaseForm = new FormGroup({
+
+    email: new FormControl('a@a.com'),
+      phone: new FormControl('09100'),
+      state: new FormControl('الخرطوم'),
+      locallity: new FormControl('بحري'),
+      nigh: new FormControl('الثورة'),
+      street: new FormControl('العاشر'),
+      address: new FormControl(''),
+
+    });
   displayedColumns: string[] = ['position', 'name', 'price', 'date'];
   ordersDataSource = new MatTableDataSource(ELEMENT_DATA);
   tradingsDataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -17,6 +31,10 @@ export class ProfileComponent implements OnInit {
     this.ordersDataSource.paginator = this.paginator;
     this.tradingsDataSource.paginator = this.paginator;
     
+  }
+
+  a(){
+    this.b = true;
   }
 }
 

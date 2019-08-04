@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+.ax{
+  color:white !important;
+}
+ li a:hover{
+    background-color:rgb(82, 88, 94)!important;
+}
+
+.logologin{
+  width:20px;
+}
+
+li a:active{
+  background-color:rgb(82, 88, 94)!important;
+
+}
+.logo{
+   width:260px;
+   padding-top:12% !important;
+}
+@media only screen and (max-width: 900px) {
+  .logo{
+      padding-top:7% !important;
+
+
+  }
+  .pad{
+    padding-top:30% !important;
+  }
+
+  .centerlok{
+    text-align: center !important;
+  }
+  .half{
+    width:50% !important;
+  }
+}
+
