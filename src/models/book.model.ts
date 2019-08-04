@@ -48,6 +48,7 @@ const bookSchema = new Schema({
     },
     image: {
         type: String,
+        default: "https://bookshelf5000.herokuapp.com/images/book.jpg",
         required: true,
     }
 });
