@@ -72,6 +72,11 @@ import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.c
 import { CpanelComponent } from './cpanelAuth/cpanel/cpanel.component';
 import { MatchValueDirective } from './directives/match-value.directive';
 import { SendrequestService } from './homeAuth/sendrequest.service';
+import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
+import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
+import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
+import { RecordComponent } from './cpanelAuth/record/record.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,8 +101,13 @@ import { SendrequestService } from './homeAuth/sendrequest.service';
     ChildComponent,
     CheckoutexchangeComponent,
     CpanelComponent,
+    EnquiryComponent,
+    OrderpurshasecpanelComponent,
+    OrderexchangecpanelComponent,
+    RecordComponent,
   ],
   imports: [
+    
       BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

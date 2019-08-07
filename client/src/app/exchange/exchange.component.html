@@ -25,14 +25,14 @@
   (معرفة تقييم الكتاب)
 </h4>
 <br>
-
+<form>
 <h6>ادخل عدد صفحات الكتاب</h6>
-<input type="number" class="form-control">
+<input name="pages" type="number" class="form-control">
 <br>
 
 <h6>حدد حالة الكتاب</h6>
 
-<select class="form-control" dir="rtl">
+<select name="status" class="form-control" dir="rtl">
   <option>
     حالة الكتاب :
   </option>
@@ -49,7 +49,7 @@
 <br>
 <h6>حدد نوع الكتاب</h6>
 
-<select class="form-control" dir="rtl">
+<select name="cat" class="form-control" dir="rtl">
   <option>
     نوع الكتاب :
   </option>
@@ -63,7 +63,7 @@
 </select>
 <br>
 <h6>حدد حجم الكتاب</h6>
-<select class="form-control">
+<select name="size" class="form-control">
     <option>
         حجم الكتاب :
       </option>
@@ -81,7 +81,9 @@
 
 <h5>تقييم الكتاب : <span class=" btn btn-success">= 50 XP</span> 
 </h5>
-<span class=" btn btn-primary"> اعادة الحساب</span>
+<button type="reset" class=" btn btn-primary"> اعادة الحساب</button>
+</form>
+
 <br>
 <br>
 </div>
@@ -104,8 +106,8 @@
 <h4>
   ادخل عدد الكتب التي تود تبديلها:
 </h4>
-<form >
-<input type ="number" class="form-control">
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+<input required name="pages" type ="number" class="form-control">
 <br>
 <!--
 
@@ -124,7 +126,7 @@
     <mat-radio-button value="2">الحصول على النقاط بعد وصول موظف التوصيل</mat-radio-button>
   </mat-radio-group>
   -->
-<button class="btn btn-danger">اتمام عملية التبديل</button>
+<button [disabled]="f.form.invalid" routerLink="/user/checkoutexchange" type="submit" class="btn btn-danger">اتمام عملية التبديل</button>
 </form>
 </div>
 

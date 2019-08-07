@@ -19,6 +19,10 @@ import { NotiComponent } from './noti/noti.component';
 import { ChildComponent } from './child/child.component';
 import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.component';
 import { CpanelComponent } from './cpanelAuth/cpanel/cpanel.component';
+import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
+import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
+import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
+import { RecordComponent } from './cpanelAuth/record/record.component';
 const routes: Routes = [
   {path: '' ,component:IndexComponent , pathMatch:'full' },
   {path: 'Index' ,component:IndexComponent },
@@ -28,7 +32,9 @@ const routes: Routes = [
   {path: 'privacy' , component:PrivacyComponent},
   {path: 'faqs' , component:FaqsComponent},
   {path: 'contacus' , component:ContacusComponent},
-  {path: 'who' , component:WhoComponent},
+  //عدلت who ل index component مؤقتا
+  {path: 'who' , component:IndexComponent},
+
 
 
 
@@ -36,7 +42,7 @@ const routes: Routes = [
   {path: 'user' , component:ChildComponent,
 children:[
   {path: 'home' , component:HomeComponent},
-  {path: 'bookdetail' , component:BookdetailComponent},
+  {path: 'bookdetail/:id' , component:BookdetailComponent},
   {path: 'basket' , component:BasketComponent},
   {path: 'exchange' , component:ExchangeComponent},
   {path: 'checkoutpurchase' , component:CheckoutpurchaseComponent},
@@ -45,6 +51,10 @@ children:[
   {path: 'noti' , component:NotiComponent},
   {path: 'checkoutexchange' , component:CheckoutexchangeComponent},
   {path: 'cpanel' , component:CpanelComponent},
+  {path: 'e' , component:EnquiryComponent},
+  {path: 'cpanelpurchase' , component:OrderpurshasecpanelComponent},
+  {path: 'cpanelexchange' , component:OrderexchangecpanelComponent},
+  {path: 'record' , component:RecordComponent},
 
 
 ]

@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-checkoutpurchase',
   templateUrl: './checkoutpurchase.component.html',
   styleUrls: ['./checkoutpurchase.component.css']
 })
 export class CheckoutpurchaseComponent implements OnInit {
+ 
    purchaseForm = new FormGroup({
      firstName: new FormControl('احمد'),
      lastName: new FormControl('صلاح'),
@@ -19,13 +21,15 @@ export class CheckoutpurchaseComponent implements OnInit {
 
      });
 
-  
+   constructor() { }
+ 
+     ngOnInit() {
+     
+     }
 
+ 
+ 
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-
-}
+ 
+ }
+ 

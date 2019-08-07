@@ -1,458 +1,143 @@
-
-
-
-
 <div class="container pad" style="background-color: #F5F5F5;padding-top:15%;padding-bottom:10%">
-<div style="padding-left:25%;padding-right:25%">
-  
-<h3 dir="rtl" style="text-align: center"> نقاطك المتبقية:     <span> xp 30 !</span></h3>
-<br>
-<select class="form-control" style="width:100%;text-align: center" >
-  <option>
-    كل الفئات
-  </option>
-  <option>
-     روايات
-  </option>
-</select>
- 
+  <div style="padding-left:25%;padding-right:25%">
 
-<h6 style="text-align:center;padding-top:5%">
-
-كل الفئات
-</h6>
-</div>
-
-<div class="row" style="font-size:16px;padding-bottom:5%">
-
-        <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+    <h3 dir="rtl" style="text-align: center"> نقاطك المتبقية: <span> xp 30 !</span></h3>
+    <br>
+    <select class="form-control" style="width:100%;text-align: center">
+      <option>
+        كل الفئات
+      </option>
+      <option>
+        روايات
+      </option>
+    </select>
 
 
+    <h6 style="text-align:center;padding-top:5%">
 
-  
+      كل الفئات
+    </h6>
+  </div>
 
-  <img style="width:100%;" src="assets/images/test.jpg" >
-              <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+  <div class="row" style="font-size:16px;padding-bottom:5%">
 
-  <span dir="rtl" style="text-align: center">
-<br>
-          ستيف جوبز المكافح العنيد
+    <div *ngFor="let book of books" class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="{{book.image}}" (click)="openBook(book.id)">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+
+        <span dir="rtl" style="text-align: center">
+
           <br>
-          المؤلف :سمير امام شرف
+{{book.name}}
+          <br> 
+          {{book.author.name}}
           <br>
           <br>
 
-<b>
-          30 جنيه سوداني -          20XP
-        </b>
+          <b>
+{{book.priceSdg}} {{book.priceXp}}
+          </b>
 
           <br>
           <br>
           <button class="btn btn-sm btn-danger">
 
-              <span >
-                  اضف الى السلة +
-                </span> 
-                <br>   
-              </button>
+            <span mat-button (click)="openSnackBar(message.value, action.value)">
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
         </span>
 
-</div>
-</div>
-<div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-    <img style="width:100%;" src="assets/images/test.jpg" >
-<div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-    <span dir="rtl" style="text-align: center">
-  <br>
-            ستيف جوبز المكافح العنيد
-            <br>
-            المؤلف :سمير امام شرف
-            <br>
-            <br>
-  
-  <b>
-          30 جنيه سوداني -          20XP
-        </b>
-  
-            <br>
-            <br>
-            <button class="btn btn-sm btn-danger">
-
-                <span >
-                    اضف الى السلة +
-                  </span> 
-                  <br>   
-                </button>
-          </span>
-  
-  </div>
-
-  
-</div>
-        <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-    <img style="width:100%;" src="assets/images/test.jpg" >
-                <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-
-    <span dir="rtl" style="text-align: center">
-  <br>
-            ستيف جوبز المكافح العنيد
-            <br>
-            المؤلف :سمير امام شرف
-            <br>
-            <br>
-  
-  <b>
-          30 جنيه سوداني -          20XP
-        </b>
-  
-            <br>
-            <br>
-           <button class="btn btn-sm btn-danger">
-
-                    <span >
-                        اضف الى السلة +
-                      </span> 
-                      <br>   
-                    </button>         </span>
-  
-  </div>
-
-  
-</div>
-        <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-    <img style="width:100%;" src="assets/images/test.jpg" >
-<div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-    <span dir="rtl" style="text-align: center">
-  <br>
-            ستيف جوبز المكافح العنيد
-            <br>
-            المؤلف :سمير امام شرف
-            <br>
-            <br>
-  
-  <b>
-          30 جنيه سوداني -          20XP
-        </b>
-  
-            <br>
-            <br>
-           <button class="btn btn-sm btn-danger">
-
-                    <span >
-                        اضف الى السلة +
-                      </span> 
-                      <br>   
-                    </button>         </span>
-  
-  </div>
-
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-      
-    
-      <img style="width:100%;" src="assets/images/test.jpg" >
-  <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-      <span dir="rtl" style="text-align: center">
-    <br>
-              ستيف جوبز المكافح العنيد
-              <br>
-              المؤلف :سمير امام شرف
-              <br>
-              <br>
-    
-    <b>
-          30 جنيه سوداني -          20XP
-        </b>
-    
-              <br>
-              <br>
-              <button class="btn btn-sm btn-danger">
-
-                  <span >
-                      اضف الى السلة +
-                    </span> 
-                    <br>   
-                  </button>
-            </span>
-    
-    </div>
-    
-    </div>
-            <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-        <img style="width:100%;" src="assets/images/test.jpg" >
-    <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-        <span dir="rtl" style="text-align: center">
-      <br>
-                ستيف جوبز المكافح العنيد
-                <br>
-                المؤلف :سمير امام شرف
-                <br>
-                <br>
-      
-      <b>
-          30 جنيه سوداني -          20XP
-        </b>
-      
-                <br>
-                <br>
-                <button class="btn btn-sm btn-danger">
-
-                    <span >
-                        اضف الى السلة +
-                      </span> 
-                      <br>   
-                    </button>
-              </span>
-      
       </div>
-    
-      
     </div>
-            <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
 
-        <img style="width:100%;" src="assets/images/test.jpg" >
-    <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-        <span dir="rtl" style="text-align: center">
-      <br>
-                ستيف جوبز المكافح العنيد
-                <br>
-                المؤلف :سمير امام شرف
-                <br>
-                <br>
-      
-      <b>
-          30 جنيه سوداني -          20XP
-        </b>
-      
-                <br>
-                <br>
-                  <button class="btn btn-sm btn-danger">
-
-                    <span >
-                        اضف الى السلة +
-                      </span> 
-                      <br>   
-                    </button>      </span>
-      
-      </div>
-    
-      
-    </div>
-            <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-        <img style="width:100%;" src="assets/images/test.jpg" >
-    <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-        <span dir="rtl" style="text-align: center">
-      <br>
-                ستيف جوبز المكافح العنيد
-                <br>
-                المؤلف :سمير امام شرف
-                <br>
-                <br>
-      
-      <b>
-          30 جنيه سوداني -          20XP
-        </b>
-      
-                <br>
-                <br>
-                  <button class="btn btn-sm btn-danger">
-
-                    <span >
-                        اضف الى السلة +
-                      </span> 
-                      <br>   
-                    </button>      </span>
-      
-      </div>
-    
-      
-    </div>
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-          
-        
-            <img style="width:100%;" src="assets/images/test2.jpg" >
+      <img style="width:100%;" src="assets/images/test.jpg">
       <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-          <span dir="rtl" style="text-align: center">
-        <br>
-مؤسس مايكروسفت بيل قيتس
-                  <br>
-                  المؤلف :سمير امام شرف
-                  <br>
-                  <br>
-        
-        <b>
-          30 جنيه سوداني -          20XP
-        </b>
-        
-                  <br>
-                  <br>
-                  <button class="btn btn-sm btn-danger">
-
-                      <span >
-                          اضف الى السلة +
-                        </span> 
-                        <br>   
-                      </button>
-                </span>
-        
-        </div>
-        </div>
-                <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-            <img style="width:100%;" src="assets/images/test2.jpg" >
-        <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-            <span dir="rtl" style="text-align: center">
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
           <br>
-          مؤسس مايكروسفت بيل قيتس
           <br>
-                    المؤلف :سمير امام شرف
-                    <br>
-                    <br>
-          
+
           <b>
-          30 جنيه سوداني -          20XP
-        </b>
-          
-                    <br>
-                    <br>
-                    <button class="btn btn-sm btn-danger">
+            30 جنيه سوداني - 20XP
+          </b>
 
-                        <span >
-                            اضف الى السلة +
-                          </span> 
-                          <br>   
-                        </button>
-                  </span>
-          
-          </div>
-        
-          
-        </div>
-                <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-
-            <img style="width:100%;" src="assets/images/test2.jpg" >
-        <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-            <span dir="rtl" style="text-align: center">
           <br>
-          مؤسس مايكروسفت بيل قيتس
           <br>
-                    المؤلف :سمير امام شرف
-                    <br>
-                    <br>
-          
-          <b>
-          30 جنيه سوداني -          20XP
-        </b>
-          
-                    <br>
-                    <br>
-                    <button class="btn btn-sm btn-danger">
+          <button class="btn btn-sm btn-danger">
 
-                        <span >
-                            اضف الى السلة +
-                          </span> 
-                          <br>   
-                        </button>  
-                    
-                    </span>
-          
-          </div>
-        
-          
-        </div>
-                <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
+        </span>
 
-            <img style="width:100%;" src="assets/images/test2.jpg" >
-            <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
-            <span dir="rtl" style="text-align: center">
-          <br>
-          مؤسس مايكروسفت بيل قيتس
-          <br>
-                    المؤلف :سمير امام شرف
-                    <br>
-                    <br>
-                    
-          <b>
-          30 جنيه سوداني -          20XP
-        </b>
-                    <br>
-                    <br>
-                    <button class="btn btn-sm btn-danger">
-
-                    <span >
-                        اضف الى السلة +
-                      </span> 
-                    </button>
-
-                    
-                    </span>
-          
-          </div>
-        
-          
-        </div>
-        
-        
       </div>
 
 
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button> </span>
+
+      </div>
+
+
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button> </span>
+
+      </div>
+
+
+    </div>
 
 
 
@@ -461,36 +146,315 @@
 
 
 
-<br>
-<br>
-<div style="text-align:right" dir="rtl">
-لم تعثر على الكتاب الذي تبحث عنه؟
-مكتبتنا قائمة على تبادل الكتب , فربما ستجد ضالتك قريبا 
-<br>
-ادخل اسم الكتاب والمؤلف وسنخطرك بتوفره في مكتبتنا قريبا في شريط الاشعارات الخاص بك
-<br>
-<form #request="ngForm" (ngSubmit)="onSubmit(request.value)">
-  اسم الكتاب :
-<input required [(ngModel)]="request.bookname" type="text " id="bookname" name="bookname" class="form-control feld" style="width:50%">
-<br>
-اسم المؤلف: (اختياري - في حال لم تتعرف عليه)
-<input type="text " [(ngModel)]="request.authname" id="authname" name="authname" class="form-control feld" style="width:50%">
-<br>
-<button type="submit" class="btn btn-primary">
-  ارسال
-</button>
 
 
-</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+
+
+      <img style="width:100%;" src="assets/images/test.jpg" (click)="openBook(1)">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
+        </span>
+
+      </div>
+
+
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button> </span>
+
+      </div>
+
+
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> ستيف جوبز المكافح العنيد
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button> </span>
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+
+      <img style="width:100%;" src="assets/images/test2.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> مؤسس مايكروسفت بيل قيتس
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
+        </span>
+
+      </div>
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test2.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> مؤسس مايكروسفت بيل قيتس
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
+        </span>
+
+      </div>
+
+
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test2.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> مؤسس مايكروسفت بيل قيتس
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+            <br>
+          </button>
+
+        </span>
+
+      </div>
+
+
+    </div>
+    <div class="col-sm-3 col-6" style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+
+      <img style="width:100%;" src="assets/images/test2.jpg">
+      <div style="text-align: center;border:1px solid #6C757D;background-color: rgb(223, 217, 217);padding-bottom:10%">
+        <span dir="rtl" style="text-align: center">
+          <br> مؤسس مايكروسفت بيل قيتس
+          <br> المؤلف :سمير امام شرف
+          <br>
+          <br>
+
+          <b>
+            30 جنيه سوداني - 20XP
+          </b>
+          <br>
+          <br>
+          <button class="btn btn-sm btn-danger">
+
+            <span>
+              اضف الى السلة +
+            </span>
+          </button>
+
+
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <br>
+  <br>
+  <div style="text-align:right" dir="rtl">
+    لم تعثر على الكتاب الذي تبحث عنه؟ مكتبتنا قائمة على تبادل الكتب , فربما ستجد ضالتك قريبا
+    <br> ادخل اسم الكتاب والمؤلف وسنخطرك بتوفره في مكتبتنا قريبا في شريط الاشعارات الخاص بك
+    <br>
+    <form #request="ngForm" (ngSubmit)="onSubmit(request.value)">
+      اسم الكتاب :
+      <input required [(ngModel)]="request.bookname" type="text " id="bookname" name="bookname" class="form-control feld" style="width:50%">
+      <br> اسم المؤلف: (اختياري - في حال لم تتعرف عليه)
+      <input type="text " [(ngModel)]="request.authorname" id="authname" name="authname" class="form-control feld" style="width:50%">
+      <br>
+      <button type="submit" class="btn btn-primary">
+        ارسال
+      </button>
+
+
+    </form>
+  </div>
+
+
+
+
+
+
 </div>
-
-
-
-
-
-        
-        </div>
-
-
-
-

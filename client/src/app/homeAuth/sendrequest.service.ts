@@ -11,7 +11,13 @@ export class SendrequestService {
 
   Requestbook(Requestbook: Requestbook) {
       console.log(Requestbook)
-      return this.httpClinet.post(this.globalsService.apiUrl + 'users/signup',
+      return this.httpClinet.post(this.globalsService.apiUrl + 'books/request',
       Requestbook);
+  }
+
+
+  addToCart(userId, bookId){
+    return this.httpClinet.post(this.globalsService.apiUrl + 'users/add_to_cart',
+      {userId, bookId});
   }
 }
