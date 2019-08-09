@@ -1,13 +1,41 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
     <div class="row pad" style="padding-top:15%">
-
+            
     <div class="col-sm-5">
     </div>
 <div class="form-group col-sm-5" dir="rtl" style="text-align:right">
+        <div style="text-align:right;">
+                <a class="btn btn-primary" routerLink="/user/cpanelexchange" style="padding-5px;width:23%">
+                    طلبات التبديل
+                </a>
+                <br>
+            <br>
+            <a class="btn btn-primary" routerLink="/user/cpanelpurchase" style="padding-5px;width:23%">
+                طلبات الشراء
+            </a>
+            <br>
+        <br>
+                <a class="btn btn-success" routerLink="/user/cpanel" style="padding-5px;width:23%">
+            اضافة النقاط والكتب
+                </a>
+                <br>
+            <br>
+                <a class="btn btn-info" routerLink="/user/e" style="padding-5px;width:23%">
+            الاستعلام وخدمة العملاء
+                </a>
+                <br>
+            <br>
+            <a class="btn btn-secondary" routerLink="/user/record" style="padding-5px;width:23%">
+            السجل
+                    </a>
+                    <br>
+                <br>
+            </div>
    <h3>
         لوحة التحكم الخاصة بي xd
 
    </h3>
+   <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
+
     <br>
     اسم الكتاب :
 <input type="text" class="form-control" name="bookname" id="bookname" [(ngModel)]="book.name">
@@ -22,7 +50,9 @@
 <br>
 
 المؤلف
-<input type="text" class="form-control" name="authname" id="authname" [(ngModel)]="book.author">
+<select class="form-control" name="authname" id="authname" [(ngModel)]="book.author">
+
+    </select>
 <br>
 
 نبذة عن الكتاب
@@ -80,14 +110,59 @@
 
 <br>
 <button type="submit" class="btn btn-warning">submit</button>
-
-</div>
-
-
-
-
-<button type="submit" class="btn btn-warning">submit</button>
-<br>
-</div>
-
 </form>
+
+<br>
+<br>
+<br>
+<form>
+
+
+        اضف مؤلفين
+                <input type="text" class="form-control" name="authname" id="authname">
+        
+        <br>
+        نبذة عن المؤلف :
+        <input type="text" class="form-control" name="authname" id="authname">
+
+        <button class="btn btn-success">submit</button>
+        </form>
+
+        <br>
+        <br>
+        <form>
+
+
+اضف نقاط للمستخدم
+email:
+                    <input type="text" class="form-control" name="authname" id="authname">
+            <br>
+            xp:
+            <input type="number" class="form-control" name="authname" id="authname">
+<br>
+bonos xP:
+<input type="number" class="form-control" name="authname" id="authname">
+notifaction:
+<input type="text" class="form-control" name="authname" id="authname">
+
+            
+            <button class="btn btn-success">submit</button>
+            </form>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+

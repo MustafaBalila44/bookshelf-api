@@ -12,4 +12,9 @@ export class ExchangeComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+  onSubmit(form) {
+
+   
+  }
 }
