@@ -77,6 +77,7 @@ AuthorController.create = (req, res) => __awaiter(this, void 0, void 0, function
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });
         }
+        console.log(req.body);
         const author = yield author_model_1.Author.create(fields);
         return res.status(201).json({ author });
     }

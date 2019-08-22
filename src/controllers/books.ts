@@ -61,16 +61,17 @@ export class BookController {
      */
     public static create = async (req: Request, res: Response) => {
         const fields = _.pick(req.body, [
-            'name', 'note',
+            'name', 'note', 'status',
             'priceSdg', 'priceXp',
             'author', 'description',
             'category', 'pages',
         ]);
+
         try {
-            // const errors = validationResult(req);
-            // if (!errors.isEmpty()) {
-            //     return res.status(400).json({ error: errors.array() });
-            // }
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ error: errors.array() });
+            }
             const book = await Book.create(fields);
             return res.status(201).json({ book });
         } catch (error) {

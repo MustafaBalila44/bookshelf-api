@@ -5,6 +5,11 @@ export type BookDocument = Document & {
     priceSdg: number;
     priceXp: number;
     author: string;
+    description: string;
+    note: string;
+    pages: number;
+    status: string;
+    category: string;
 };
 
 // tslint:disable: object-literal-sort-keys
@@ -45,6 +50,9 @@ const bookSchema = new Schema({
     pages: {
         type: Number,
         required: true,
+    },
+    status: {
+        type: String,
     },
     image: {
         type: String,

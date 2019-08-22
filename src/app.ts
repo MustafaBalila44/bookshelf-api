@@ -3,7 +3,6 @@ import morgan from 'morgan';
 import { join } from "path";
 import { createWriteStream } from 'fs';
 import bodyParser from "body-parser";
-import fileUpload from 'express-fileupload';
 import compression from "compression";  // compresses requests
 import cors from 'cors';
 import helmet from "helmet";
@@ -24,7 +23,6 @@ app.use(cors({preflightContinue: true}));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(fileUpload());
 app.use('/', express.static('static'));
 
 app.use('/api', router);

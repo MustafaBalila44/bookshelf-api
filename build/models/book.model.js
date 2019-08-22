@@ -40,8 +40,12 @@ const bookSchema = new mongoose_1.Schema({
         type: Number,
         required: true,
     },
+    status: {
+        type: String,
+    },
     image: {
         type: String,
+        default: "https://bookshelf5000.herokuapp.com/images/book.jpg",
         required: true,
     }
 });

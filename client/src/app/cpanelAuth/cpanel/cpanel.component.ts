@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../cpanelclass';
+import { Book, Author } from '../cpanelclass';
 import { CpanelService } from '../cpanel.service';
 
 @Component({
@@ -10,21 +10,34 @@ import { CpanelService } from '../cpanel.service';
 export class CpanelComponent implements OnInit {
   // variable name : type = value
   book: Book = new Book();
+  author: Author = new Author();
+  authors: Author[] = [];
   constructor(private cpanelService : CpanelService) { }
 
   ngOnInit() {
+    this.cpanelService.getAuthors().subscribe(response => {
+      this.authors = response.authors;
+    });
   }
 
 
-  onSubmit(form) {
-    this.book.author = "5d4722bfd249e427880b11bc";
+  onAddBook() {
     this.cpanelService.addBook(this.book).subscribe((response) => {
       console.log(response);
-
-     } )
+     });
   }
 
+  onAddAuthor() {
+    this.cpanelService.addAuthor(this.author).subscribe((response) => {
+      console.log(response);
+     });
+  }
 
+  onAddUserPoints() {
+    this.cpanelService.addBook(this.book).subscribe((response) => {
+      console.log(response);
+     });
+  }
 
 
 }
