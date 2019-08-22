@@ -67,6 +67,7 @@ export class AuthorController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });
         }
+        console.log(req.body)
         const author = await Author.create(fields);
         return res.status(201).json({ author });
     } catch (error) {

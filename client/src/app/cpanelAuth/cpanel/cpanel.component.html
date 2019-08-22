@@ -1,181 +1,198 @@
-    <div class="row pad" style="padding-top:15%">
-            
-    <div class="col-sm-5">
-    </div>
-<div class="form-group col-sm-5" dir="rtl" style="text-align:right">
-        <div style="text-align:right;">
-                <a class="btn btn-primary" routerLink="/user/cpanelexchange" style="padding-5px;width:23%">
-                    طلبات التبديل
-                </a>
-                <br>
-            <br>
-            <a class="btn btn-primary" routerLink="/user/cpanelpurchase" style="padding-5px;width:23%">
+<div class="row container-fluid" style="padding-top:15%">
+
+    <div class="form-group col-sm-8 offset-sm-4" dir="rtl" style="text-align:right">
+        <div class="btn-group m-3" role="group">
+                <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary" routerLink="/user/cpanelexchange"
+                style="padding-5px;width: 23%;">
+                طلبات التبديل
+            </a>
+                </div>
+                <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary" routerLink="/user/cpanelpurchase"
+                style="padding-5px;width:23%;">
                 طلبات الشراء
             </a>
-            <br>
-        <br>
-                <a class="btn btn-success" routerLink="/user/cpanel" style="padding-5px;width:23%">
-            اضافة النقاط والكتب
-                </a>
-                <br>
-            <br>
-                <a class="btn btn-info" routerLink="/user/e" style="padding-5px;width:23%">
-            الاستعلام وخدمة العملاء
-                </a>
-                <br>
-            <br>
-            <a class="btn btn-secondary" routerLink="/user/record" style="padding-5px;width:23%">
-            السجل
-                    </a>
-                    <br>
-                <br>
             </div>
-   <h3>
-        لوحة التحكم الخاصة بي xd
+            <div class="btn-group mr-2" role="group">
+            <a class="btn btn-success" routerLink="/user/cpanel"
+                style="padding-5px;width:23%;">
+                اضافة النقاط والكتب
+            </a>
+            </div>
+            <div class="btn-group mr-2" role="group">
+            <a class="btn btn-info" routerLink="/user/e"
+                style="padding-5px;width:23%;">
+                الاستعلام وخدمة العملاء
+            </a>
+            </div>
+            <div class="btn-group mr-2" role="group">
+            <a class="btn btn-secondary" routerLink="/user/record"
+                style="padding-5px;width:23%">
+                السجل
+            </a>
+            </div>
+        </div>
+        <h3>
+            لوحة التحكم الخاصة بي xd
+        </h3>
+        <!-- Tabs start-->
+        <mat-tab-group>
+            <!--Add book tab-->
+            <mat-tab label="Add a book">
+                <form #f="ngForm" (ngSubmit)="onAddBook()" enctype="multipart/form-data">
 
-   </h3>
-   <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
+                    <br>
+                    اسم الكتاب :
+                    <input type="text" class="form-control" name="bookname"
+                        id="bookname" [(ngModel)]="book.name">
+                    <br>
 
-    <br>
-    اسم الكتاب :
-<input type="text" class="form-control" name="bookname" id="bookname" [(ngModel)]="book.name">
-<br>
+                    السعر بالجنيه
+                    <input type="text" class="form-control" name="priceSDG"
+                        id="priceSDG" [(ngModel)]="book.priceSdg">
+                    <br>
 
-السعر بالجنيه
-<input type="text" class="form-control" name="priceSDG" id="priceSDG" [(ngModel)]="book.priceSdg">
-<br>
+                    السعر ب xp
+                    <input type="text" class="form-control" name="priceXP"
+                        id="priceXP" [(ngModel)]="book.priceXp">
+                    <br>
 
-السعر ب xp
-<input type="text" class="form-control" name="priceXP" id="priceXP" [(ngModel)]="book.priceXp">
-<br>
+                    المؤلف
+                    <select class="form-control custom-select" name="authname" id="authname"
+                        [(ngModel)]="book.author">
+                        <option *ngFor="let author of authors" [value]="author._id">
+                            {{ author.firstName}} {{ author.lastName }}
+                        </option>
+                    </select>
+                    <br>
 
-المؤلف
-<select class="form-control" name="authname" id="authname" [(ngModel)]="book.author">
-
-    </select>
-<br>
-
-نبذة عن الكتاب
-<textarea rows="10" cols="10" class="form-control" name="description" id="description" [(ngModel)]="book.description">
+                    نبذة عن الكتاب
+                    <textarea rows="10" cols="10" class="form-control"
+                        name="description" id="description"
+                        [(ngModel)]="book.description">
 
 </textarea>
 
 
 
-<br>
- ملاحظات اضافية :
-<input type="text" class="form-control" name="note" id="note" [(ngModel)]="book.note">
-<br>
-عدد الصفحات
-<input type="text" class="form-control" name="pages" id="pages" [(ngModel)]="book.pages">
- <br>
+                    <br>
+                    ملاحظات اضافية :
+                    <input type="text" class="form-control" name="note"
+                        id="note" [(ngModel)]="book.note">
+                    <br>
+                    عدد الصفحات
+                    <input type="text" class="form-control" name="pages"
+                        id="pages" [(ngModel)]="book.pages">
+                    <br>
 
 
- <select class="form-control" name="status" id="status" [(ngModel)]="book.status">
-     <option>حالة الكتاب</option>
-     <option>جديد</option>
-     <option>مستعمل بحالة جيدة</option>
-     <option>مستعمل بحالة متوسطة</option>
-     <option>مستعمل بحالة مقبولة</option>
+                    <select class="form-control" name="status" id="status"
+                        [(ngModel)]="book.status">
+                        <option>حالة الكتاب</option>
+                        <option>جديد</option>
+                        <option>مستعمل بحالة جيدة</option>
+                        <option>مستعمل بحالة متوسطة</option>
+                        <option>مستعمل بحالة مقبولة</option>
 
- </select>
+                    </select>
 
-<br>
-
-
-
-<select class="form-control" name="cat" id="cat" [(ngModel)]="book.category" >
-<option>
-الفئة
-</option>
-<option>
-    رواية
-    </option>
-    <option>
-    علمية
-        </option>
-        <option>
-    سيرة ذاتية
-            </option>
+                    <br>
 
 
 
-</select>
+                    <select class="form-control" name="cat" id="cat"
+                        [(ngModel)]="book.category">
+                        <option>
+                            الفئة
+                        </option>
+                        <option>
+                            رواية
+                        </option>
+                        <option>
+                            علمية
+                        </option>
+                        <option>
+                            سيرة ذاتية
+                        </option>
 
 
-<br>
 
-الصورة:
-<input type="file" class="form-control" name="pic" id="pic" [(ngModel)]="book.image">
-
-<br>
-<button type="submit" class="btn btn-warning">submit</button>
-</form>
-
-<br>
-<br>
-<br>
-<form>
+                    </select>
 
 
-        اضف مؤلفين
-                <input type="text" class="form-control" name="authname" id="authname">
-        
-        <br>
-        نبذة عن المؤلف :
-        <input type="text" class="form-control" name="authname" id="authname">
+                    <br>
 
-        <button class="btn btn-success">submit</button>
-        </form>
+                    الصورة:
+                    <input type="file" class="form-control-file" name="pic" id="pic"
+                        [(ngModel)]="book.image">
 
-        <br>
-        <br>
-        <form>
+                    <br>
 
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </form>
 
-احذف كتاب :
-                <input type="text" class="form-control" name="authname" id="authname">
-        
-        <br>
-       
-        <button class="btn btn-success">submit</button>
-        </form>
-        <br>
-        <br>
-        
-        <form>
+            </mat-tab>
+            <!--Add author tab-->
+            <mat-tab label="Add an author">
+                اضف مؤلفين
+                <form #autherForm="ngForm" (ngSubmit)="onAddAuthor()">
+                    <div class="form-group">
+                        <label for="authfname">
+                            Author Fisrt Name
+                        </label>
+                        <input class="form-control" name="authfname" [(ngModel)]="author.firstName"
+                            id="authfname" placeholder="Author First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="authlname">
+                            Author Last Name
+                        </label>
+                        <input class="form-control" id="auhtlname" [(ngModel)]="author.lastName"
+                            name="authlname" placeholder="Author Last Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="about"> نبذة عن المؤلف :</label>
 
+                        <textarea rows="3" class="form-control" name="about"
+                        [(ngModel)]="author.about" id="about">
+                    </textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </form>
+            </mat-tab>
 
-اضف نقاط للمستخدم
-email:
-                    <input type="text" class="form-control" name="authname" id="authname">
-            <br>
-            xp:
-            <input type="number" class="form-control" name="authname" id="authname">
-<br>
-bonos xP:
-<input type="number" class="form-control" name="authname" id="authname">
-notifaction:
-<input type="text" class="form-control" name="authname" id="authname">
+            <mat-tab label="Add a points to a user">
+                اضف نقاط للمستخدم
+                <form #ptsForm="ngForm" (onSubmit)="onAddPonits()">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" name="emila"
+                            id="email" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="xp">XP: </label>
 
-            
-            <button class="btn btn-success">submit</button>
-            </form>
+                        <input type="number" class="form-control" name="xp"
+                            id="xp">
+                    </div>
+                    <div class="form-group">
+                        <label for="bonusxp">bonus xP:</label>
+
+                        <input type="number" class="form-control" name="bonusxp"
+                            id="bonusxp">
+                    </div>
+                    <div class="form-group">
+                        <label for="xp">notifaction:</label>
+
+                        <input type="text" class="form-control"
+                            name="notifaction" id="notifaction">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+
 </div>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import passport from "passport";
+import { upload } from '../config/multer';
 import { BookController } from '../controllers/books';
 
 const router = Router();

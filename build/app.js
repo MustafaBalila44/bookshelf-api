@@ -8,7 +8,6 @@ const morgan_1 = __importDefault(require("morgan"));
 const path_1 = require("path");
 const fs_1 = require("fs");
 const body_parser_1 = __importDefault(require("body-parser"));
-const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const compression_1 = __importDefault(require("compression")); // compresses requests
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
@@ -25,7 +24,6 @@ app.use(cors_1.default({ preflightContinue: true }));
 app.use(helmet_1.default());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
-app.use(express_fileupload_1.default());
 app.use('/', express_1.default.static('static'));
 app.use('/api', routes_1.default);
 exports.default = app;
