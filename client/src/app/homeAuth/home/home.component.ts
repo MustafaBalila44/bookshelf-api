@@ -5,6 +5,7 @@ import { Book } from '../../cpanelAuth/cpanelclass';
 import { CpanelService } from '../../cpanelAuth/cpanel.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from 'src/app/shared/UI.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
     private sendrequestService: SendrequestService,
     private cpanelService: CpanelService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private ui: UIService,
   ) { }
 
   ngOnInit() {
@@ -34,32 +36,29 @@ export class HomeComponent implements OnInit {
     this.sendrequestService.Requestbook(this.request).subscribe((response) => {
       console.log(response);
 
-    })
-
-
-
-
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 8000,
     });
   }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000,
+    });
+  }
+
   addToCart(bookId) {
-
-    const userId = localStorage.getItem("_id");
+    this.ui.loadingStateChanged.next(true);
+    const userId = localStorage.getItem('_id');
     this.sendrequestService.addToCart(userId, bookId).subscribe((res) => {
-
+      this.ui.loadingStateChanged.next(false);
+      this.openSnackBar('The book was added');
     }, (err) => {
-
-    })
+      console.log(err);
+    });
   }
 
 
   openBook(bookId) {
-    this.router.navigate(['/user', 'bookdetail', "5d4722c5d249e427880b11bd"]);
-
+    this.router.navigate(['/user', 'bookdetail', bookId]);
   }
 }
 
