@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppMaterialModule } from './material.module';
+import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IndexComponent } from './index/index.component';
@@ -31,6 +31,14 @@ import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.c
 import { CpanelComponent } from './cpanelAuth/cpanel/cpanel.component';
 import { MatchValueDirective } from './directives/match-value.directive';
 import { SendrequestService } from './homeAuth/sendrequest.service';
+import { TokenInterceptor } from './token-interceptor';
+import { WarningBoxComponent } from './messagebox/warning-box/warning-box.component';
+import { ErrorBoxComponent } from './messagebox/error-box/error-box.component';
+import { YesOrNoComponent } from './messagebox/yes-or-no/yes-or-no.component';
+import { PleaseWaitComponent } from './shared/please-wait/please-wait.component';
+import { MessageBoxService } from './messagebox/message-box.service';
+import { UIService } from './shared/UI.service';
+import { BasketService } from './basket/basket.service';
 /*
 import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
 import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
@@ -61,6 +69,10 @@ import { RecordComponent } from './cpanelAuth/record/record.component';
     ChildComponent,
     CheckoutexchangeComponent,
     CpanelComponent,
+    WarningBoxComponent,
+    ErrorBoxComponent,
+    YesOrNoComponent,
+    PleaseWaitComponent
     /*
     EnquiryComponent,
     OrderpurshasecpanelComponent,
@@ -75,14 +87,28 @@ import { RecordComponent } from './cpanelAuth/record/record.component';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AppMaterialModule
+    MaterialModule
   ],
   providers: [
     GlobalService,
     AuthService,
     SendrequestService,
+    MessageBoxService,
+    UIService,
+    BasketService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    WarningBoxComponent,
+    ErrorBoxComponent,
+    YesOrNoComponent,
+    PleaseWaitComponent
+  ]
 })
 export class AppModule { }

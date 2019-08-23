@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GlobalService } from '../app.globals';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { Signup, Signin } from './auth.model';
 
 @Injectable({
@@ -20,13 +20,14 @@ export class AuthService {
     signin(signin: Signin) {
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/login',
             signin).pipe(catchError(this.errorHandler));
-
     }
- 
 
+    getToken() {
+        const token = localStorage.getItem('auth-token');
+        return token;
+    }
 
-
-errorHandler(error : HttpErrorResponse)  {
-    return throwError(error);
-}  
+    errorHandler(error: HttpErrorResponse) {
+        return throwError(error);
+    }
 }

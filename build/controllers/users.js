@@ -107,8 +107,8 @@ UserController.login = (req, res, next) => __awaiter(this, void 0, void 0, funct
             email: user.email,
             id: user.id,
         };
-        const toekn = jsonwebtoken_1.default.sign(payload, process.env.JWT_KEY);
-        return res.json({ user, toekn });
+        const token = jsonwebtoken_1.default.sign(payload, process.env.JWT_KEY);
+        return res.json({ user, token });
     }))(req, res, next);
 });
 /**

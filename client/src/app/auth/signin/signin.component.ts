@@ -8,17 +8,16 @@ import { Signin } from '../auth.model';
 })
 export class SigninComponent implements OnInit {
   signin: Signin = new Signin();
-  errorMSG='';
+  errorMSG = '';
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  
   }
 
   onSubmit(form) {
-     this.authService.signin(this.signin).subscribe((response) => {
-       console.log(response);
+     this.authService.signin(this.signin).subscribe((response: any) => {
+       localStorage.setItem('auth-token', response.token);
      }, (error) => {
       this.errorMSG = error.statusText;
     });

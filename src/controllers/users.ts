@@ -101,8 +101,8 @@ export class UserController {
                     email: user.email,
                     id: user.id,
                 };
-                const toekn = jwt.sign(payload, process.env.JWT_KEY);
-                return res.json({ user, toekn });
+                const token = jwt.sign(payload, process.env.JWT_KEY);
+                return res.json({ user, token });
             })(req, res, next);
 
     }
