@@ -86,10 +86,9 @@
                         id="pages" [(ngModel)]="book.pages">
                     <br>
 
-
+                    حالة الكتاب 
                     <select class="form-control" name="status" id="status"
                         [(ngModel)]="book.status">
-                        <option>حالة الكتاب</option>
                         <option>جديد</option>
                         <option>مستعمل بحالة جيدة</option>
                         <option>مستعمل بحالة متوسطة</option>
@@ -100,12 +99,11 @@
                     <br>
 
 
+                    الفئة
 
                     <select class="form-control" name="cat" id="cat"
                         [(ngModel)]="book.category">
-                        <option>
-                            الفئة
-                        </option>
+                       
                         <option>
                             رواية
                         </option>
@@ -166,7 +164,7 @@
                 اضف نقاط للمستخدم
                 <form #ptsForm="ngForm" (onSubmit)="onAddPonits()">
                     <div class="form-group">
-                        <label for="email">Email address</label>
+                        <label for="email">Email address /ID </label>
                         <input type="email" class="form-control" name="emila"
                             id="email" placeholder="name@example.com">
                     </div>
@@ -183,6 +181,12 @@
                             id="bonusxp">
                     </div>
                     <div class="form-group">
+                            <label for="bonusxp"> % خصم على الديلفري:</label>
+    
+                            <input type="number" class="form-control" name="copon"
+                                id="copon">
+                        </div>
+                    <div class="form-group">
                         <label for="xp">notifaction:</label>
 
                         <input type="text" class="form-control"
@@ -191,6 +195,41 @@
                     <button class="btn btn-primary" type="submit">Add</button>
                 </form>
             </mat-tab>
+
+    <!-- NEEEEEEEEEEEEEEEEEEEEEEEEEEEW-->
+    
+
+            <mat-tab label="DELETE A BOOK">
+احذف كتاب
+                    <form #ptsForm="ngForm" (onSubmit)="onAddPonits()">
+                        <div class="form-group">
+                            <label for="email">NAME /ID </label>
+                            <input type="email" class="form-control" name="emila"
+                                id="email" placeholder="name@example.com">
+                        </div>
+                        <button class="btn btn-primary" type="submit">DELETE</button>
+
+                    </form>
+                </mat-tab>
+
+                <mat-tab label="تعليق العمليات">
+تعليق عمليات الشراء والتبديل
+                                            <form #ptsForm="ngForm" (onSubmit)="onAddPonits()">
+                                                <div class="form-group">
+                                                    <label for="email">نص الرسالة : </label>
+                                                    <input type="email" class="form-control" name="emila"
+                                                        id="email" placeholder="عذرا خدمة الشراء متوقفة مؤقتا الى حين انتهاء المعرض">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="email">عدد الايام بالساعات: </label>
+                                                        <input type="email" class="form-control" name="emila"
+                                                            id="email" placeholder="48">
+                                                    </div>
+                                                <button class="btn btn-primary" type="submit">تعليق</button>
+                                                <button class="btn btn-success" type="submit"> فك التعليق</button>
+
+                                            </form>
+                                        </mat-tab>
         </mat-tab-group>
 
     </div>
