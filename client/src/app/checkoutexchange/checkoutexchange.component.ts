@@ -18,7 +18,8 @@ export class CheckoutexchangeComponent implements OnInit {
        nigh: new FormControl('الثورة'),
        street: new FormControl('العاشر'),
        address: new FormControl(''),
-
+       note: new FormControl(''),
+       days: new FormControl(''),
      });
 
    constructor() { }

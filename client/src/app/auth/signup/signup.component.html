@@ -120,8 +120,9 @@
    
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <input  #dateOfBirth="ngModel"  class="form-control" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched "   required matInput [matDatepicker]="picker"  id="dateOfBirth" placeholder="  تاريخ الميلاد" name="dateOfBirth" [(ngModel)]="signup.dateOfBirth">
-        
+
+        <input  #dateOfBirth="ngModel"  class="form-control" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched "   required matInput [matDatepicker]="picker"  id="dateOfBirth" placeholder="  يوم / شهر / سنة" name="dateOfBirth" [(ngModel)]="signup.dateOfBirth">
+
  
     </span>
 

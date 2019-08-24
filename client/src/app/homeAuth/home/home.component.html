@@ -1,10 +1,13 @@
 <div class="container pad"
   style="background-color: #F5F5F5;padding-top:15%;padding-bottom:10%">
   <div style="padding-left:25%;padding-right:25%">
-
-    <h3 dir="rtl" style="text-align: center"> نقاطك المتبقية: <span> xp 30
+  
+    <h3 dir="rtl" style="text-align: center"> نقاطك المتبقية: 
+      <span> 
+        xp 30
         !</span></h3>
-    <br>
+  
+      <br>
     <select class="form-control" style="width:100%;text-align: center">
       <option>
         كل الفئات
@@ -12,51 +15,77 @@
       <option>
         روايات
       </option>
+
     </select>
 
 
-    <h6 style="text-align:center;padding-top:5%">
-      كل الفئات
-    </h6>
+    <div style="text-align:center">
+
+        <span class="" style="text-align:center;padding-right:15%;padding-left:15%;display: inline;">
+            كل الفئات
+           
+
+        </span>
+      
+
+      </div>
+   
   </div>
+  <br>
+  <br>
+  <div style="text-align:center">
 
+
+   <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+الروايات         
+
+      </span>
+<hr>
+    </div>
   <div class="row" style="font-size:16px;padding-bottom:5%">
-
+    
     <div *ngFor="let book of books" class="col-sm-3 col-6"
       style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
       <div class="card" (click)="openBook(book._id)" style="cursor: pointer;">
         <img style="width:100%;" class="card-img-top" src="{{book.image}}">
-        <div class="card-body">
-          <h5 class="card-title">
-            {{book.name}}
-          </h5>
-        </div>
+        <br>
+          <h5 class="card-title" dir="rtl" style="text-align:center">
+{{book.name}}         
+ </h5>
+          <br>
         <span dir="rtl" style="text-align: center">
 
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              Author: {{book.author.name}}
-            </li>
-            <li class="list-group-item">
-              Price - SDG: {{book.priceSdg}}
-            </li>
-            <li class="list-group-item">
-              Price - XP: {{book.priceXp}}
-            </li>
-          </ul>
+              المؤلف: {{book.author.name}}
+            <hr>
+              السعر بالجنيه: {{book.priceSdg}}
+              <hr>
 
-          <div class="card-body">
+              السعر بالنقاط: {{book.priceXp}}
+              <hr>
+
+
             <button class="btn btn-sm btn-danger"
               (click)="addToCart(book._id)">
-              اضف الى السلة <mat-icon>add</mat-icon>
+              اضف الى السلة +
             </button>
-          </div>
+            <br>
         </span>
 
       </div>
     </div>
 
   </div>
+  <div style="text-align:center">
+
+      <span class="btn btn-primary">
+المزيد <<         
+    
+      </span>
+      <hr>
+    </div>
+<br>
+
 
   <div style="text-align:right" dir="rtl">
     لم تعثر على الكتاب الذي تبحث عنه؟ مكتبتنا قائمة على تبادل الكتب , فربما
