@@ -24,7 +24,7 @@
 
     <div *ngFor="let book of books" class="col-sm-3 col-6"
       style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
-      <div class="card" (click)="openBook(book.id)" style="cursor: pointer;">
+      <div class="card" (click)="openBook(book._id)" style="cursor: pointer;">
         <img style="width:100%;" class="card-img-top" src="{{book.image}}">
         <div class="card-body">
           <h5 class="card-title">
@@ -75,7 +75,6 @@
       <button type="submit" class="btn btn-primary">
         ارسال
       </button>
-
 
     </form>
   </div>

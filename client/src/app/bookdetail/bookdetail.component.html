@@ -1,20 +1,8 @@
 
-
-
-
-
-
-
-
-
-
 <div  class="container pad" style="padding-top:15%;text-align:right;padding-bottom: 15%">
 
-
 <div class="row">
-
 <div class="col-sm-8">
-
 <h3>
 {{book.name}}
 </h3>
@@ -45,17 +33,9 @@
     &nbsp;  &nbsp; 
     <br>
 <span class="blc">
-<a class="btn  btn-danger" style="color:whitesmoke;">
- <!--(click)="addToCart(book.Id)"
-  .
-  .
-  .
-  .
--->
-    <span (click)="addToCart(book)">
+<button class="btn btn-danger" style="color:whitesmoke;" (click)="addToCart(book._id)">
         اضف الى السلة +
-      </span> 
-    </a>
+    </button>
   </span>
 </h4>
 
@@ -64,27 +44,12 @@
 
 <div class="col-sm-4">
 
-    <img style="width:100%;" class="rounded" src="{{book.image}}" >
-
-
-
-
+    <img style="width:100%;" class="img responsive" src="{{book.image}}" >
 
   </div>
   
 
-
-
-
-
-
-
-
 </div>
-
-
-
-
 
 
 </div>
