@@ -21,8 +21,12 @@ export class SignupComponent implements OnInit {
 
   onSubmit(form) {
 
-    this.authService.signup(this.signup).subscribe((response) => {
-      this.router.navigate(['/user/home/']);
+    this.authService.signup(this.signup).subscribe((response: any) => {
+      if (response.message === 'Account was created') {
+        this.router.navigate(['/signin/']);
+      } else {
+        this.errorMSG = response.message;
+      }
     }, (error) => {
       this.errorMSG = error.statusText;
     });

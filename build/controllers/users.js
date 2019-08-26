@@ -42,7 +42,8 @@ UserController.findOne = (req, res) => __awaiter(this, void 0, void 0, function*
     const id = req.params.id;
     try {
         const user = yield user_model_1.User.findOne({ _id: id }, { password: 0, })
-            .populate({ path: 'cart', select: '_id, books' });
+            .populate({ path: 'cart', select: '_id, books' })
+            .populate('address');
         return res.json({ user });
     }
     catch (error) {
@@ -120,7 +121,6 @@ UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* 
         'phone', 'dateOfBirth',
     ]);
     const addressFields = lodash_1.default.pick(req.body, ['street', 'neighborhood', 'state', 'locallity']);
-    console.log(addressFields);
     const errors = check_1.validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ error: errors.array() });
@@ -148,7 +148,16 @@ UserController.findCart = (req, res) => __awaiter(this, void 0, void 0, function
     const user = req.user;
     try {
         const cart = yield cart_model_1.Cart.findOne({ user: user.id })
-            .populate('books', ['_id', 'name', 'priceSdg', 'priceXp', 'author'], 'Book');
+            .populate({
+            path: 'books', select: ['_id', 'name', 'priceSdg', 'priceXp', 'author', 'image'], model: 'Book',
+            populate: {
+                path: 'author',
+                select: ['_id', 'firstName', 'lastName'],
+            },
+        });
+        // 'books',
+        // ['_id', 'name', 'priceSdg', 'priceXp', 'author'],
+        // 'Book'
         return res.json({ cart });
     }
     catch (error) {
@@ -187,10 +196,7 @@ UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, fu
     }
     try {
         const cart = yield cart_model_1.Cart.findOne({ user: user.id });
-        if (cart.user !== user.id) {
-            return res.sendStatus(401);
-        }
-        cart.books = lodash_1.default.remove(cart.books, (ele) => ele === bookId);
+        cart.books.pull(bookId);
         yield cart.save();
         return res.json({ message: "Book was removed successfuly" });
     }

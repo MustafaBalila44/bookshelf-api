@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
   signin: Signin = new Signin();
   errorMSG = '';
-  private token: string | null;
+  private token = localStorage.getItem('auth-token');
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -21,9 +21,9 @@ export class SigninComponent implements OnInit {
 
   onSubmit(form) {
      this.authService.signin(this.signin).subscribe((response: any) => {
-       console.log(response);
        if (response.token) {
             localStorage.setItem('auth-token', response.token);
+            localStorage.setItem('_id', response.user._id);
             this.token = localStorage.getItem('auth-token');
             this.router.navigate(['/user/home/']);
             } else {

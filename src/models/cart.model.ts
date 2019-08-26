@@ -2,7 +2,7 @@ import { Document, Schema, model } from "mongoose";
 
 export type CartDocument = Document & {
     user: any;
-    books: any[];
+    books: any;
     price: number;
 };
 

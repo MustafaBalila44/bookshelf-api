@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from './basket.service';
-
+import { Cart } from './basket.model';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
@@ -8,17 +8,35 @@ import { BasketService } from './basket.service';
 })
 export class BasketComponent implements OnInit {
 
-  carts = [];
+  cart = new Cart();
+  xpPrice = 0;
+  sdgPrice = 0;
   constructor(private basketService: BasketService) { }
 
   ngOnInit() {
+    this.getCarts();
+  }
+
+  getCarts(): void {
     this.basketService.getCart().subscribe((response: any) => {
-      console.log(response);
+      this.cart = response.cart;
+      const { sdg, xp } = response.cart.books.reduce((all: any, item: any) => ({
+        sdg: all.sdg + item.priceSdg,
+        xp: all.xp + item.priceXp
+      }),
+        { sdg: 0, xp: 0 });
+      this.sdgPrice = sdg;
+      this.xpPrice = xp;
     });
   }
 
-  onSubmit(form) {
 
-   
- }
+  removeFromCart(bookId: string): void {
+    this.basketService.removeFromCart(bookId).subscribe((response: any) => {
+      console.log(response);
+      this.getCarts();
+    }, (err: any) => {
+      console.log(err);
+    });
+  }
 }

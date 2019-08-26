@@ -5,6 +5,8 @@ import { Cart } from "./cart.model";
 export type UserDocument = Document & {
     // user defenition
     email: string;
+    firstName: string;
+    lastName: string;
     password: string;
     dateOfBirth: Date;
     address: any;
@@ -25,6 +27,18 @@ const userScheam = new Schema({
         required: true,
         index: true,
         unique: true,
+    },
+    firstName: {
+        type: String,
+        minlength: 3,
+        required: true,
+
+    },
+    lastName: {
+        type: String,
+        minlength: 3,
+        required: true,
+
     },
     dateOfBirth: {
         type: Date,
