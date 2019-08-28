@@ -89,6 +89,8 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/card
+
 @angular/material/core
 
 @angular/material/datepicker
@@ -104,6 +106,8 @@ THE SOFTWARE.
 @angular/material/menu
 
 @angular/material/paginator
+
+@angular/material/progress-spinner
 
 @angular/material/select
 

@@ -39,5 +39,7 @@ export class CpanelComponent implements OnInit {
      });
   }
 
+  onAddPonits() {
 
+  }
 }

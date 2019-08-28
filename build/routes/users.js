@@ -189,9 +189,8 @@ router.post('/add_to_cart', validator_1.cartValidators, passport_1.default.authe
  */
 router.post('/remove_from_cart', validator_1.cartValidators, passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.removeFromCart);
 /**
- * @api {get} /users/:id/cart Get an authenticated user cart
+ * @api {get} /users/remove_from_cart
  * @apiGroup Users
- * @apiParam {id} id User _id
  * @apiSuccess {UUId} cart._id cart _id
  * @apiSuccess {Object[]} cart.books Cart's books
  * @apiSuccess {Number} price Cart's price

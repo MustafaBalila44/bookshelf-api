@@ -1,4 +1,5 @@
 export class Book {
+    _id: string;
     name: string;
     priceSdg: number;
     priceXp: number;

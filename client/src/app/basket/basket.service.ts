@@ -12,4 +12,8 @@ export class BasketService {
         const id = localStorage.getItem('_id');
         return this.http.get(`${this.globals.apiUrl}users/${id}/cart/`);
     }
+
+    removeFromCart(bookId: string) {
+        return this.http.post(`${this.globals.apiUrl}users/remove_from_cart/`, { bookId });
+    }
 }

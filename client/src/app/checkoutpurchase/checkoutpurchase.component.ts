@@ -1,5 +1,8 @@
-import { Component, OnInit , } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
+import { BasketService } from '../basket/basket.service';
+import { Cart } from '../basket/basket.model';
 
 @Component({
   selector: 'app-checkoutpurchase',
@@ -7,30 +10,37 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./checkoutpurchase.component.css']
 })
 export class CheckoutpurchaseComponent implements OnInit {
- 
-   purchaseForm = new FormGroup({
-     firstName: new FormControl('احمد'),
-     lastName: new FormControl('صلاح'),
-     email: new FormControl('a@a.com'),
-       phone: new FormControl('09100'),
-       state: new FormControl('الخرطوم'),
-       locallity: new FormControl('بحري'),
-       nigh: new FormControl('الثورة'),
-       street: new FormControl('العاشر'),
-       address: new FormControl(''),
-note: new FormControl(''),
-days: new FormControl(''),
-     });
 
-   constructor() { }
- 
-     ngOnInit() {
-     
-     }
+  user = {} as any;
+  cart = new Cart();
+  xpPrice = 0;
+  sdgPrice = 0;
+  constructor(private authService: AuthService, private cartService: BasketService) { }
 
- 
- 
+  ngOnInit() {
+    this.cartService.getCart().subscribe((response: any) => {
+      this.cart = response.cart;
+      const { sdg, xp } = response.cart.books.reduce((all: any, item: any) => ({
+        sdg: all.sdg + item.priceSdg,
+        xp: all.xp + item.priceXp
+      }),
+        { sdg: 0, xp: 0 });
+      this.sdgPrice = sdg;
+      this.xpPrice = xp;
+    }, (err: any) => {
+      console.log(err);
+    });
 
- 
- }
- 
+    this.authService.getLoggedInUser().subscribe((response: any) => {
+      console.log(response)
+      this.user = response.user;
+    }, (err: any) => {
+      console.log(err);
+    });
+  }
+
+
+
+
+
+}

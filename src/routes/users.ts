@@ -198,9 +198,8 @@ router.post('/remove_from_cart', cartValidators,
     passport.authenticate('jwt', { session: false }), UserController.removeFromCart);
 
 /**
- * @api {get} /users/:id/cart Get an authenticated user cart
+ * @api {get} /users/remove_from_cart
  * @apiGroup Users
- * @apiParam {id} id User _id
  * @apiSuccess {UUId} cart._id cart _id
  * @apiSuccess {Object[]} cart.books Cart's books
  * @apiSuccess {Number} price Cart's price
