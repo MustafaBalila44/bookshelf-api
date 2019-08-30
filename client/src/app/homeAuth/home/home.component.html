@@ -46,11 +46,11 @@
   <div class="row" style="font-size:16px;padding-bottom:5%">
     
     <div *ngFor="let book of books" class="col-sm-3 col-6"
-      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%">
+      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
       <div class="card" style="cursor: pointer;">
-        <img style="width:100%;" class="card-img-top" src="{{book.image}}">
+        <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
         <br>
-          <h5 class="card-title" dir="rtl" style="text-align:center">
+          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
  </h5>
           <br>
@@ -66,10 +66,12 @@
 
 
             <button class="btn btn-sm btn-danger"
-            (click)="openBook(book._id)">
-            مزيد من الخيارات
+            (click)="addToCart(book._id)">
+أضف الى السلة
++
             </button>
             <br>
+            &nbsp;
         </span>
 
       </div>

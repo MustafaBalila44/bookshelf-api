@@ -39,12 +39,12 @@ import { PleaseWaitComponent } from './shared/please-wait/please-wait.component'
 import { MessageBoxService } from './messagebox/message-box.service';
 import { UIService } from './shared/UI.service';
 import { BasketService } from './basket/basket.service';
-/*
+
 import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
 import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
 import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
 import { RecordComponent } from './cpanelAuth/record/record.component';
-*/
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,13 +72,13 @@ import { RecordComponent } from './cpanelAuth/record/record.component';
     WarningBoxComponent,
     ErrorBoxComponent,
     YesOrNoComponent,
-    PleaseWaitComponent
-    /*
+    PleaseWaitComponent,
+    
     EnquiryComponent,
     OrderpurshasecpanelComponent,
     OrderexchangecpanelComponent,
     RecordComponent,
-    */
+    
   ],
   imports: [
     BrowserModule,

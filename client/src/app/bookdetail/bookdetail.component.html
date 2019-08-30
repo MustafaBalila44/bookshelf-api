@@ -1,7 +1,12 @@
 
-<div  class="container pad" style="padding-top:15%;text-align:right;padding-bottom: 15%">
+<div  class="container pad" style="padding-top:15%;text-align:right;padding-bottom: 15%" >
 
 <div class="row">
+        <div class="col-sm-4">
+
+                <img style="width:100%;" class="img responsive" src="{{book.image}}" >
+            
+              </div>
 <div class="col-sm-8">
 <h3>
 {{book.name}}
@@ -18,11 +23,14 @@
 {{book.description}}
 </p>
 
-<small >حالة الكتاب :</small> 
-<small> {{book.status}} مستعمل بحالة</small>
+<small >: حالة الكتاب </small> 
+<br>
+<small> {{book.status}} - مستعمل بحالة </small>
 <br>
 <small>عدد الصفحات : {{book.pages}}</small>
-<small>ملاحظات اضافية : {{book.note}}</small>
+<br>
+<small dir="rtl">ملاحظات اضافية : 
+    {{book.note}}</small>
 
 <br>
 <br>
@@ -30,23 +38,19 @@
     {{book.priceSdg}} جنيه سوداني
     <br>
     {{book.priceXp}} xp
-    &nbsp;  &nbsp; 
-    <br>
+</h4>
+
 <span class="blc">
 <button class="btn btn-danger" style="color:whitesmoke;" (click)="addToCart(book._id)">
         اضف الى السلة +
     </button>
   </span>
-</h4>
+
 
 
 </div>
 
-<div class="col-sm-4">
 
-    <img style="width:100%;" class="img responsive" src="{{book.image}}" >
-
-  </div>
   
 
 </div>
