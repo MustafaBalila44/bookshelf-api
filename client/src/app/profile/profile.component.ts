@@ -45,6 +45,8 @@ export interface PeriodicElement {
   date: string;
 }
 
+
+
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', price: '10xp' , date: '25/9/2018'},
   {position: 2, name: 'Helium', price: '10xp', date: '25/9/2018'},

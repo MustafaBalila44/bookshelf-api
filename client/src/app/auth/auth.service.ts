@@ -26,7 +26,7 @@ export class AuthService {
         const token = localStorage.getItem('auth-token');
         return token;
     }
-
+ 
     getLoggedInUser() {
         const id = localStorage.getItem('_id');
         return this.httpClinet.get(`${this.globalsService.apiUrl}/users/${id}`);

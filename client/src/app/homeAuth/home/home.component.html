@@ -15,6 +15,24 @@
       <option>
         روايات
       </option>
+      <option>
+        تنمية ذاتية
+      </option>
+      <option>
+        سياسة واقتصاد وتاريخ
+      </option>
+      <option>
+        سيرة ذاتية
+      </option>
+      <option>
+علمية وتعليمية
+      </option>
+      <option>
+        لغات
+      </option>
+      <option>
+        مجلات
+      </option>
 
     </select>
 
@@ -87,6 +105,200 @@
       <hr>
     </div>
 <br>
+
+
+
+
+<!--2-->
+
+
+
+<div style="text-align:center">
+
+
+  <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+التنمية الذاتية         
+
+     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of books" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCart(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
+
+
+
+
+<!--3-->
+
+<div style="text-align:center">
+
+
+  <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+سياسة واقتصاد وتاريخ         
+
+     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of books" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCart(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
+
+
+
+
+
+
+<!--4-->
+
+
+
+
+
+
+<div style="text-align:center">
+
+
+  <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+سيرة ذاتية
+     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of books" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCart(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
 
 
   <div style="text-align:right" dir="rtl">
