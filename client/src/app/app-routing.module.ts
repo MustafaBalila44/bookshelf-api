@@ -24,6 +24,7 @@ import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
 import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
 import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
 import { RecordComponent } from './cpanelAuth/record/record.component';
+import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategory.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent, pathMatch: 'full' },
@@ -42,6 +43,8 @@ const routes: Routes = [
     path: 'user', component: ChildComponent,
     children: [
       { path: 'home', component: HomeComponent },
+        { path: 'book', component: BookbycategoryComponent },
+  
       { path: 'bookdetail/:id', component: BookdetailComponent },
       { path: 'basket', component: BasketComponent },
       { path: 'exchange', component: ExchangeComponent },

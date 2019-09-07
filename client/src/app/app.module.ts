@@ -44,6 +44,8 @@ import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
 import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
 import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
 import { RecordComponent } from './cpanelAuth/record/record.component';
+import { SearchComponent } from './homeAuth/search/search.component';
+import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategory.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { RecordComponent } from './cpanelAuth/record/record.component';
     OrderpurshasecpanelComponent,
     OrderexchangecpanelComponent,
     RecordComponent,
+    SearchComponent,
+    BookbycategoryComponent,
     
   ],
   imports: [
