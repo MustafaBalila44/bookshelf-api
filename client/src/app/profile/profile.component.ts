@@ -1,6 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../auth/auth.service'
+import { Update , Updatepass } from '../auth/auth.model';
 
 import {MatTableDataSource} from '@angular/material/table';
 @Component({
@@ -9,18 +11,14 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  b = false;
-  purchaseForm = new FormGroup({
+  errorMSG=''
+  update: Update = new Update();
+  updatepass: Updatepass = new Updatepass();
 
-    email: new FormControl('a@a.com'),
-      phone: new FormControl('09100'),
-      state: new FormControl('الخرطوم'),
-      locallity: new FormControl('بحري'),
-      nigh: new FormControl('الثورة'),
-      street: new FormControl('العاشر'),
-      address: new FormControl(''),
-
-    });
+  b = true;
+  user = {} as any;
+constructor(private auth : AuthService) {}
+ 
   displayedColumns: string[] = ['position', 'name', 'price', 'date'];
   ordersDataSource = new MatTableDataSource(ELEMENT_DATA);
   tradingsDataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -28,15 +26,46 @@ export class ProfileComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatPaginator, { static: true }) paginator_1: MatPaginator;
   ngOnInit() {
+    this.auth.getLoggedInUser().subscribe((response: any) => {
+      console.log(response)
+      this.user = response.user;
+    }, (err: any) => {
+      console.log(err);
+    });
     this.ordersDataSource.paginator = this.paginator;
     this.tradingsDataSource.paginator = this.paginator;
     
   }
 
   a(){
-    this.b = true;
+    this.b = false;
   }
-}
+ id = localStorage.getItem('_id');
+
+
+  onS(id) {
+
+    this.auth.update(id,this.update).subscribe((response: any) => {
+      if (response.message === 'Account was Updated') {
+      } else {
+        this.errorMSG = response.message
+      }
+    }, (error) => {
+      this.errorMSG = error.statusText
+    });
+  }
+  onpass(id) {
+
+    this.auth.updatepass(id,this.updatepass).subscribe((response: any) => {
+      if (response.message === 'Account was Updated') {
+      } else {
+        this.errorMSG = response.message
+      }
+    }, (error) => {
+      this.errorMSG = error.statusText
+    });
+  }
+} 
 
 export interface PeriodicElement {
   name: string;

@@ -7,9 +7,9 @@
 </h3>
 <span>
 
-ID : 1000 
+ID : {{user._id}}
 <br>
-xp :10
+xp : {{user.points}}
 </span>
 
 <br>
@@ -17,7 +17,7 @@ xp :10
 <mat-tab-group >
     <mat-tab label="معلومات التوصيل">   <div class="container padd" dir="rtl" style="text-align: right;padding-bottom: 5%;padding-top:5%">
        
-        <form [formGroup]="purchaseForm" >
+        <form #f="ngForm"  >
       
         <div class="form-group" >
        
@@ -25,7 +25,7 @@ xp :10
             <br>
             <span style="display:inline-block;width:60.5%;padding:5px" class="feldd">
         
-            <input formControlName="phone" [disabled]="!b"  required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="date">
+            <input [(ngModel)]="user.phone" [disabled]="b"  required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="phone">
           </span>
         
           
@@ -38,7 +38,7 @@ xp :10
             <br>
             <span style="display:inline-block;width:30%;padding:5px" class="feld">
         
-        <select formControlName="state" [disabled]="!b" class="form-control"  style="padding:5px">
+        <select [(ngModel)]="user.address.state" name="state" [disabled]="b" class="form-control"  style="padding:5px">
           <option>
             الخرطوم
           </option>
@@ -47,7 +47,7 @@ xp :10
         </span>
         <span style="display:inline-block;width:30%;" class="feld">
         
-        <select formControlName="locallity" [disabled]="!b" class="form-control" style="padding:5px">
+        <select [(ngModel)]="user.address.locallity" name="locallity" [disabled]="b" class="form-control" style="padding:5px">
         
         <option>
         بحري
@@ -82,11 +82,11 @@ xp :10
             <br>
             <span style="display:inline-block;width:30%;padding:5px" class="feld">
         
-            <input formControlName="nigh" [disabled]="!b" required type="text" class="form-control" id="street" placeholder="الحي" name="street">
+            <input [(ngModel)]="user.address.street"  [disabled]="b" required type="text" class="form-control" id="street" placeholder="الحي" name="street">
           </span>
         
           <span style=" display:inline-block;width:30%" class="feld">
-            <input formControlName="street" [disabled]="!b" required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
+            <input [(ngModel)]="user.address.neighborhood" [disabled]="b" required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
           </span>
         </div>
         
@@ -96,19 +96,19 @@ xp :10
             <br>
             <span style="display:inline-block;width:60.5%;padding:5px" class="feldd">
         
-            <input formControlName="address" disabled="!b" required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
+            <input  disabled="b" required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
           </span>
         
         </div>
       
         <span style="padding: 10px">
         
-        <button style="width:15%;padding:5px" class="btn btn-secondary bot">تعديل</button>
+        <button (click)="a()" style="width:15%;padding:5px" class="btn btn-secondary bot">تعديل</button>
 
         </span>
         <span style="padding: 10px" >
 
-        <button  (click)="a()" style="width:15%;padding:5px" type="submit" class="btn btn-outline-secondary bot">ارسال</button>
+        <button (click)="onS(id)"  style="width:15%;padding:5px" type="submit" class="btn btn-outline-secondary bot">ارسال</button>
 
         </span>
         
@@ -121,7 +121,7 @@ xp :10
          </mat-tab>
     <mat-tab label="تغيير كلمة السر">   <div class="container padd" dir="rtl" style="text-align: right;padding-bottom: 5%;padding-top:5%">
        
-        <form >
+        <form #f="ngForm" (ngSubmit)="onpass(f.value);" >
     
      
         
@@ -132,16 +132,16 @@ xp :10
             <br>
             <span style="display:inline-block;width:30%;padding:5px" class="feld">
         
-            <input  required type="text" class="form-control" id="pwd" placeholder="كلمة السر القديمة" name="pwd">
+            <input [(ngModel)]="updatepass.passone" required type="password" class="form-control"  placeholder="كلمة السر القديمة" name="passone">
           </span>
         
           <span style=" display:inline-block;width:30%" class="feld">
-            <input  required type="text" class="form-control" id="pwd" placeholder="كلمة السر الجديدة " name="pwd">
+            <input [(ngModel)]="updatepass.passtwo"  required type="password" class="form-control"  placeholder="كلمة السر الجديدة " name="passtwo">
           </span>
 
           <span style="display:inline-block;width:30%;padding:5px" class="feldd">
         
-            <input  required type="text" class="form-control" id="pwd" placeholder=" تأكيد كلمة السر الجديدة " name="pwd">
+            <input [(ngModel)]="updatepass.passthree" required type="password" class="form-control"  placeholder=" تأكيد كلمة السر الجديدة " name="passthree">
           </span>
 
         </div>
@@ -255,21 +255,23 @@ xp :10
     <mat-tab label="  عدد النقاط المتبقية"> 
     
 <div class="container" style="padding-top:10%;" dir="rtl">
-    <h2 class="">     
+    <!-- <h2 class="">     
        لديك كوبون :
     <span class="badge badge-success badge-lg">
       خصم 100% على التوصيل !
     </span>
       </h2> 
-      <br>
+     
+    --> <br>
   <h2 class="">     
     تبقى لك :
 <span class="badge badge-success badge-lg">
-  100 XP !
+  {{user.points}} XP !
 </span>
   </h2> 
   <br>
   <br>
+  <!--
   <span style="padding-bottom:5%;display: block;">
       <input type="text" class="form-control" style="display: inline;width:50%">
       <span class="btn btn-primary" style="font-size:16px">
@@ -288,6 +290,7 @@ xp :10
           
       </span>
       </span>
+      -->
 </div>
 
 

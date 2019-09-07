@@ -3,19 +3,28 @@ import { GlobalService } from '../app.globals';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { Signup, Signin } from './auth.model';
+import { Signup, Signin , Update , Updatepass} from './auth.model';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    constructor(private globalsService: GlobalService, private httpClinet: HttpClient) { }
+    constructor(private router : Router ,private globalsService: GlobalService, private httpClinet: HttpClient) { }
 
     signup(signup: Signup) {
         console.log(signup)
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/signup',
             signup).pipe(catchError(this.errorHandler));
+    }
+    update(id, update:Update) {
+        console.log(update)
+        return this.httpClinet.put(this.globalsService.apiUrl + 'users/' + id + '/' , update  ).pipe(catchError(this.errorHandler));
+    }
+    updatepass(id, updatepass:Updatepass) {
+        console.log(updatepass)
+        return this.httpClinet.put(this.globalsService.apiUrl + 'users/' + id + '/' , updatepass  ).pipe(catchError(this.errorHandler));
     }
     signin(signin: Signin) {
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/login',
@@ -27,6 +36,10 @@ export class AuthService {
         return token;
     }
  
+    logoutUser() {
+        localStorage.removeItem('auth-token')
+        this.router.navigate([''])
+      }
     getLoggedInUser() {
         const id = localStorage.getItem('_id');
         return this.httpClinet.get(`${this.globalsService.apiUrl}/users/${id}`);

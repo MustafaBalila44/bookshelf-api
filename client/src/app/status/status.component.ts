@@ -1,7 +1,7 @@
 
 
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit , ElementRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -10,13 +10,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./status.component.css'],
  
 })
+
 export class  StatusComponent implements OnInit {
  
   isLinear = false;
 
   isEditable = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  com = true;
+  
   constructor(private _formBuilder: FormBuilder) {
   }
 

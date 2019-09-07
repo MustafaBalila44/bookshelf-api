@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { GlobalService } from '../app.globals';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Requestbook } from './request';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,4 +22,7 @@ export class SendrequestService {
     return this.httpClinet.post(this.globalsService.apiUrl + 'users/add_to_cart',
       {userId, bookId});
   }
+  
+
+
 }

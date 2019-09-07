@@ -37,12 +37,22 @@
           </tr>
           <tr>
             <td> سعر الكتب: </td>
-            <td class="text-success">{{sdgPrice}}ج <span> <!-- {{xpPrice}} XP  --></span> </td>
+            <td class="text-success">
+              <span *ngIf=" this.cartService.purshasetypeone() ">
+                  {{sdgPrice}}ج 
+
+              </span>
+              <span *ngIf=" !( this.cartService.purshasetypeone() || this.cartService.purshasetypetwo()) ">
+                  {{sdgPrice}}ج 
+
+              </span>
+              
+              <span *ngIf=" this.cartService.purshasetypetwo() ">  {{xpPrice}} XP </span> </td>
 
           </tr>
           <tr>
             <td>سعر التوصيل:</td>
-            <td class="text-success">40ج
+            <td class="text-success">60ج
               <!--
               <span class="btn btn-outline-success "
                 style="font-size:16px">استخدام الكوبون</span>
@@ -53,8 +63,9 @@
             </td>
           </tr>
           <tr>
+            <!--احسب لي الاجمالي من عندك الديلفري + السعر بالنقود وف حالة السعر بالنقاط نقول 0 وتبقى توصيل بس-->
             <td>الاجمالي:</td>
-            <td class="text-success"> 70ج  </td>
+            <td class="text-success"> 60ج <span *ngIf=" this.cartService.purshasetypeone() "> </span>  </td>
           </tr>
           <br>
           <hr>
@@ -141,7 +152,7 @@
 
               <input [(ngModel)]="user.address.state" disabled required
                 class="form-control" placeholder="الولاية" name="state"
-                id="address" />
+                id="address" /> 
             </span>
 
             <span style="display:inline-block;width:60%;" class="feld">

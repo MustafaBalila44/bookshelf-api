@@ -5,13 +5,13 @@
   </h2>
   
   <mat-horizontal-stepper linear #stepper class="b" style="background-color: rgb(250, 250, 250);box-shadow: 10px 10px 5px grey">
-    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+    <mat-step   [completed]="com" [stepControl]="com" [editable]="isEditable">
         <ng-template matStepLabel > <h3>معالجة الطلب</h3> </ng-template>
         <div style="padding:5%">
   
         <h4 style="font-family:cairo">
           يجري الان معالجة الطلب ويتوقع ان يصلك في خلال 24 ساعة
-  
+
         </h4>
         <br>
         <br>
@@ -83,7 +83,7 @@
       </div>
   
     </mat-step>
-    <mat-step size="4" class="mat-stepp" [stepControl]="secondFormGroup" [editable]="isEditable">
+    <mat-step size="4" class="mat-stepp" [stepControl]="false" [editable]="isEditable">
         <ng-template matStepLabel> <h3>في الطريق اليك</h3> </ng-template>
         <div style="padding:5%">
   

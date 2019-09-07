@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from '../auth/auth.service'
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
@@ -12,9 +12,14 @@ export class ChildComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor() { }
+  constructor(public auth : AuthService) { }
 
   ngOnInit() {
+    
+  }
+
+  signout(){
+    this.auth.logoutUser();
   }
 
 }

@@ -7,7 +7,9 @@ import { Cart } from './basket.model';
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
-
+a=false;
+b = false;
+c= false;
   cart = new Cart();
   xpPrice = 0;
   sdgPrice = 0;
@@ -39,4 +41,27 @@ export class BasketComponent implements OnInit {
       console.log(err);
     });
   }
+
+
+
+  purshasetypeone(aa){
+    console.log(aa);
+    if (aa==1){
+      this.basketService.b= false
+
+      this.basketService.a= true
+
+    }
+    if (aa==2){
+      this.basketService.a= false
+
+      this.basketService.b= true
+
+    }
+    if (aa==3){
+      this.basketService.c= true
+
+    }
+  }
+
 }
