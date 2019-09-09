@@ -11,12 +11,9 @@ import passport from "passport";
 import './config/passport';
 
 const app = express();
-const accessLogStream = createWriteStream(
-  join(__dirname, 'access.log'), { flags: 'a' }
-);
 
 app.use(passport.initialize());
-app.use(morgan('common', { stream: accessLogStream }));
+app.use(morgan('common'));
 app.use(compression());
 app.use(cors({preflightContinue: true}));
 // provide extra security features

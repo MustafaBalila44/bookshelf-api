@@ -5,7 +5,7 @@ export type BookDocument = Document & {
     priceSdg: number;
     priceXp: number;
     author: string;
-    description: string;
+    descrisption: string;
     note: string;
     pages: number;
     status: string;
@@ -18,7 +18,7 @@ const bookSchema = new Schema({
         type: String,
         minlength: 5,
         required: true,
-        match: /[a-zA-Z0-9_]/,
+        index: true,
     },
     priceSdg: {
         type: Number,
@@ -44,7 +44,8 @@ const bookSchema = new Schema({
         type: String,
     },
     category: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
         required: true,
     },
     pages: {

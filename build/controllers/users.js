@@ -18,6 +18,7 @@ const lodash_1 = __importDefault(require("lodash"));
 const user_model_1 = require("../models/user.model");
 const cart_model_1 = require("../models/cart.model");
 const address_model_1 = require("../models/address.model");
+const order_model_1 = require("../models/order.model");
 class UserController {
 }
 /**
@@ -199,6 +200,25 @@ UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, fu
         cart.books.pull(bookId);
         yield cart.save();
         return res.json({ message: "Book was removed successfuly" });
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const fields = lodash_1.default.pick(req.body, ["note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
+    const user = req.user;
+    const errors = check_1.validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    if (!user) {
+        return res.sendStatus(403);
+    }
+    try {
+        const order = yield order_model_1.Order.create(Object.assign({}, fields, { user: user.id }));
+        yield order.save();
+        return res.json({ message: "Order was created successfuly" });
     }
     catch (error) {
         return res.status(500).json({ error });

@@ -14,7 +14,7 @@ mongoose_1.default.connect(process.env.DB_URI, { useNewUrlParser: true, useFindA
     console.error(`Can not connect to the database ${err}`);
     process.exit(1);
 });
-app_1.default.listen(+port, () => {
+app_1.default.listen(+port, '192.168.98.248', () => {
     console.log(`
 \t\t\tListining on port ${port}
 \t\t\tENV: ${ENV}

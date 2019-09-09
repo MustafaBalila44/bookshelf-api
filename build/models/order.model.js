@@ -21,8 +21,13 @@ const orderSchema = new mongoose_1.Schema({
         default: 0,
         required: true,
     },
+    note: {
+        type: String,
+        default: '',
+    },
     status: {
         type: String,
+        default: 'processing',
         enum: ['going', 'processing', 'finished'],
         required: true,
     },
@@ -34,13 +39,12 @@ const orderSchema = new mongoose_1.Schema({
     deliverer: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Deliverer',
-        required: true,
     },
-    delivereyPrice: {
+    totalPrice: {
         type: Number,
         min: 0,
         required: true,
     },
 });
-exports.Author = mongoose_1.model("Order", orderSchema);
+exports.Order = mongoose_1.model("Order", orderSchema);
 //# sourceMappingURL=order.model.js.map
