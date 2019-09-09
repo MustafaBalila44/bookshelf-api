@@ -122,8 +122,8 @@
                     <br>
 
                     الصورة:
-                    <input type="file" class="form-control-file" name="pic" id="pic"
-                        [(ngModel)]="book.image">
+                    <input type="file" class="form-control-file" name="pic" id="image"
+                    (change)="onFileChanged($event)">
 
                     <br>
 

@@ -20,7 +20,7 @@ export class Signin {
 }
 
 export class Updatepass{
-    passone: string;
+    passone: string; 
     passtwo: string;
     passthree: string;
 

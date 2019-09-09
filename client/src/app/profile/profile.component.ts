@@ -12,8 +12,8 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class ProfileComponent implements OnInit {
   errorMSG=''
-  update: Update = new Update();
-  updatepass: Updatepass = new Updatepass();
+  update = new Update();
+  updatepass = new Updatepass();
 
   b = true;
   user = {} as any;
@@ -54,7 +54,7 @@ constructor(private auth : AuthService) {}
       this.errorMSG = error.statusText
     });
   }
-  onpass(id) {
+  onpass(id) { 
 
     this.auth.updatepass(id,this.updatepass).subscribe((response: any) => {
       if (response.message === 'Account was Updated') {
@@ -66,7 +66,7 @@ constructor(private auth : AuthService) {}
     });
   }
 } 
-
+ 
 export interface PeriodicElement {
   name: string;
   position: number;

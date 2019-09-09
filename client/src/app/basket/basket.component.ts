@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from './basket.service';
 import { Cart } from './basket.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
-a=false;
-b = false;
-c= false;
+  selectValue : string 
+  a = false;
+  b = false;
+  c = false;
   cart = new Cart();
   xpPrice = 0;
   sdgPrice = 0;
-  constructor(private basketService: BasketService) { }
+  constructor(private basketService: BasketService, private router: Router) { }
 
   ngOnInit() {
     this.getCarts();
@@ -44,22 +46,17 @@ c= false;
 
 
 
-  purshasetypeone(aa){
+  purshasetypeone(aa) {
     console.log(aa);
-    if (aa==1){
-      this.basketService.b= false
-
-      this.basketService.a= true
+    if (aa == 1) {
+      this.router.navigate(['/user/checkoutpurchase'], { queryParams: { payment: 'cash' } });
 
     }
-    if (aa==2){
-      this.basketService.a= false
-
-      this.basketService.b= true
-
+    if (aa == 2) {
+      this.router.navigate(['/user/checkoutpurchase'], { queryParams: { payment: 'points' } });
     }
-    if (aa==3){
-      this.basketService.c= true
+    if (aa == 3) {
+      this.basketService.c = true
 
     }
   }

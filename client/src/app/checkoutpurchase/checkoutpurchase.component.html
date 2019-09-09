@@ -38,21 +38,17 @@
           <tr>
             <td> سعر الكتب: </td>
             <td class="text-success">
-              <span *ngIf=" this.cartService.purshasetypeone() ">
-                  {{sdgPrice}}ج 
-
-              </span>
-              <span *ngIf=" !( this.cartService.purshasetypeone() || this.cartService.purshasetypetwo()) ">
+              <span *ngIf="payment['cash'] ">
                   {{sdgPrice}}ج 
 
               </span>
               
-              <span *ngIf=" this.cartService.purshasetypetwo() ">  {{xpPrice}} XP </span> </td>
+              <span *ngIf=" payment['points']"> {{xpPrice}} XP </span> </td>
 
           </tr>
           <tr>
             <td>سعر التوصيل:</td>
-            <td class="text-success">60ج
+            <td class="text-success"> 60ج
               <!--
               <span class="btn btn-outline-success "
                 style="font-size:16px">استخدام الكوبون</span>
@@ -65,7 +61,7 @@
           <tr>
             <!--احسب لي الاجمالي من عندك الديلفري + السعر بالنقود وف حالة السعر بالنقاط نقول 0 وتبقى توصيل بس-->
             <td>الاجمالي:</td>
-            <td class="text-success"> 60ج <span *ngIf=" this.cartService.purshasetypeone() "> </span>  </td>
+            <td class="text-success"><span > {{order.totalPrice}}</span> ج  </td>
           </tr>
           <br>
           <hr>
@@ -105,13 +101,13 @@
             <br>
             <span style="display:inline-block;width:60%" class="feld">
 
-              <input [(ngModel)]="user.firstName" disabled required type="text"
+              <input [ngModel]="user.firstName" disabled required type="text"
                 class="form-control" id="firstName" placeholder="الاسم الاول"
                 name="firstName">
             </span>
 
             <span style=" display:inline-block;width:60%" class="feld">
-              <input [(ngModel)]="user.lastName" disabled required type="text"
+              <input [ngModel]="user.lastName" disabled required type="text"
                 class="form-control" id="lastName" placeholder="الاسم الاخير"
                 name="lastName">
             </span>
@@ -122,7 +118,7 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
 
-              <input [(ngModel)]="user.email" disabled required type="text"
+              <input [ngModel]="user.email" disabled required type="text"
                 class="form-control" id="email" placeholder="البريد الالكتروني"
                 name="email">
             </span>
@@ -136,7 +132,7 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
 
-              <input [(ngModel)]="user.phone" disabled required type="number"
+              <input [ngModel]="user.phone" disabled required type="number"
                 class="form-control" id="tel" placeholder="رقم الهاتف"
                 name="phone">
             </span>
@@ -150,13 +146,13 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feld">
 
-              <input [(ngModel)]="user.address.state" disabled required
+              <input [ngModel]="user.address.state" disabled required
                 class="form-control" placeholder="الولاية" name="state"
                 id="address" /> 
             </span>
 
             <span style="display:inline-block;width:60%;" class="feld">
-              <input [(ngModel)]="user.address.locallity" disabled required
+              <input [ngModel]="user.address.locallity" disabled required
                 class="form-control" placeholder="المحلية" name="locallity" />
             </span>
 
@@ -167,13 +163,13 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feld">
 
-              <input [(ngModel)]="user.address.street" disabled required
+              <input [ngModel]="user.address.street" disabled required
                 class="form-control" placeholder="الشارع" name="street"
                 id="street" />
             </span>
 
             <span style="display:inline-block;width:60%;" class="feld">
-              <input [(ngModel)]="user.address.neighborhood" disabled required
+              <input [ngModel]="user.address.neighborhood" disabled required
                 class="form-control" placeholder="الحي" name="neighborhood" />
             </span>
           </div>
@@ -195,24 +191,25 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
 
-              <input required type="text"
+              <input [(ngModel)]="order.note" required type="text"
                 class="form-control" id="note" placeholder="ملاحظات"
                 name="note">
             </span>
 
           </div>
+          <!--
           <div class="form-group">
             <label for="days"> ( اختياري) الاوقات المفضلة للاستلام :</label>
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
 
-              <input required type="text"
+              <input [(ngModel)]="user.address.neighborhood" required type="text"
                 class="form-control" id="days" placeholder="الايام / الساعات"
                 name="days">
             </span>
 
           </div>
-
+-->
           <div style="padding-right: 5px">
 
             <button type="submit" class="btn btn-danger bot">شراء الكتب</button>
