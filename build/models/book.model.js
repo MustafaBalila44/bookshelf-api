@@ -7,7 +7,7 @@ const bookSchema = new mongoose_1.Schema({
         type: String,
         minlength: 5,
         required: true,
-        match: /[a-zA-Z0-9_]/,
+        index: true,
     },
     priceSdg: {
         type: Number,
@@ -33,7 +33,8 @@ const bookSchema = new mongoose_1.Schema({
         type: String,
     },
     category: {
-        type: String,
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Category',
         required: true,
     },
     pages: {

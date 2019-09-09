@@ -31,8 +31,13 @@ const orderSchema = new Schema({
         default: 0,
         required: true,
     },
+    note: {
+        type: String,
+        default: '',
+    },
     status: {
         type: String,
+        default: 'processing',
         enum: ['going', 'processing', 'finished'],
         required: true,
     },
@@ -44,13 +49,12 @@ const orderSchema = new Schema({
     deliverer: {
         type: Schema.Types.ObjectId,
         ref: 'Deliverer',
-        required: true,
     },
-    delivereyPrice: {
+    totalPrice: {
         type: Number,
         min: 0,
         required: true,
     },
 });
 
-export const Author = model<OrderDocument>("Order", orderSchema);
+export const Order = model<OrderDocument>("Order", orderSchema);

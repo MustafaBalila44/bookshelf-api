@@ -24,6 +24,16 @@ const userScheam = new mongoose_1.Schema({
         index: true,
         unique: true,
     },
+    firstName: {
+        type: String,
+        minlength: 3,
+        required: true,
+    },
+    lastName: {
+        type: String,
+        minlength: 3,
+        required: true,
+    },
     dateOfBirth: {
         type: Date,
         required: true,

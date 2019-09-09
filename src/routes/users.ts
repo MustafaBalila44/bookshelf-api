@@ -220,4 +220,6 @@ router.post('/remove_from_cart', cartValidators,
  */
 router.get('/:id/cart',
     passport.authenticate('jwt', { session: false }), UserController.findCart);
+
+router.post('/order', passport.authenticate('jwt'), UserController.createOrder);
 export default router;

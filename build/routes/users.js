@@ -210,5 +210,6 @@ router.post('/remove_from_cart', validator_1.cartValidators, passport_1.default.
  *    HTTP/1.1 500 Internal Server Error
  */
 router.get('/:id/cart', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.findCart);
+router.post('/order', passport_1.default.authenticate('jwt'), users_1.UserController.createOrder);
 exports.default = router;
 //# sourceMappingURL=users.js.map
