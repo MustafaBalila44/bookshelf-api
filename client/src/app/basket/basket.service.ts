@@ -6,10 +6,10 @@ import { GlobalService } from '../app.globals';
     providedIn: 'root'
 })
 export class BasketService {
-    constructor(private http: HttpClient, private globals: GlobalService) {}
-a= false;
-b= false;
-c= false;
+    constructor(private http: HttpClient, private globals: GlobalService) { }
+    a = false;
+    b = false;
+    c = false;
     getCart() {
         const id = localStorage.getItem('_id');
         return this.http.get(`${this.globals.apiUrl}users/${id}/cart/`);
@@ -19,22 +19,26 @@ c= false;
         return this.http.post(`${this.globals.apiUrl}users/remove_from_cart/`, { bookId });
     }
 
-    purshasetypeone(){
-       return this.a ;
-        
-          }
-          purshasetypetwo(){
-            return this.b;
+    purshasetypeone() {
+        return this.a;
+
+    }
+    purshasetypetwo() {
+        return this.b;
 
 
-          }
-          purshasetypethree(){
-            return this.c ;
-
-        
-          }
-        
+    }
+    purshasetypethree() {
+        return this.c;
 
 
-    
+    }
+
+    order(order){
+        return this.http.post(`${this.globals.apiUrl}users/order/` , {order})
+    }
+
+
+
+
 }

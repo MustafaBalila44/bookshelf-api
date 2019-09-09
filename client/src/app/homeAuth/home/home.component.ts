@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UIService } from 'src/app/shared/UI.service';
 import { AuthService } from '../../auth/auth.service'
+import { BasketService } from '../../basket/basket.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
  user = {} as any;
  request: Requestbook = new Requestbook();
   books: Book[] = [];
+  riwayat : Book[] = [];
   constructor(
     private sendrequestService: SendrequestService,
     private cpanelService: CpanelService,
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
     private snackBar: MatSnackBar,
     private ui: UIService,
     private auth : AuthService,
+    private basket : BasketService
   ) { }
 
   ngOnInit() {
@@ -41,6 +44,13 @@ export class HomeComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+    /*
+    this.cpanelService.getBooksbycategory(1).subscribe((res: any[]) => {
+      this.riwayat = res.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+    */
   }
 
   onSubmit(form) {
@@ -57,6 +67,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  addToCartCheck(bookId: string) {
+    this.basket.getCart().subscribe((res: any)=>{
+      const cart = res.cart;
+      const booksIds = cart.books.reduce((a, book) => {
+        a.push(book._id);
+        return a;
+      }, []);
+      if (booksIds.includes(bookId)) {
+        this.openSnackBar('The book already exsists');
+        return ;      
+      }
+      this.addToCart(bookId);
+    });
+  }
   // م مفروض يقدر يضيف الكتاب مرتين 
   // اي كتاب منو نسحة واحدة بس
   addToCart(bookId) {
@@ -68,6 +92,7 @@ export class HomeComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+    
   }
 
 

@@ -11,12 +11,15 @@ export class CpanelService {
   constructor(private globalsService: GlobalService, private httpClinet: HttpClient) { }
 
 
-  addBook(book: Book) {
+  addBook(book: any) {
     return this.httpClinet.post(this.globalsService.apiUrl + 'books/create', book);
   }
 
   getBooks(): Observable<{ books: Book[] }> {
     return this.httpClinet.get<{ books: Book[] }>(this.globalsService.apiUrl + 'books');
+  }
+  getBooksbycategory(id): Observable<any> {
+    return this.httpClinet.get<any>(this.globalsService.apiUrl + 'books/?category=' + id + '/');
   }
 
   addAuthor(author: Author) {

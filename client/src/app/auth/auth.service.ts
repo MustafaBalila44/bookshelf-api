@@ -30,7 +30,7 @@ export class AuthService {
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/login',
             signin).pipe(catchError(this.errorHandler));
     }
-
+ 
     getToken() {
         const token = localStorage.getItem('auth-token');
         return token;
