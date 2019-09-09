@@ -5,7 +5,8 @@
     <div class="col-sm-6" dir="rtl" style="text-align:right;padding-bottom:10%">
       <h3> تفاصيل الطلب :</h3>
       <br>
-      <br>
+
+      <!--
       <span style="padding-bottom:5%;display: block;">
         <input type="text" class="form-control"
           style="display: inline;width:35%">
@@ -25,6 +26,7 @@
 
         </span>
       </span>
+      -->
       <br>
       <table class="table table-striped fony" style="font-size:30px;">
 
@@ -35,22 +37,35 @@
           </tr>
           <tr>
             <td> سعر الكتب: </td>
-            <td class="text-success">{{sdgPrice}}ج <span> + {{xpPrice}} XP </span> </td>
+            <td class="text-success">
+              <span *ngIf=" this.cartService.purshasetypeone() ">
+                  {{sdgPrice}}ج 
+
+              </span>
+              <span *ngIf=" !( this.cartService.purshasetypeone() || this.cartService.purshasetypetwo()) ">
+                  {{sdgPrice}}ج 
+
+              </span>
+              
+              <span *ngIf=" this.cartService.purshasetypetwo() ">  {{xpPrice}} XP </span> </td>
 
           </tr>
           <tr>
             <td>سعر التوصيل:</td>
-            <td class="text-success">40ج
+            <td class="text-success">60ج
+              <!--
               <span class="btn btn-outline-success "
                 style="font-size:16px">استخدام الكوبون</span>
               <span class="spinner-border" role="status" style="font-size:16px">
                 <span class="sr-only">Loading...</span>
               </span>
+              -->
             </td>
           </tr>
           <tr>
+            <!--احسب لي الاجمالي من عندك الديلفري + السعر بالنقود وف حالة السعر بالنقاط نقول 0 وتبقى توصيل بس-->
             <td>الاجمالي:</td>
-            <td class="text-success"> 70ج <span> + 0 XP </span> </td>
+            <td class="text-success"> 60ج <span *ngIf=" this.cartService.purshasetypeone() "> </span>  </td>
           </tr>
           <br>
           <hr>
@@ -76,6 +91,10 @@
         </div>
 
       </div>
+
+
+</div>
+
 
       <div class="col-sm-6" style="text-align: justify" dir="rtl">
         <h3 style="padding-bottom:5%">تفاصيل مقدم الطلب:</h3>
@@ -133,7 +152,7 @@
 
               <input [(ngModel)]="user.address.state" disabled required
                 class="form-control" placeholder="الولاية" name="state"
-                id="address" />
+                id="address" /> 
             </span>
 
             <span style="display:inline-block;width:60%;" class="feld">

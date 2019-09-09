@@ -7,7 +7,9 @@ import { GlobalService } from '../app.globals';
 })
 export class BasketService {
     constructor(private http: HttpClient, private globals: GlobalService) {}
-
+a= false;
+b= false;
+c= false;
     getCart() {
         const id = localStorage.getItem('_id');
         return this.http.get(`${this.globals.apiUrl}users/${id}/cart/`);
@@ -16,4 +18,23 @@ export class BasketService {
     removeFromCart(bookId: string) {
         return this.http.post(`${this.globals.apiUrl}users/remove_from_cart/`, { bookId });
     }
+
+    purshasetypeone(){
+       return this.a ;
+        
+          }
+          purshasetypetwo(){
+            return this.b;
+
+
+          }
+          purshasetypethree(){
+            return this.c ;
+
+        
+          }
+        
+
+
+    
 }

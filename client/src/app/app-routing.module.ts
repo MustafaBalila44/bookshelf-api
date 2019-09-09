@@ -19,12 +19,13 @@ import { NotiComponent } from './noti/noti.component';
 import { ChildComponent } from './child/child.component';
 import { CheckoutexchangeComponent } from './checkoutexchange/checkoutexchange.component';
 import { CpanelComponent } from './cpanelAuth/cpanel/cpanel.component';
-/*
+
 import { EnquiryComponent } from './cpanelAuth/enquiry/enquiry.component';
 import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/orderpurshasecpanel.component';
 import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
 import { RecordComponent } from './cpanelAuth/record/record.component';
-*/
+import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategory.component';
+
 const routes: Routes = [
   { path: '', component: IndexComponent, pathMatch: 'full' },
   { path: 'Index', component: IndexComponent },
@@ -42,6 +43,8 @@ const routes: Routes = [
     path: 'user', component: ChildComponent,
     children: [
       { path: 'home', component: HomeComponent },
+        { path: 'book', component: BookbycategoryComponent },
+  
       { path: 'bookdetail/:id', component: BookdetailComponent },
       { path: 'basket', component: BasketComponent },
       { path: 'exchange', component: ExchangeComponent },
@@ -51,12 +54,12 @@ const routes: Routes = [
       { path: 'noti', component: NotiComponent },
       { path: 'checkoutexchange', component: CheckoutexchangeComponent },
       { path: 'cpanel', component: CpanelComponent },
-      /*
-      { path: 'e', component: EnquiryComponent },
+      
+     { path: 'e', component: EnquiryComponent },
       { path: 'cpanelpurchase', component: OrderpurshasecpanelComponent },
       { path: 'cpanelexchange', component: OrderexchangecpanelComponent },
-      { path: 'record', component: RecordComponent },
-*/
+     { path: 'record', component: RecordComponent },
+
 
     ]
 
@@ -74,5 +77,6 @@ export const routingComponents = [
   StatusComponent, CheckoutpurchaseComponent, ExchangeComponent,
   BasketComponent, BookdetailComponent, SignupComponent, HomeComponent,
   SigninComponent, IndexComponent, TermsComponent, PrivacyComponent, FaqsComponent,
-  ContacusComponent, WhoComponent
+  ContacusComponent, WhoComponent , RecordComponent , OrderexchangecpanelComponent ,
+  OrderpurshasecpanelComponent , EnquiryComponent
 ];

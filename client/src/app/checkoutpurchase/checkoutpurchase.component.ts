@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { HostListener,Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { BasketService } from '../basket/basket.service';
 import { Cart } from '../basket/basket.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkoutpurchase',
@@ -15,9 +16,15 @@ export class CheckoutpurchaseComponent implements OnInit {
   cart = new Cart();
   xpPrice = 0;
   sdgPrice = 0;
-  constructor(private authService: AuthService, private cartService: BasketService) { }
+  @HostListener('window:onreload') goToPage() {
+    this.router.navigate(['/user/basket']);
+
+  }
+  constructor(private router : Router ,private authService: AuthService, private cartService: BasketService) { }
 
   ngOnInit() {
+
+    
     this.cartService.getCart().subscribe((response: any) => {
       this.cart = response.cart;
       const { sdg, xp } = response.cart.books.reduce((all: any, item: any) => ({
@@ -37,10 +44,11 @@ export class CheckoutpurchaseComponent implements OnInit {
     }, (err: any) => {
       console.log(err);
     });
+  
+    
   }
 
 
 
-
-
+ 
 }

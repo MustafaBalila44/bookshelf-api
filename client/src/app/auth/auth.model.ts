@@ -1,6 +1,6 @@
 export class Signup {
     firstName: string;
-    lastName: string
+    lastName: string;
     email: string;
     password: string;
     passwordConfig: string;
@@ -19,4 +19,19 @@ export class Signin {
     password: string;
 }
 
+export class Updatepass{
+    passone: string;
+    passtwo: string;
+    passthree: string;
+
+}
+
+export class Update {
+    phone: string;
+    state: string;
+    locallity: string;
+    neighborhood: string;
+    street: string;
+    address?: string
+}
  

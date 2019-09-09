@@ -84,15 +84,15 @@
       </small>
       <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
         اختر طريقة الشراء من فضلك:
-        <select required class="form-control">
-
-          <option>الدفع نقدا</option>
-          <option>الدفع عن طريق نقاطي</option>
-          <option> الدفع عن طريق النقود والنقاط معا</option>
+        <select #type name="type" [class.is-invalid]="type.invalid && type.touched"  (change)="purshasetypeone($event.target.value)" required class="form-control">
+<option value="0" disabled>اختر طريقة الشراء</option>
+          <option value="1" >الدفع نقدا</option>
+          <option value="2" >الدفع عن طريق نقاطي</option>
+          <option value="3" disabled > الدفع عن طريق النقود والنقاط معا</option>
 
         </select>
         <br>
-        <button routerLink="/user/checkoutpurchase" type="submit"
+        <button [disabled]="type.value == 0" routerLink="/user/checkoutpurchase" type="submit"
           class="btn float-right btn-danger"> اتمام عملية الشراء</button>
       </form>
     </div>
