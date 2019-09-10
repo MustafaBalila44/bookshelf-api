@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from '../basket/basket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exchange',
@@ -6,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exchange.component.css']
 })
 export class ExchangeComponent implements OnInit {
-
-  constructor() { }
+exchange :number;
+  constructor(private cart : BasketService , private router : Router) { }
 
   ngOnInit() {
   }
 
   
-  onSubmit(form) {
-
-   
-  }
+  onSubmit() { 
+    this.exchange = this.exchange;
+    this.router.navigate(['/user/checkoutexchange'], { queryParams: { bookscuont: this.exchange } });
+    
+  } 
 }

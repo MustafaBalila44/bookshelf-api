@@ -46,6 +46,7 @@ import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/o
 import { RecordComponent } from './cpanelAuth/record/record.component';
 import { SearchComponent } from './homeAuth/search/search.component';
 import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategory.component';
+import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
 
 @NgModule({
   declarations: [
@@ -75,7 +76,7 @@ import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategor
     ErrorBoxComponent,
     YesOrNoComponent,
     PleaseWaitComponent,
-    
+
     EnquiryComponent,
     OrderpurshasecpanelComponent,
     OrderexchangecpanelComponent,
@@ -91,6 +92,7 @@ import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategor
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    NgHttpLoaderModule.forRoot(),
     MaterialModule
   ],
   providers: [

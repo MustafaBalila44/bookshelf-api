@@ -208,10 +208,10 @@ export class UserController {
     public static createOrder = async (req: Request, res: Response) => {
         const fields = _.pick(req.body, ["note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
         const user = req.user;
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
         if (!user) {
             return res.sendStatus(403);
         }
@@ -219,6 +219,17 @@ export class UserController {
             const order = await Order.create({...fields, user: user.id });
             await order.save();
             return res.json({ message: "Order was created successfuly" });
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    public static getOrder = async (req: Request, res: Response) => {
+        const user = req.user;
+        
+        try {
+            const orders = await Order.find({ });
+            return res.json({ orders, user });
         } catch (error) {
             return res.status(500).json({ error });
         }

@@ -9,14 +9,14 @@
         
         <div class="col-sm-6" dir="rtl" style="text-align:right;padding-bottom:10%">
         <h3> تفاصيل الطلب :</h3>
-        <br>
+        <br> 
         <br>
         <table class="table table-striped fony" style="font-size:30px">
            
             <tbody>
               <tr>
                 <td> عدد الكتب:  </td>
-                <td class="text-success">10 كتب </td>
+                <td class="text-success"> <span>10</span> كتب </td>
                 
               </tr>
               <tr>
@@ -33,7 +33,7 @@
               <tr>
                
                   <td> عدد نقاطك الحالية:  </td>
-                  <td class="text-success">10 xp </td>
+                  <td class="text-success">{{user.points}} xp </td>
                 </tr>
             </tbody>
           </table>
@@ -49,150 +49,127 @@
         <div class= "col-sm-6" style="text-align: justify" dir="rtl">
             <h3 style="padding-bottom:5%">تفاصيل مقدم الطلب:</h3>
         
-            <form [formGroup]="purchaseForm"  >
+            <form (ngSubmit)="onsubmit()">
               <div class="form-group">
-                  <label for="Username">الاسم:</label>
-                  <br>
-                  <span style="display:inline-block;width:60%" class="feld">
-              
-                  <input formControlName="firstName" disabled  required type="text" class="form-control" id="Username" placeholder="الاسم الاول" name="Username">
-                </span>
-              
-                <span style=" display:inline-block;width:60%" class="feld">
-                  <input formControlName="lastName" disabled required type="text" class="form-control" id="Username" placeholder="الاسم الاخير" name="Username">
-                </span>
-              </div>
-              
-              <div class="form-group">
-                  <label  for="email">البريد الالكتروني:</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feldd">
-              
-                  <input formControlName="email" disabled required type="text" class="form-control" id="email" placeholder="البريد الالكتروني" name="Username">
-                </span>
-              </div>
-              
-              
-              
-              
-           
-              
-              
-         
-              
-            
-              <div class="form-group" >
-              
+                <label for="firstName">الاسم:</label>
                 <br>
-                  <label style="" for="tel"> رقم الهاتف:</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feldd">
-              
-                  <input formControlName="phone" disabled required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="date">
+                <span style="display:inline-block;width:60%" class="feld">
+    
+                  <input [ngModel]="user.firstName" disabled required type="text"
+                    class="form-control" id="firstName" placeholder="الاسم الاول"
+                    name="firstName">
                 </span>
-              
-                
-              </div>
-            
-              
-              <div class="form-group" >
-                  <label style="" for=""> اختر الولاية والمحلية:</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feld">
-              
-              <select formControlName="state" class="form-control" disabled >
-                <option>
-                  الخرطوم
-                </option>
-              
-              </select>
-              </span>
-              <span style="display:inline-block;width:60%;" class="feld">
-              
-              <select formControlName="locallity" class="form-control" disabled>
-              
-              <option>
-              بحري
-              </option>
-              <option>
-                  شرق النيل
-                  </option>
-                  <option>
-                      كرري
-                      </option>
-                      <option>
-                          امدرمان
-                          </option>
-                          <option>
-                              جبل اولياء
-                              </option>
-                              <option>
-                                  بلا بلا بلا
-                                  </option>
-                                  <option>
-                                      بلا بلا بلا
-                                      </option>
-              </select>
-              
-              </span>
-              
-              </div>
-              
-              
-              <div class="form-group">
-                  <label style="" for="street"> ادخل الحي والشارع:</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feld">
-              
-                  <input formControlName="nigh" disabled required type="text" class="form-control" id="street" placeholder="الحي" name="street">
-                </span>
-              
+    
                 <span style=" display:inline-block;width:60%" class="feld">
-                  <input formControlName="street" disabled required type="text" class="form-control" id="streetone" placeholder="الشارع " name="streetone">
+                  <input [ngModel]="user.lastName" disabled required type="text"
+                    class="form-control" id="lastName" placeholder="الاسم الاخير"
+                    name="lastName">
                 </span>
               </div>
-              
-              
+    
               <div class="form-group">
-                  <label style="" for="street"> ادخل  العنوان:</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feldd">
-              
-                  <input formControlName="address" disabled required type="text" class="form-control" id="all" placeholder="العنوان" name="all">
-                </span>
-              
-              </div>
-              <div class="form-group">
-                  <label  for="note"> (اختياري) ملاحظات اضافية :</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feldd">
-              
-                  <input formControlName="note"  required type="text" class="form-control" id="note" placeholder="ملاحظات" name="note">
-                </span>
-              
-              </div>
-              <div class="form-group">
-                  <label  for="days"> ( اختياري) الاوقات المفضلة للاستلام  :</label>
-                  <br>
-                  <span style="display:inline-block;width:60%;" class="feldd">
-              
-                  <input formControlName="days"  required type="text" class="form-control" id="days" placeholder="الايام / الساعات" name="days">
-                </span>
-              
-              </div>
-              <div >
-                      &nbsp;  اوافق على <a routerLink="/terms" style="color:#5A6268 !important"> شروط الاستخدام </a> و <a style="color:#5A6268 !important" routerLink="/privacy">سياسة الخصوصية </a> 
-                </div>
+                <label for="email">البريد الالكتروني:</label>
                 <br>
+                <span style="display:inline-block;width:60%;" class="feldd">
+    
+                  <input [ngModel]="user.email" disabled required type="text"
+                    class="form-control" id="email" placeholder="البريد الالكتروني"
+                    name="email">
+                </span>
+              </div>
+    
+    
+              <div class="form-group">
+    
+                <br>
+                <label for="tel"> رقم الهاتف:</label>
+                <br>
+                <span style="display:inline-block;width:60%;" class="feldd">
+    
+                  <input [ngModel]="user.phone" disabled required type="number"
+                    class="form-control" id="tel" placeholder="رقم الهاتف"
+                    name="phone">
+                </span>
+    
+    
+              </div>
+    
+    
+              <div class="form-group">
+                <label for="address"> اختر الولاية والمحلية:</label>
+                <br>
+                <span style="display:inline-block;width:60%;" class="feld">
+    
+                  <input [ngModel]="user.address.state" disabled required
+                    class="form-control" placeholder="الولاية" name="state"
+                    id="address" /> 
+                </span>
+    
+                <span style="display:inline-block;width:60%;" class="feld">
+                  <input [ngModel]="user.address.locallity" disabled required
+                    class="form-control" placeholder="المحلية" name="locallity" />
+                </span>
+    
+              </div>
+    
+              <div class="form-group">
+                <label for="street"> ادخل الحي والشارع:</label>
+                <br>
+                <span style="display:inline-block;width:60%;" class="feld">
+    
+                  <input [ngModel]="user.address.street" disabled required
+                    class="form-control" placeholder="الشارع" name="street"
+                    id="street" />
+                </span>
+    
+                <span style="display:inline-block;width:60%;" class="feld">
+                  <input [ngModel]="user.address.neighborhood" disabled required
+                    class="form-control" placeholder="الحي" name="neighborhood" />
+                </span>
+              </div>
+    
+    
+              <div class="form-group">
+                <label for="street"> (اختياري) ادخل العنوان:</label>
+                <br>
+                <span style="display:inline-block;width:60%;" class="feldd">
+    
+                  <input disabled required type="text" class="form-control" id="all"
+                    placeholder="العنوان" name="all">
+                </span>
+    
+              </div>
+    
+              <div class="form-group">
+                <label for="note"> (اختياري) ملاحظات اضافية :</label>
+                <br>
+                <span style="display:inline-block;width:60%;" class="feldd">
+    
+                  <input [(ngModel)]="order.note" required type="text"
+                    class="form-control" id="note" placeholder="ملاحظات"
+                    name="note">
+                </span>
+    
+              </div>
+              <!--
+              <div class="form-group">
+                <label for="days"> ( اختياري) الاوقات المفضلة للاستلام :</label>
+                <br>
+                <span style="display:inline-block;width:60%;" class="feldd">
+    
+                  <input [(ngModel)]="user.address.neighborhood" required type="text"
+                    class="form-control" id="days" placeholder="الايام / الساعات"
+                    name="days">
+                </span>
+    
+              </div>
+    -->
               <div style="padding-right: 5px">
-              <small class="text-danger">لانقبل الكتب المقلدة والغير اصلية*</small>
-              <br>
-              <button   type="submit" class="btn btn-danger bot">تبديل الكتب</button>
+    
+                <button type="submit" class="btn btn-danger bot">شراء الكتب</button>
               </div>
-              
-              
-              
-              </form>
+    
+            </form>
               
                 
         

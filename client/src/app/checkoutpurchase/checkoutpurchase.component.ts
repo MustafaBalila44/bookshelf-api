@@ -16,7 +16,7 @@ export class CheckoutpurchaseComponent implements OnInit {
   user = {} as any;
   cart = new Cart();
   payment = { cash: false, points: false };
-  param: any;
+  param: any; 
   xpPrice = 0;
   sdgPrice = 0;
   order = new Order();
@@ -67,9 +67,20 @@ export class CheckoutpurchaseComponent implements OnInit {
 
   onsubmit() {
     this.order.booksCount= this.cart.books.length;
+console.log(this.order);
+
     this.cartService.order(this.order).subscribe((res:any) =>{
 console.log(res);
+this.router.navigate(['/user/status/']);
+
+//this.cartService.removeAllFromCart(this.cart._id);
+
+
     })
-  }
+  
+
+}
+
+
 
 }

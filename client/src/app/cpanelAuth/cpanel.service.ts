@@ -34,5 +34,25 @@ export class CpanelService {
     return this.httpClinet.get<{ book: Book }>(this.globalsService.apiUrl + 'books/' + id);
   }
 
+  getorder(){
+    return this.httpClinet.get(`${this.globalsService.apiUrl}users/orders` )
+
+} 
+
+getusers(id){
+  return this.httpClinet.get(`${this.globalsService.apiUrl}/users/${id}`);
+
+}
+ 
+
+  addPoints(userPoints){
+    return this.httpClinet.post(this.globalsService.apiUrl + 'users/addpoints/' ,userPoints);
+
+  }
+
+  delbook(bookId){
+    return this.httpClinet.delete(this.globalsService.apiUrl + 'books/'+ bookId + '/');
+
+  }
 }
 

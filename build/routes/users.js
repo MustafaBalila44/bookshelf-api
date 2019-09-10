@@ -8,6 +8,7 @@ const passport_1 = __importDefault(require("passport"));
 const users_1 = require("../controllers/users");
 const validator_1 = require("../middlewares/validator");
 const router = express_1.Router();
+router.get('/orders', users_1.UserController.getOrder);
 /**
  * @api {get} /users List all users
  * @apiGroup Users
@@ -210,6 +211,6 @@ router.post('/remove_from_cart', validator_1.cartValidators, passport_1.default.
  *    HTTP/1.1 500 Internal Server Error
  */
 router.get('/:id/cart', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.findCart);
-router.post('/order', passport_1.default.authenticate('jwt'), users_1.UserController.createOrder);
+router.post('/order', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.createOrder);
 exports.default = router;
 //# sourceMappingURL=users.js.map

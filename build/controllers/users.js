@@ -208,10 +208,10 @@ UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, fu
 UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, ["note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
     const user = req.user;
-    const errors = check_1.validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //     return res.status(400).json({ errors: errors.array() });
+    // }
     if (!user) {
         return res.sendStatus(403);
     }
@@ -219,6 +219,16 @@ UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, funct
         const order = yield order_model_1.Order.create(Object.assign({}, fields, { user: user.id }));
         yield order.save();
         return res.json({ message: "Order was created successfuly" });
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+UserController.getOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const user = req.user;
+    try {
+        const orders = yield order_model_1.Order.find({});
+        return res.json({ orders, user });
     }
     catch (error) {
         return res.status(500).json({ error });

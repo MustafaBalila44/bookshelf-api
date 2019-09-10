@@ -14,12 +14,7 @@
                 طلبات الشراء
             </a>
             </div>
-            <div class="btn-group " >
-            <a class="btn btn-success" routerLink="/user/cpanel"
-                style="padding:5px;width:23%;">
-                اضافة النقاط والكتب
-            </a>
-            </div>
+          
             <div class="btn-group " >
             <a class="btn btn-info" routerLink="/user/e"
                 style="padding:5px;width:23%;">
@@ -40,7 +35,7 @@
         <mat-tab-group>
             <!--Add book tab-->
             <mat-tab label="Add a book">
-                <form #f="ngForm" (ngSubmit)="onAddBook()" enctype="multipart/form-data">
+                <form #f="ngForm" (ngSubmit)="onAddBook(f.value)" >
 
                     <br>
                     اسم الكتاب :
@@ -162,17 +157,17 @@
 
             <mat-tab label="Add a points to a user">
                 اضف نقاط للمستخدم
-                <form #ptsForm="ngForm" (onSubmit)="onAddPonits()">
+                <form #ptsForm="ngForm" (onSubmit)="onAddUserPoints()">
                     <div class="form-group">
                         <label for="email">Email address /ID </label>
                         <input type="email" class="form-control" name="emila"
-                            id="email" placeholder="name@example.com">
+                            id="email" placeholder="name@example.com" [(ngModel)]="userPoints.id"> 
                     </div>
                     <div class="form-group">
                         <label for="xp">XP: </label>
 
                         <input type="number" class="form-control" name="xp"
-                            id="xp">
+                            id="xp" [(ngModel)]="userPoints.xp">
                     </div>
                     <div class="form-group">
                         <label for="bonusxp">bonus xP:</label>
@@ -190,7 +185,7 @@
                         <label for="xp">notifaction:</label>
 
                         <input type="text" class="form-control"
-                            name="notifaction" id="notifaction">
+                            name="notifaction" id="notifaction" >
                     </div>
                     <button class="btn btn-primary" type="submit">Add</button>
                 </form>
@@ -201,13 +196,13 @@
 
             <mat-tab label="DELETE A BOOK">
 احذف كتاب
-                    <form #ptsForm="ngForm" (onSubmit)="onAddPonits()">
+                    <form>
                         <div class="form-group">
                             <label for="email">NAME /ID </label>
                             <input type="email" class="form-control" name="emila"
-                                id="email" placeholder="name@example.com">
+                                id="email" placeholder="name@example.com" [(ngModel)]="bookId">
                         </div>
-                        <button class="btn btn-primary" type="submit">DELETE</button>
+                        <button (click)="delbook()" class="btn btn-primary" type="submit">DELETE</button>
 
                     </form>
                 </mat-tab>

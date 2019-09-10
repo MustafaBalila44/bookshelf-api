@@ -20,3 +20,17 @@ export class Author {
     about: string;
     books?: any[];
 }
+
+
+export class UserPoints{
+    id : string;
+    xp : number;
+}
+
+export class Order {
+    note?: string;
+    priceSDG: number;
+    priceXP: number;
+    totalPrice: number;
+    booksCount: number;
+}

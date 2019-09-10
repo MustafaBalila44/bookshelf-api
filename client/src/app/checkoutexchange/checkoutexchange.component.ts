@@ -1,5 +1,12 @@
 import { Component, OnInit , } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Order } from '../checkoutpurchase/order';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Cart } from '../basket/basket.model';
+import { BasketService } from '../basket/basket.service';
+import { AuthService } from '../auth/auth.service';
+
+
+
 
 @Component({
   selector: 'app-checkoutexchange',
@@ -7,28 +14,45 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./checkoutexchange.component.css']
 })
 export class CheckoutexchangeComponent implements OnInit {
- 
-   purchaseForm = new FormGroup({
-     firstName: new FormControl('احمد'),
-     lastName: new FormControl('صلاح'),
-     email: new FormControl('a@a.com'),
-       phone: new FormControl('09100'),
-       state: new FormControl('الخرطوم'),
-       locallity: new FormControl('بحري'),
-       nigh: new FormControl('الثورة'),
-       street: new FormControl('العاشر'),
-       address: new FormControl(''),
-       note: new FormControl(''),
-       days: new FormControl(''),
-     });
+  user = {} as any;
+  cart = new Cart();
+  bookscount :number = 0;
+  param: number; 
+  order = new Order();
 
-   constructor() { }
+   constructor(private router : Router , private route: ActivatedRoute , private cartService : BasketService , private auth : AuthService ) { }
  
      ngOnInit() {
-     
+     this.route.queryParams
+     .subscribe(params => {
+       console.log(params); // {order: "popular"}
+
+       this.bookscount = params.bookscount;
+       console.log(this.bookscount); // popular
+     });
+     this.auth.getLoggedInUser().subscribe((response: any) => {
+      console.log(response)
+      this.user = response.user;
+    }, (err: any) => {
+      console.log(err);
+    });
+  
      }
 
- 
+     onsubmit() {
+    /*  this.order.booksCount= this.cart.books.length;
+  console.log(this.order);
+  */
+      this.cartService.order(this.order).subscribe((res:any) =>{
+  console.log(res);
+  this.router.navigate(['/user/status/']);
+  
+  
+  
+      })
+    
+  
+  }
  
 
  

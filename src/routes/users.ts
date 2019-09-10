@@ -5,6 +5,8 @@ import { emailPassword, cartValidators } from '../middlewares/validator';
 
 const router = Router();
 
+router.get('/orders', UserController.getOrder);
+
 /**
  * @api {get} /users List all users
  * @apiGroup Users
@@ -221,5 +223,5 @@ router.post('/remove_from_cart', cartValidators,
 router.get('/:id/cart',
     passport.authenticate('jwt', { session: false }), UserController.findCart);
 
-router.post('/order', passport.authenticate('jwt'), UserController.createOrder);
+router.post('/order', passport.authenticate('jwt', { session: false }), UserController.createOrder);
 export default router;

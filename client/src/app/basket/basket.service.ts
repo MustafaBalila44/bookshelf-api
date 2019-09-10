@@ -35,9 +35,18 @@ export class BasketService {
     }
 
     order(order){
-        return this.http.post(`${this.globals.apiUrl}users/order/` , {order})
+        return this.http.post(`${this.globals.apiUrl}users/order/` , {...order})
+    }
+ 
+
+    removeAllFromCart(id){
+        return this.http.post(`${this.globals.apiUrl}users/remove_from_cart/` , id)
     }
 
+    getorder(){
+        return this.http.get(`${this.globals.apiUrl}users/orders` )
+
+    }
 
 
 

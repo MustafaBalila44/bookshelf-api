@@ -66,11 +66,10 @@
           <br>
           <hr>
 
-          <tr>
+          <tr> 
 
             <td> عدد نقاطك الحالية: </td>
             <td class="text-success">{{user.points}} xp </td>
-
           </tr>
         </tbody>
       </table>
@@ -95,7 +94,7 @@
       <div class="col-sm-6" style="text-align: justify" dir="rtl">
         <h3 style="padding-bottom:5%">تفاصيل مقدم الطلب:</h3>
 
-        <form>
+        <form (ngSubmit)="onsubmit()"> 
           <div class="form-group">
             <label for="firstName">الاسم:</label>
             <br>

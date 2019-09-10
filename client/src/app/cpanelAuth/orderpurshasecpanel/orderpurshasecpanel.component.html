@@ -387,21 +387,22 @@
 
 </h3>
 <br>
-<mat-accordion>
+<mat-accordion *ngFor="let order of order">
 <mat-expansion-panel>
 <mat-expansion-panel-header>
 
 <mat-panel-title>
 احمد صلاح 
 -
-ID: 8070
+ID: {{order.user}}
 </mat-panel-title>
 <mat-panel-description>
 بحري - الختمية جوار ميدان المولد شارع المزاد 
 </mat-panel-description>
 <mat-panel-description>
 الاجمالي:
-70ج
+{{order.totalPrice}}
+ج
 </mat-panel-description>
 </mat-expansion-panel-header>
 <div style="text-align:right !important;">
@@ -412,16 +413,17 @@ ID: 8070
 15.634833, 32.536538
         <br>
 رقم الطلب : 
-1000
+{{order._id}}
 <br>
 رقم المستخدم :
-8070
+{{order.user}}
 <br>
 تاريخ الطلب:
 10/10/2010
 <br>
 عدد الكتب :
-10 كتب
+{{order.booksCount}}
+ كتب
 <br>
 اسماء الكتب :
 نبىبلابببلاب
@@ -445,15 +447,27 @@ ID: 8070
 بلالالالالالالالالالالالالالالالالالالالالا
 <br>
 سعر الكتب :
-70 ج
+
+<span *ngIf="!(order.priceSDG == 0)">
+        {{order.priceSDG}}
+        ج
+</span>
+
+ <span *ngIf="!(order.priceXP == 0)">
+        {{order.priceXP}}
+
+    XP
+ </span>
 <br>
 
 سعر التوصيل :
-30ج
+60
+ج
 <br>
 
 الاجمالي :
-100ج 
+{{order.totalPrice}}
+ج 
 <br>
 
 <br>
@@ -462,80 +476,7 @@ ID: 8070
 </div>
 
 </mat-expansion-panel>
-<mat-expansion-panel >
-<mat-expansion-panel-header>
 
-<mat-panel-title>
-احمد صلاح 
--
-ID: 8070
-</mat-panel-title>
-<mat-panel-description>
-بحري - الختمية جوار ميدان المولد شارع المزاد 
-</mat-panel-description>
-<mat-panel-description>
-الاجمالي:
-70ج
-</mat-panel-description>
-</mat-expansion-panel-header>
-<div style="text-align:right !important;">
-رقم الهاتف :
-0910029880
-<br>
-الموقع على الخريطة :
-15.634833, 32.536538
-        <br>
-رقم الطلب : 
-1000
-<br>
-رقم المستخدم :
-8070
-<br>
-تاريخ الطلب:
-10/10/2010
-<br>
-عدد الكتب :
-10 كتب
-<br>
-اسماء الكتب :
-نبىبلابببلاب
-/
-بلابلالابلاببلاب
-/
-بلابلابلابلابلابلابلا
-/
-بلابلابلابلابلابلابلابلابلابلابلابلا
-/
-بلابلابلابلابلابلالالالالالالالالا
-/
-بلالالالالالالالالالالالالالالالالا
-/
-بلالالالالالالالالالالالالالالالالا
-/
-بلالالالالالالالالالالالالالالالالا
-/
-بلالالالالالالالالالالالالالالالالالا
-/
-بلالالالالالالالالالالالالالالالالالالالالا
-<br>
-سعر الكتب :
-70 ج
-<br>
-
-سعر التوصيل :
-30ج
-<br>
-
-الاجمالي :
-100ج 
-<br>
-
-<br>
-
-<button class="btn btn-primary">  ماشي اسا </button>
-</div>
-
-</mat-expansion-panel>
 
 
 
