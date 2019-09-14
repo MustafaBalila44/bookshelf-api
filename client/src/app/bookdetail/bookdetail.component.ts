@@ -15,6 +15,8 @@ import { UIService } from '../shared/UI.service';
 })
 export class BookdetailComponent implements OnInit {
   book: Book = new Book();
+  bookLength : number;
+
   constructor(
   private sendrequestService : SendrequestService , 
   private cpanelService: CpanelService, 
@@ -67,6 +69,7 @@ export class BookdetailComponent implements OnInit {
     this.sendrequestService.addToCart(userId, bookId).subscribe((res) => {
       this.ui.loadingStateChanged.next(false);
       this.openSnackBar('The book was added');
+      this.basket.getbookLength();
     }, (err) => {
       console.log(err);
     });

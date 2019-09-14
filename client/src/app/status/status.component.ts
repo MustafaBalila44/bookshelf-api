@@ -35,6 +35,7 @@ export class  StatusComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cart.getbookLength();
     this.authService.getLoggedInUser().subscribe((response: any) => {
       console.log(response)
       this.user = response.user;

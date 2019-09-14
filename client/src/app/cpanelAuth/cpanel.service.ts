@@ -40,7 +40,7 @@ export class CpanelService {
 } 
 
 getusers(id){
-  return this.httpClinet.get(`${this.globalsService.apiUrl}/users/${id}`);
+  return this.httpClinet.get(this.globalsService.apiUrl + 'users/' + id );
 
 }
  

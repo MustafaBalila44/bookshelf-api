@@ -7,7 +7,7 @@ import {Order } from '../cpanelclass';
   styleUrls: ['./orderpurshasecpanel.component.css']
 })
 export class OrderpurshasecpanelComponent implements OnInit {
-  order :Order = new Order();
+  order :any = new Order();
 
   constructor(private cpanel : CpanelService) { }
 
@@ -15,8 +15,13 @@ export class OrderpurshasecpanelComponent implements OnInit {
     this.cpanel.getorder().subscribe((res : any) =>{
       console.log(res);
       this.order = res.orders;
+
     })
+
   }
+
+
+
 
 }
  

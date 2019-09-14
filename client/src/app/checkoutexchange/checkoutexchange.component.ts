@@ -16,20 +16,15 @@ import { AuthService } from '../auth/auth.service';
 export class CheckoutexchangeComponent implements OnInit {
   user = {} as any;
   cart = new Cart();
-  bookscount :number = 0;
+  bookscount :any = 0;
   param: number; 
   order = new Order();
 
    constructor(private router : Router , private route: ActivatedRoute , private cartService : BasketService , private auth : AuthService ) { }
  
      ngOnInit() {
-     this.route.queryParams
-     .subscribe(params => {
-       console.log(params); // {order: "popular"}
-
-       this.bookscount = params.bookscount;
-       console.log(this.bookscount); // popular
-     });
+       console.log(this.route.snapshot.queryParamMap.get('bookscuont'))
+  // this.order.booksCount = this.route.snapshot.queryParamMap.get('bookscuont')
      this.auth.getLoggedInUser().subscribe((response: any) => {
       console.log(response)
       this.user = response.user;

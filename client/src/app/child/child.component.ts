@@ -21,15 +21,12 @@ export class ChildComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor(public auth : AuthService , private cartService : BasketService) { }
+  constructor(public auth : AuthService , public cartService : BasketService) { }
   
   ngOnInit() {
 
-    this.cartService.getCart().subscribe((response: any) => {
-      this.cart = response.cart;
-      this.bookLength = this.cart.books.length
-      })
-
+  
+this.cartService.getbookLength();
   }
 
 
@@ -38,6 +35,9 @@ export class ChildComponent implements OnInit {
     this.auth.logoutUser();
   }
 
+
+  getbookLength(){
+  }
 }
 
 

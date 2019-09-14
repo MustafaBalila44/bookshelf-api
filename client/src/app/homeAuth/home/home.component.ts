@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
  request: Requestbook = new Requestbook();
   books: Book[] = [];
   riwayat : Book[] = [];
+  bookLength : number;
   constructor(
     private sendrequestService: SendrequestService,
     private cpanelService: CpanelService,
@@ -41,9 +42,12 @@ export class HomeComponent implements OnInit {
 
     this.cpanelService.getBooks().subscribe((res) => {
       this.books = res.books;
+      
     }, (err) => {
       console.log(err);
     });
+      
+  }
     /*
     this.cpanelService.getBooksbycategory(1).subscribe((res: any[]) => {
       this.riwayat = res.slice(0,8);
@@ -51,7 +55,7 @@ export class HomeComponent implements OnInit {
       console.log(err);
     });
     */
-  }
+  
 
   onSubmit(form) {
 
@@ -69,16 +73,20 @@ export class HomeComponent implements OnInit {
 
   addToCartCheck(bookId: string) {
     this.basket.getCart().subscribe((res: any)=>{
+      
       const cart = res.cart;
+      
       const booksIds = cart.books.reduce((a, book) => {
         a.push(book._id);
         return a;
+       
       }, []);
       if (booksIds.includes(bookId)) {
         this.openSnackBar('The book already exsists');
         return ;      
       }
       this.addToCart(bookId);
+     
     });
   }
   // م مفروض يقدر يضيف الكتاب مرتين 
@@ -89,6 +97,7 @@ export class HomeComponent implements OnInit {
     this.sendrequestService.addToCart(userId, bookId).subscribe((res) => {
       this.ui.loadingStateChanged.next(false);
       this.openSnackBar('The book was added');
+      this.basket.getbookLength();
     }, (err) => {
       console.log(err);
     });

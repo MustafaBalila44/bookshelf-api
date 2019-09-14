@@ -23,7 +23,7 @@
     <ul class="nav navbar-nav ml-auto" style="font-size: 18px" >
 
     <li class="nav-item active " >
-        <a  class="ax nav-link" >  البحث
+        <a  class="ax nav-link" routerLink="/user/search" (click)="toggleNavbar()">  البحث
           <mat-icon >search</mat-icon>
          
         </a>
@@ -64,7 +64,7 @@
   </a>
 </li>
 <li class=" nav-item">
-  <a class="ax nav-link" matBadge="{{bookLength}}" matBadgeColor="warn" routerLink="/user/basket" (click)="toggleNavbar()">  سلة المشتريات
+  <a class="ax nav-link" matBadge="{{cartService.bookLength}}" matBadgeColor="warn" routerLink="/user/basket" (click)="toggleNavbar()">  سلة المشتريات
     <mat-icon >shopping_cart</mat-icon>
 
     

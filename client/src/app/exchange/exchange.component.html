@@ -97,7 +97,7 @@
 <h4>
   ادخل عدد الكتب التي تود تبديلها:
 </h4>
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+<form #f="ngForm" (ngSubmit)="onSubmit()">
 <input [(ngModel)]="exchange" required name="exchange" type ="number" class="form-control">
 <br>
 <!--
