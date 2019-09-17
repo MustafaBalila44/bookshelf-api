@@ -34,13 +34,13 @@
                 <form #f="ngForm" (ngSubmit)="onAddBook(f.value)">
 
                     <br> اسم الكتاب :
-                    <input type="text" class="form-control" name="bookname" id="bookname" [(ngModel)]="book.name">
+                    <input type="text" class="form-control" name="name" id="bookname" [(ngModel)]="book.name">
                     <br> السعر بالجنيه
-                    <input type="text" class="form-control" name="priceSDG" id="priceSDG" [(ngModel)]="book.priceSdg">
+                    <input type="text" class="form-control" name="priceSdg" id="priceSDG" [(ngModel)]="book.priceSdg">
                     <br> السعر ب xp
-                    <input type="text" class="form-control" name="priceXP" id="priceXP" [(ngModel)]="book.priceXp">
+                    <input type="text" class="form-control" name="priceXp" id="priceXP" [(ngModel)]="book.priceXp">
                     <br> المؤلف
-                    <select class="form-control custom-select" name="authname" id="authname" [(ngModel)]="book.author">
+                    <select class="form-control custom-select" name="author" id="authname" [(ngModel)]="book.author">
                         <option *ngFor="let author of authors" [value]="author._id">
                             {{ author.firstName}} {{ author.lastName }}
                         </option>
@@ -58,24 +58,24 @@
                     <input type="text" class="form-control" name="pages" id="pages" [(ngModel)]="book.pages">
                     <br> حالة الكتاب
                     <select class="form-control" name="status" id="status" [(ngModel)]="book.status">
-                        <option>جديد</option>
-                        <option>مستعمل بحالة جيدة</option>
-                        <option>مستعمل بحالة متوسطة</option>
-                        <option>مستعمل بحالة مقبولة</option>
+                        <option value="1">جديد</option>
+                        <option value="1">مستعمل بحالة جيدة</option>
+                        <option value="1">مستعمل بحالة متوسطة</option>
+                        <option value="1">مستعمل بحالة مقبولة</option>
 
                     </select>
 
                     <br> الفئة
 
-                    <select class="form-control" name="cat" id="cat" [(ngModel)]="book.category">
+                    <select class="form-control" name="category" id="cat" [(ngModel)]="book.category">
 
-                        <option>
+                        <option value="a">
                             رواية
                         </option>
-                        <option>
+                        <option value="1">
                             علمية
                         </option>
-                        <option>
+                        <option value="1">
                             سيرة ذاتية
                         </option>
 
@@ -85,7 +85,7 @@
 
 
                     <br> الصورة:
-                    <input type="file" class="form-control-file" name="pic" id="image" (change)="onFileChanged($event)">
+                    <input type="file" class="form-control" name="image" id="image" [(ngModel)]="book.image" (change)="onFileChanged($event)">
 
                     <br>
 

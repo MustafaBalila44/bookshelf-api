@@ -24,10 +24,12 @@ export class CpanelComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]
   }
+  /*
   bookform = this.formBuilder.group({
     image: [''],
  
   });
+  */
   ngOnInit() {
     this.cpanelService.getAuthors().subscribe(response => {
       this.authors = response.authors;
@@ -36,6 +38,7 @@ export class CpanelComponent implements OnInit {
 
 
   onAddBook(form) {
+    /*
     const formData = new FormData();
     
       formData.append('image',this.selectedFile, this.selectedFile.name);
@@ -52,7 +55,19 @@ export class CpanelComponent implements OnInit {
 
     this.cpanelService.addBook(formData).subscribe((response) => {
       console.log(response);
-     });
+     }),
+     (err) =>{
+      console.log(err);
+
+     }
+     */
+    this.cpanelService.addBook(this.book).subscribe((response) => {
+      console.log(response);
+     }),
+     (err) =>{
+      console.log(err);
+
+     }
   }
 
   onAddAuthor() {

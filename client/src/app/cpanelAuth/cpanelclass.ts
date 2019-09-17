@@ -8,7 +8,7 @@ export class Book {
     note: string;
     pages: number;
     status: string;
-    category: string;
+    category?: string;
     image: File;
 
 }

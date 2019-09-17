@@ -35,7 +35,6 @@ const bookSchema = new mongoose_1.Schema({
     category: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Category',
-        required: true,
     },
     pages: {
         type: Number,
@@ -46,7 +45,11 @@ const bookSchema = new mongoose_1.Schema({
     },
     image: {
         type: String,
-        default: "https://bookshelf5000.herokuapp.com/images/book.jpg",
+        //
+        //
+        //
+        //صلح دي
+        default: "http://localhost:8000/api/books/images/book.jpg",
         required: true,
     }
 });
