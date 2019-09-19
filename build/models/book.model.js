@@ -48,7 +48,11 @@ const bookSchema = new mongoose_1.Schema({
         type: String,
         default: "https://bookshelf5000.herokuapp.com/images/book.jpg",
         required: true,
-    }
+    },
+    hidden: {
+        type: Boolean,
+        default: false,
+    },
 });
 exports.Book = mongoose_1.model("Book", bookSchema);
 //# sourceMappingURL=book.model.js.map

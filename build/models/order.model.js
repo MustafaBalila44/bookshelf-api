@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 // tslint:disable: object-literal-sort-keys
-const orderSchema = new mongoose_1.Schema({
+exports.orderSchema = new mongoose_1.Schema({
     booksCount: {
         type: Number,
         min: 0,
@@ -45,6 +45,11 @@ const orderSchema = new mongoose_1.Schema({
         min: 0,
         required: true,
     },
+    type: {
+        type: String,
+        enum: ["trading", "purchase"],
+        required: [true, "An order must have a type"],
+    }
 });
-exports.Order = mongoose_1.model("Order", orderSchema);
+exports.Order = mongoose_1.model("order", exports.orderSchema);
 //# sourceMappingURL=order.model.js.map

@@ -152,5 +152,9 @@ router.put('/:id', passport_1.default.authenticate('jwt', { session: false }), b
  *    HTTP/1.1 500 Internal Server Error
  */
 router.delete('/:id', passport_1.default.authenticate('jwt', { session: false }), books_1.BookController.deleteOne);
+// add a new category
+router.post('/categories', passport_1.default.authenticate('jwt', { session: false }), books_1.BookController.createCategory);
+// list all the categories
+router.get('/categories', books_1.BookController.findCategories);
 exports.default = router;
 //# sourceMappingURL=books.js.map

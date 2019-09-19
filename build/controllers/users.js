@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -21,13 +22,14 @@ const address_model_1 = require("../models/address.model");
 const order_model_1 = require("../models/order.model");
 class UserController {
 }
+exports.UserController = UserController;
 /**
  * @section CRUD operations
  */
 /**
  * @description findAll gets all the users in the DB
  */
-UserController.findAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.findAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield user_model_1.User.find({}, { password: 0 });
         return res.json({ users });
@@ -39,7 +41,7 @@ UserController.findAll = (req, res) => __awaiter(this, void 0, void 0, function*
 /**
  * @description findOne gets a single user by its id
  */
-UserController.findOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
         const user = yield user_model_1.User.findOne({ _id: id }, { password: 0, })
@@ -53,20 +55,38 @@ UserController.findOne = (req, res) => __awaiter(this, void 0, void 0, function*
 });
 /**
  * @description updateOne updates an authenticated user by its id
- * the id is not required in this fucntion but it's used only for
- * code consistensy
+ * the id is not required in this function but it's used only for
+ * code consistency
  */
-UserController.updateOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.updateOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    const user = req.user;
-    const updatedFields = lodash_1.default.pick(body, ['email', 'phone', 'points',]);
-    if (!user) {
-        return res.sendStatus(403);
+    const updatedFields = lodash_1.default.pick(body, ['phone', 'points',]);
+    try {
+        const user = yield user_model_1.User.findById(req.user.id);
+        user.phone = updatedFields.phone;
+        user.points += updatedFields.points;
+        user.save({ validateBeforeSave: true }, (err, updatedUser) => {
+            if (err) {
+                return res.status(400).json({ error: err });
+            }
+            return res.json({ message: "updated successfully", user: updatedUser });
+        });
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+UserController.updateUserAddress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    const id = req.params.id;
+    const updatedFields = lodash_1.default.pick(body, ['street', 'neighborhood', 'state', 'locality']);
+    if (req.user.address !== id) {
+        return res.status(401).json("Unauthorized");
     }
     try {
-        const doc = yield user_model_1.User.
-            findByIdAndUpdate(user.id, updatedFields);
-        return res.json({ message: "updated successfuly", user: doc });
+        const address = yield address_model_1.Address.
+            findByIdAndUpdate(id, updatedFields, { new: true, runValidators: true });
+        return res.json({ message: "updated successfully", address });
     }
     catch (error) {
         return res.status(500).json({ error });
@@ -74,17 +94,17 @@ UserController.updateOne = (req, res) => __awaiter(this, void 0, void 0, functio
 });
 /**
  * @description deleteOne deletes an authenticated user by its id
- * the id is not required in this fucntion but it's used only for
- * code consistensy
+ * the id is not required in this function but it's used only for
+ * code consistency
  */
-UserController.deleteOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.deleteOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
     if (!user) {
         return res.sendStatus(403);
     }
     try {
         const doc = yield user_model_1.User.findByIdAndDelete(user.id);
-        return res.json({ message: "deleted successfuly", user: doc });
+        return res.json({ message: "deleted successfully", user: doc });
     }
     catch (error) {
         return res.status(500).json({ error });
@@ -94,10 +114,10 @@ UserController.deleteOne = (req, res) => __awaiter(this, void 0, void 0, functio
  * @section Authentication
  */
 /**
- * @description login authenticate an exsidting user and generates a jwt
+ * @description login authenticate an existing user and generates a jwt
  */
-UserController.login = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    passport_1.default.authenticate('local', { session: false }, (err, user, info) => __awaiter(this, void 0, void 0, function* () {
+UserController.login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    passport_1.default.authenticate('local', { session: false }, (err, user, info) => __awaiter(void 0, void 0, void 0, function* () {
         if (err) {
             return next(err);
         }
@@ -116,21 +136,21 @@ UserController.login = (req, res, next) => __awaiter(this, void 0, void 0, funct
 /**
  * @description signup Creates a new user and save to the DB
  */
-UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, [
         'email', 'password', 'firstName', 'lastName',
         'phone', 'dateOfBirth',
     ]);
-    const addressFields = lodash_1.default.pick(req.body, ['street', 'neighborhood', 'state', 'locallity']);
+    const addressFields = lodash_1.default.pick(req.body, ['street', 'neighborhood', 'state', 'locality']);
     const errors = check_1.validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ error: errors.array() });
     }
     try {
-        const exsistedUser = yield user_model_1.User.findOne({
+        const existedUser = yield user_model_1.User.findOne({
             email: fields.email,
         });
-        if (exsistedUser) {
+        if (existedUser) {
             return res.json(400)
                 .json({ message: "This email is already in use" });
         }
@@ -145,7 +165,7 @@ UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* 
 /**
  * @section Cart
  */
-UserController.findCart = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.findCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
     try {
         const cart = yield cart_model_1.Cart.findOne({ user: user.id })
@@ -165,7 +185,7 @@ UserController.findCart = (req, res) => __awaiter(this, void 0, void 0, function
         return res.status(500).json({ error });
     }
 });
-UserController.addToCart = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.addToCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.body.bookId;
     const user = req.user;
     const errors = check_1.validationResult(req);
@@ -185,7 +205,7 @@ UserController.addToCart = (req, res) => __awaiter(this, void 0, void 0, functio
         return res.status(500).json({ error });
     }
 });
-UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.removeFromCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.body.bookId;
     const user = req.user;
     const errors = check_1.validationResult(req);
@@ -205,8 +225,8 @@ UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, fu
         return res.status(500).json({ error });
     }
 });
-UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const fields = lodash_1.default.pick(req.body, ["note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
+UserController.createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const fields = lodash_1.default.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
     const user = req.user;
     const errors = check_1.validationResult(req);
     if (!errors.isEmpty()) {
@@ -216,13 +236,73 @@ UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, funct
         return res.sendStatus(403);
     }
     try {
-        const order = yield order_model_1.Order.create(Object.assign({}, fields, { user: user.id }));
+        const order = yield order_model_1.Order.create(Object.assign(Object.assign({}, fields), { user: user.id }));
         yield order.save();
-        return res.json({ message: "Order was created successfuly" });
+        return res.json({ message: "Order was created successfully", order, user });
     }
     catch (error) {
         return res.status(500).json({ error });
     }
 });
-exports.UserController = UserController;
+// get the order
+UserController.getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    /// order status and type from the query string
+    const { status, type } = req.query;
+    try {
+        // if status was supplied
+        if (status) {
+            const orders = yield order_model_1.Order.find({ status, type });
+            return res.json({ orders });
+        }
+        else {
+            const orders = yield order_model_1.Order.find({ type });
+            return res.json({ orders });
+        }
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+// get the orders of a user
+UserController.getOrdersByUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    /// order status and type from the query string
+    const { status, type } = req.query;
+    const user = req.user;
+    try {
+        // if status was supplied
+        if (status) {
+            const orders = yield order_model_1.Order.find({ user: user.id, status, type });
+            return res.json({ orders });
+        }
+        else {
+            const orders = yield order_model_1.Order.find({ user: user.id, type });
+            return res.json({ orders });
+        }
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+UserController.getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const user = req.user;
+    try {
+        const order = yield order_model_1.Order.findById(id);
+        return res.json({ order, user });
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+UserController.updateOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const status = req.body.status;
+    try {
+        const order = yield order_model_1.Order.updateOne({ id }, { status });
+        return res.json({ order });
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
 //# sourceMappingURL=users.js.map

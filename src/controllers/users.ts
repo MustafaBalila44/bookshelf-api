@@ -238,7 +238,7 @@ export class UserController {
         try {
             const order = await Order.create({ ...fields, user: user.id });
             await order.save();
-            return res.json({ message: "Order was created successfuly", order, user });
+            return res.json({ message: "Order was created successfully", order, user });
         } catch (error) {
             return res.status(500).json({ error });
         }

@@ -210,6 +210,16 @@ router.post('/remove_from_cart', validator_1.cartValidators, passport_1.default.
  *    HTTP/1.1 500 Internal Server Error
  */
 router.get('/:id/cart', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.findCart);
-router.post('/order', passport_1.default.authenticate('jwt'), users_1.UserController.createOrder);
+// updates a user address
+router.put('/update_address/:id', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.updateUserAddress);
+// create a new order
+router.post('/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.createOrder);
+router.put('/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.updateOrder);
+// get all orders
+router.get('/orders', users_1.UserController.getOrders);
+// get orders of a user
+router.get('/:id/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.getOrdersByUser);
+// get one order by it's id
+router.get('/orders/:id', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.getOrder);
 exports.default = router;
 //# sourceMappingURL=users.js.map

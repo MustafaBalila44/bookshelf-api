@@ -9,11 +9,6 @@ const categorySchema = new mongoose_1.Schema({
         required: true,
         index: true,
     },
-    books: {
-        type: [mongoose_1.Schema.Types.ObjectId],
-        ref: 'Book',
-        required: true,
-    },
 });
 exports.Category = mongoose_1.model("Category", categorySchema);
 //# sourceMappingURL=category.js.map
