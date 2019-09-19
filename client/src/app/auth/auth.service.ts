@@ -18,9 +18,8 @@ export class AuthService {
         return this.httpClinet.post(this.globalsService.apiUrl + 'users/signup',
             signup).pipe(catchError(this.errorHandler));
     }
-    update(id, update:Update) {
-        console.log(update)
-        return this.httpClinet.put(this.globalsService.apiUrl + 'users/' + id + '/' , update  ).pipe(catchError(this.errorHandler));
+    update(id , update , address) {
+        return this.httpClinet.put(this.globalsService.apiUrl + 'users/' + id , update ,address ).pipe(catchError(this.errorHandler));
     }
     updatepass(id, updatepass:Updatepass) {
         console.log(updatepass)

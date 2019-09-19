@@ -47,7 +47,7 @@ const bookSchema = new Schema({
     category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
-        required: true,
+         required: false,
     },
     pages: {
         type: Number,
@@ -58,7 +58,11 @@ const bookSchema = new Schema({
     },
     image: {
         type: String,
-        default: "https://bookshelf5000.herokuapp.com/images/book.jpg",
+        //
+        //
+        //
+        //صلح دي
+        default: "http://localhost:8000/api/books/images/book.jpg",
         required: true,
     },
     hidden: {

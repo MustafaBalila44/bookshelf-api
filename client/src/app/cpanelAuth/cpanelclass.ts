@@ -8,7 +8,7 @@ export class Book {
     note: string;
     pages: number;
     status: string;
-    category: string;
+    category?: string;
     image: File;
 
 }
@@ -19,4 +19,18 @@ export class Author {
     lastName: string;
     about: string;
     books?: any[];
+}
+
+
+export class UserPoints{
+    id : string;
+    xp : number;
+}
+
+export class Order {
+    note?: string;
+    priceSDG: number;
+    priceXP: number;
+    totalPrice: number;
+    booksCount: number;
 }

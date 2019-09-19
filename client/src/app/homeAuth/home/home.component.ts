@@ -20,6 +20,15 @@ export class HomeComponent implements OnInit {
  request: Requestbook = new Requestbook();
   books: Book[] = [];
   riwayat : Book[] = [];
+  a : Book[] = [];
+  b : Book[] = [];
+  c : Book[] = [];
+  d : Book[] = [];
+  e : Book[] = [];
+  f : Book[] = [];
+  g : Book[] = [];
+
+  bookLength : number;
   constructor(
     private sendrequestService: SendrequestService,
     private cpanelService: CpanelService,
@@ -41,18 +50,32 @@ export class HomeComponent implements OnInit {
 
     this.cpanelService.getBooks().subscribe((res) => {
       this.books = res.books;
+      
     }, (err) => {
       console.log(err);
     });
-    /*
+      
+  
+    
     this.cpanelService.getBooksbycategory(1).subscribe((res: any[]) => {
       this.riwayat = res.slice(0,8);
     }, (err) => {
       console.log(err);
     });
-    */
-  }
+    
+    this.cpanelService.getBooksbycategory(2).subscribe((res: any[]) => {
+      this.a = res.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
 
+    this.cpanelService.getBooksbycategory(3).subscribe((res: any[]) => {
+      this.b = res.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+  
+  }
   onSubmit(form) {
 
     this.sendrequestService.Requestbook(this.request).subscribe((response) => {
@@ -69,16 +92,20 @@ export class HomeComponent implements OnInit {
 
   addToCartCheck(bookId: string) {
     this.basket.getCart().subscribe((res: any)=>{
+      
       const cart = res.cart;
+      
       const booksIds = cart.books.reduce((a, book) => {
         a.push(book._id);
         return a;
+       
       }, []);
       if (booksIds.includes(bookId)) {
         this.openSnackBar('The book already exsists');
         return ;      
       }
       this.addToCart(bookId);
+     
     });
   }
   // م مفروض يقدر يضيف الكتاب مرتين 
@@ -89,6 +116,7 @@ export class HomeComponent implements OnInit {
     this.sendrequestService.addToCart(userId, bookId).subscribe((res) => {
       this.ui.loadingStateChanged.next(false);
       this.openSnackBar('The book was added');
+      this.basket.getbookLength();
     }, (err) => {
       console.log(err);
     });

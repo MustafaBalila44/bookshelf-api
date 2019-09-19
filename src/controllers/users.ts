@@ -228,10 +228,10 @@ export class UserController {
     public static createOrder = async (req: Request, res: Response) => {
         const fields = _.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
         const user = req.user;
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
         if (!user) {
             return res.sendStatus(403);
         }
@@ -307,5 +307,4 @@ export class UserController {
             return res.status(500).json({ error });
         }
     }
-
 }

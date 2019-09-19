@@ -15,6 +15,8 @@ export class BasketComponent implements OnInit {
   cart = new Cart();
   xpPrice = 0;
   sdgPrice = 0;
+  bookLength =0;
+
   constructor(private basketService: BasketService, private router: Router) { }
 
   ngOnInit() {
@@ -31,6 +33,9 @@ export class BasketComponent implements OnInit {
         { sdg: 0, xp: 0 });
       this.sdgPrice = sdg;
       this.xpPrice = xp;
+      this.bookLength = this.cart.books.length;
+this.basketService.bookLength = this.bookLength;
+this.basketService.getbookLength(); 
     });
   }
 

@@ -28,6 +28,9 @@
       </span>
       -->
       <br>
+      <div *ngIf="(this.user.points < this.xpPrice && this.payment['points'])" class="bg-danger">
+     لا يمكن اتمام عملية الشراء لان عدد نقاطك اقل من سعر الكتب ، قم بتبديل كتبك أولا
+      </div>
       <table class="table table-striped fony" style="font-size:30px;">
 
         <tbody>
@@ -66,11 +69,10 @@
           <br>
           <hr>
 
-          <tr>
+          <tr> 
 
             <td> عدد نقاطك الحالية: </td>
             <td class="text-success">{{user.points}} xp </td>
-
           </tr>
         </tbody>
       </table>
@@ -95,7 +97,7 @@
       <div class="col-sm-6" style="text-align: justify" dir="rtl">
         <h3 style="padding-bottom:5%">تفاصيل مقدم الطلب:</h3>
 
-        <form>
+        <form (ngSubmit)="onsubmit()"> 
           <div class="form-group">
             <label for="firstName">الاسم:</label>
             <br>
@@ -180,7 +182,7 @@
             <br>
             <span style="display:inline-block;width:60%;" class="feldd">
 
-              <input disabled required type="text" class="form-control" id="all"
+              <input [ngModel]="user.address.address" disabled required type="text" class="form-control" id="all"
                 placeholder="العنوان" name="all">
             </span>
 
@@ -196,6 +198,9 @@
                 name="note">
             </span>
 
+            <div *ngIf="(this.user.points < this.xpPrice && this.payment['points'])" class="bg-danger">
+                لا يمكن اتمام عملية الشراء لان عدد نقاطك اقل من سعر الكتب ، قم بتبديل كتبك أولا
+                 </div>
           </div>
           <!--
           <div class="form-group">
@@ -210,6 +215,8 @@
 
           </div>
 -->
+ 
+
           <div style="padding-right: 5px">
 
             <button type="submit" class="btn btn-danger bot">شراء الكتب</button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book, Author } from '../cpanelclass';
+import { Book, Author ,UserPoints} from '../cpanelclass';
 import { CpanelService } from '../cpanel.service';
 import { FormBuilder } from '@angular/forms';
 
@@ -12,6 +12,9 @@ export class CpanelComponent implements OnInit {
   public files: any[];
 
   // variable name : type = value
+  userPoints : UserPoints =new UserPoints()
+   bookId : number;
+   id : string;
   book: Book = new Book();
   author: Author = new Author();
   authors: Author[] = [];
@@ -21,10 +24,12 @@ export class CpanelComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]
   }
+  
   bookform = this.formBuilder.group({
     image: [''],
  
   });
+  
   ngOnInit() {
     this.cpanelService.getAuthors().subscribe(response => {
       this.authors = response.authors;
@@ -32,7 +37,8 @@ export class CpanelComponent implements OnInit {
   }
 
 
-  onAddBook() {
+  onAddBook(form) {
+    
     const formData = new FormData();
     
       formData.append('image',this.selectedFile, this.selectedFile.name);
@@ -49,7 +55,20 @@ export class CpanelComponent implements OnInit {
 
     this.cpanelService.addBook(formData).subscribe((response) => {
       console.log(response);
-     });
+     }),
+     (err) =>{
+      console.log(err);
+
+     }
+       /*       
+    this.cpanelService.addBook(this.book).subscribe((response) => {
+      console.log(response);
+     }),
+     (err) =>{
+      console.log(err);
+
+     }
+     */
   }
 
   onAddAuthor() {
@@ -58,13 +77,18 @@ export class CpanelComponent implements OnInit {
      });
   }
 
+  
   onAddUserPoints() {
-    this.cpanelService.addBook(this.book).subscribe((response) => {
+    this.cpanelService.addPoints(this.userPoints).subscribe((response) => {
       console.log(response);
      });
   }
 
-  onAddPonits() {
-
-  }
+  
+delbook(){
+  this.bookId = this.bookId;
+  this.cpanelService.delbook(this.bookId).subscribe((res) => {
+console.log(res);
+  })
+}
 }

@@ -25,6 +25,7 @@ import { OrderpurshasecpanelComponent } from './cpanelAuth/orderpurshasecpanel/o
 import { OrderexchangecpanelComponent } from './cpanelAuth/orderexchangecpanel/orderexchangecpanel.component';
 import { RecordComponent } from './cpanelAuth/record/record.component';
 import { BookbycategoryComponent } from './homeAuth/bookbycategory/bookbycategory.component';
+import { SearchComponent } from './homeAuth/search/search.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent, pathMatch: 'full' },
@@ -43,6 +44,8 @@ const routes: Routes = [
     path: 'user', component: ChildComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'search', component: SearchComponent },
+
         { path: 'book', component: BookbycategoryComponent },
   
       { path: 'bookdetail/:id', component: BookdetailComponent },
@@ -78,5 +81,5 @@ export const routingComponents = [
   BasketComponent, BookdetailComponent, SignupComponent, HomeComponent,
   SigninComponent, IndexComponent, TermsComponent, PrivacyComponent, FaqsComponent,
   ContacusComponent, WhoComponent , RecordComponent , OrderexchangecpanelComponent ,
-  OrderpurshasecpanelComponent , EnquiryComponent
+  OrderpurshasecpanelComponent , EnquiryComponent ,SearchComponent
 ];

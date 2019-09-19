@@ -5,6 +5,8 @@ import { emailPassword, cartValidators } from '../middlewares/validator';
 
 const router = Router();
 
+router.get('/orders', UserController.getOrder);
+
 /**
  * @api {get} /users List all users
  * @apiGroup Users

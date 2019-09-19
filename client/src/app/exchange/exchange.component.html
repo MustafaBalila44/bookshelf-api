@@ -27,61 +27,49 @@
 <br>
 <form>
 <h6>ادخل عدد صفحات الكتاب</h6>
-<input name="pages" type="number" class="form-control">
+<input [(ngModel)]="xp.pages" name="pages" type="number" class="form-control">
 <br>
 
 <h6>حدد حالة الكتاب</h6>
 
-<select name="status" class="form-control" dir="rtl">
-  <option>
+<select [(ngModel)]="xp.state" name="state" class="form-control" dir="rtl">
+  <option value="0" disabled>
     حالة الكتاب :
   </option>
-  <option>
+  <option value="1">
     مستعمل بحالة جيدة
   </option>
-  <option>
+  <option value="2">
     مستعمل بحالة متوسطة
   </option>
-  <option>
+  <option value="3">
     مستعمل بحالة مقبولة
   </option>
 </select>
 <br>
-<h6>حدد نوع الكتاب</h6>
-
-<select name="cat" class="form-control" dir="rtl">
-  <option>
-    نوع الكتاب :
-  </option>
-  <option>
-رواية
-  </option>
-  <option>
-علمية  </option>
-  <option>
-سيرة ذاتية  </option>
-</select>
-<br>
 <h6>حدد حجم الكتاب</h6>
-<select name="size" class="form-control">
-    <option>
+<select [(ngModel)]="xp.size" name="size" class="form-control">
+    <option value="0" disabled>
         حجم الكتاب :
       </option>
-      <option>
-صغير
+      <option value="1">
+متوسط
       </option>
-      <option>
-        متوسط
+      <option value="2">
+          صغير
         </option>
-        <option>
-        كبير
+        <option value="3">
+        صغير جدا
           </option>
 </select>
 <br>
 
-<h5>تقييم الكتاب : <span class=" btn btn-success">= 50 XP</span> 
+<h5>تقييم الكتاب : <span class=" btn btn-success">= 
+  {{this.point}}
+  XP</span> 
 </h5>
-<button type="reset" class=" btn btn-primary"> اعادة الحساب</button>
+<button type="reset" (click)="onxp()" class=" btn btn-primary">  الحساب</button>
+
 </form>
 
 <br>
@@ -97,8 +85,8 @@
 <h4>
   ادخل عدد الكتب التي تود تبديلها:
 </h4>
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-<input required name="pages" type ="number" class="form-control">
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+<input [(ngModel)]="exchange" required name="exchange" type ="number" class="form-control">
 <br>
 <!--
 
@@ -110,7 +98,7 @@
        <br>
        التي ترغب في تبديلها الأن 
        - قد يتغير التقييم بعد وصول الكتب الينا
-       )
+       )  
       
       </mat-radio-button>
     <br>
@@ -119,7 +107,7 @@
   -->
   <small class="text-danger">لانقبل الكتب المقلدة والغير اصلية*</small>
 <br>
-<button [disabled]="f.form.invalid" routerLink="/user/checkoutexchange" type="submit" class="btn btn-danger">اتمام عملية التبديل</button>
+<button [disabled]="f.form.invalid"  type="submit" class="btn btn-danger">اتمام عملية التبديل</button>
 </form>
 </div>
 

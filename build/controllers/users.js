@@ -228,10 +228,10 @@ UserController.removeFromCart = (req, res) => __awaiter(void 0, void 0, void 0, 
 UserController.createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
     const user = req.user;
-    const errors = check_1.validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //     return res.status(400).json({ errors: errors.array() });
+    // }
     if (!user) {
         return res.sendStatus(403);
     }

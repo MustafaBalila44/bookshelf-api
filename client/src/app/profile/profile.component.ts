@@ -45,7 +45,8 @@ constructor(private auth : AuthService) {}
 
   onS(id) {
 
-    this.auth.update(id,this.update).subscribe((response: any) => {
+    this.auth.update(this.id,this.user,this.user.address).subscribe((response: any) => {
+      console.log(response);
       if (response.message === 'Account was Updated') {
       } else {
         this.errorMSG = response.message

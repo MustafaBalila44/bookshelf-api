@@ -8,6 +8,7 @@ const passport_1 = __importDefault(require("passport"));
 const users_1 = require("../controllers/users");
 const validator_1 = require("../middlewares/validator");
 const router = express_1.Router();
+router.get('/orders', users_1.UserController.getOrder);
 /**
  * @api {get} /users List all users
  * @apiGroup Users
