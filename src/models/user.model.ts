@@ -1,6 +1,7 @@
-import { Document, Schema, Error, model } from "mongoose";
-import bcrypt from 'bcryptjs';
-import { Cart } from "./cart.model";
+import { Document, Schema, Error, model, SchemaType } from "mongoose";
+import bcrypt from "bcryptjs";
+import { Cart, CartDocument } from "./cart.model";
+import { OrderDocument, Order } from "./order.model";
 
 export type UserDocument = Document & {
     // user defenition
@@ -11,38 +12,40 @@ export type UserDocument = Document & {
     dateOfBirth: Date;
     address: any;
     points: number;
-    privilages: any[];
-    cart: any;
+    phone: string;
+    privileges: any[];
+    orders: OrderDocument[],
+    cart: CartDocument;
     comparePassword: comparePasswordFunction;
 };
 
 type comparePasswordFunction = (candidatePassword: string, cb: (err: any, isMatch: any) => {}) => void;
 
 // tslint:disable: object-literal-sort-keys
-const userScheam = new Schema({
-    // user shcema
+const userSchema = new Schema({
+    // user schema
     email: {
         type: String,
         minlength: 5,
-        required: true,
+        required: [true, "Email is required."],
         index: true,
         unique: true,
     },
     firstName: {
         type: String,
         minlength: 3,
-        required: true,
+        required: [true, "First Name is required."],
 
     },
     lastName: {
         type: String,
         minlength: 3,
-        required: true,
+        required: [true, "Last Name is required."],
 
     },
     dateOfBirth: {
         type: Date,
-        required: true,
+        required: [true, "Date of birth is required."],
     },
     points: {
         type: Number,
@@ -53,25 +56,30 @@ const userScheam = new Schema({
     phone: {
         type: String,
         // match: /{0-9}{0-9}{0-9}/,
-        required: true,
+        required: [true, "Phone number is required."],
     },
-    privilages: {
+    privileges: {
         type: Array,
         default: [],
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Password is required."],
     },
     address: {
         type: Schema.Types.ObjectId,
-        ref: 'Address',
-        required: true,
+        ref: "Address",
+        required: [true, "Address is required."],
     },
     cart: {
         type: Schema.Types.ObjectId,
-        ref: 'Cart',
+        ref: "Cart",
     },
+    orders: {
+        type: [Schema.Types.ObjectId],
+        default: [],
+        ref: "Order",
+    }
 });
 
 const comparePassword: comparePasswordFunction = function (password: string, cb: Function) {
@@ -80,9 +88,9 @@ const comparePassword: comparePasswordFunction = function (password: string, cb:
     });
 };
 
-userScheam.methods.comparePassword = comparePassword;
+userSchema.methods.comparePassword = comparePassword;
 
-userScheam.pre("save", function (next) {
+userSchema.pre("save", function (next) {
     const user = this as UserDocument;
     if (!user.isModified()) {
         return next();
@@ -98,4 +106,4 @@ userScheam.pre("save", function (next) {
 
 });
 
-export const User = model<UserDocument>("User", userScheam);
+export const User = model<UserDocument>("User", userSchema);

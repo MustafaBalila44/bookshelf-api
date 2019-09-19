@@ -221,5 +221,25 @@ router.post('/remove_from_cart', cartValidators,
 router.get('/:id/cart',
     passport.authenticate('jwt', { session: false }), UserController.findCart);
 
-router.post('/order', passport.authenticate('jwt'), UserController.createOrder);
+// updates a user address
+router.put('/update_address/:id',
+    passport.authenticate('jwt', { session: false }), UserController.updateUserAddress);
+
+// create a new order
+router.post('/orders',
+    passport.authenticate('jwt', { session: false }), UserController.createOrder);
+
+router.put('/orders',
+    passport.authenticate('jwt', { session: false }), UserController.updateOrder);
+
+// get all orders
+router.get('/orders', UserController.getOrders);
+
+// get orders of a user
+router.get('/:id/orders',
+    passport.authenticate('jwt', { session: false }), UserController.getOrdersByUser);
+// get one order by it's id
+router.get('/orders/:id',
+    passport.authenticate('jwt', { session: false }), UserController.getOrder);
+
 export default router;

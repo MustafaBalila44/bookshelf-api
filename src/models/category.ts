@@ -13,11 +13,6 @@ const categorySchema = new Schema({
         required: true,
         index: true,
     },
-    books: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Book',
-        required: true,
-    },
 });
 
 export const Category = model<CategoryDocument>("Category", categorySchema);

@@ -12,7 +12,7 @@ export type OrderDocument = Document & {
 };
 
 // tslint:disable: object-literal-sort-keys
-const orderSchema = new Schema({
+export const orderSchema = new Schema({
     booksCount: {
         type: Number,
         min: 0,
@@ -55,6 +55,11 @@ const orderSchema = new Schema({
         min: 0,
         required: true,
     },
+    type: {
+        type: String,
+        enum: ["trading", "purchase"],
+        required: [true, "An order must have a type"],
+    }
 });
 
-export const Order = model<OrderDocument>("Order", orderSchema);
+export const Order = model("order", orderSchema);

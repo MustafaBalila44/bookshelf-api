@@ -42,22 +42,42 @@ export class UserController {
 
     /**
      * @description updateOne updates an authenticated user by its id
-     * the id is not required in this fucntion but it's used only for
-     * code consistensy
+     * the id is not required in this function but it's used only for
+     * code consistency
      */
 
     public static updateOne = async (req: Request, res: Response) => {
         const body = req.body;
-        const user = req.user;
-        const updatedFields = _.pick(body, ['email', 'phone', 'points',]);
+        const updatedFields = _.pick(body, ['phone', 'points',]);
 
-        if (!user) {
-            return res.sendStatus(403);
+        try {
+            const user = await User.findById(req.user.id);
+            user.phone = updatedFields.phone;
+            user.points += updatedFields.points;
+
+            user.save({ validateBeforeSave: true }, (err, updatedUser) => {
+                if (err) {
+                    return res.status(400).json({ error: err });
+                }
+                return res.json({ message: "updated successfully", user: updatedUser });
+            });
+
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    public static updateUserAddress = async (req: Request, res: Response) => {
+        const body = req.body;
+        const id = req.params.id;
+        const updatedFields = _.pick(body, ['street', 'neighborhood', 'state', 'locality']);
+        if (req.user.address !== id) {
+            return res.status(401).json("Unauthorized");
         }
         try {
-            const doc = await User.
-                findByIdAndUpdate(user.id, updatedFields);
-            return res.json({ message: "updated successfuly", user: doc });
+            const address = await Address.
+                findByIdAndUpdate(id, updatedFields, { new: true, runValidators: true });
+            return res.json({ message: "updated successfully", address });
         } catch (error) {
             return res.status(500).json({ error });
         }
@@ -65,8 +85,8 @@ export class UserController {
 
     /**
      * @description deleteOne deletes an authenticated user by its id
-     * the id is not required in this fucntion but it's used only for
-     * code consistensy
+     * the id is not required in this function but it's used only for
+     * code consistency
      */
     public static deleteOne = async (req: Request, res: Response) => {
         const user = req.user;
@@ -75,7 +95,7 @@ export class UserController {
         }
         try {
             const doc = await User.findByIdAndDelete(user.id);
-            return res.json({ message: "deleted successfuly", user: doc });
+            return res.json({ message: "deleted successfully", user: doc });
         } catch (error) {
             return res.status(500).json({ error });
         }
@@ -86,7 +106,7 @@ export class UserController {
      */
 
     /**
-     * @description login authenticate an exsidting user and generates a jwt
+     * @description login authenticate an existing user and generates a jwt
      */
     public static login = async (req: Request, res: Response, next: NextFunction) => {
         passport.authenticate('local',
@@ -118,16 +138,16 @@ export class UserController {
             'phone', 'dateOfBirth',
         ]);
         const addressFields = _.pick(req.body,
-            ['street', 'neighborhood', 'state', 'locallity']);
+            ['street', 'neighborhood', 'state', 'locality']);
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });
         }
         try {
-            const exsistedUser = await User.findOne({
+            const existedUser = await User.findOne({
                 email: fields.email,
             });
-            if (exsistedUser) {
+            if (existedUser) {
                 return res.json(400)
                     .json({ message: "This email is already in use" });
             }
@@ -206,7 +226,7 @@ export class UserController {
     }
 
     public static createOrder = async (req: Request, res: Response) => {
-        const fields = _.pick(req.body, ["note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
+        const fields = _.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
         const user = req.user;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -216,11 +236,76 @@ export class UserController {
             return res.sendStatus(403);
         }
         try {
-            const order = await Order.create({...fields, user: user.id });
+            const order = await Order.create({ ...fields, user: user.id });
             await order.save();
-            return res.json({ message: "Order was created successfuly" });
+            return res.json({ message: "Order was created successfuly", order, user });
         } catch (error) {
             return res.status(500).json({ error });
         }
     }
+
+    // get the order
+    public static getOrders = async (req: Request, res: Response) => {
+        /// order status and type from the query string
+        const { status, type } = req.query;
+
+        try {
+            // if status was supplied
+            if (status) {
+                const orders = await Order.find({ status, type });
+                return res.json({ orders });
+            } else {
+                const orders = await Order.find({ type });
+                return res.json({ orders });
+            }
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    // get the orders of a user
+    public static getOrdersByUser = async (req: Request, res: Response) => {
+        /// order status and type from the query string
+        const { status, type } = req.query;
+        const user = req.user;
+
+        try {
+            // if status was supplied
+            if (status) {
+                const orders = await Order.find({ user: user.id, status, type });
+                return res.json({ orders });
+            } else {
+                const orders = await Order.find({ user: user.id, type });
+                return res.json({ orders });
+            }
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    public static getOrder = async (req: Request, res: Response) => {
+        const id = req.params.id;
+        const user = req.user;
+
+        try {
+            const order = await Order.findById(id);
+            return res.json({ order, user });
+
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    public static updateOrder = async (req: Request, res: Response) => {
+        const id = req.params.id;
+        const status = req.body.status;
+        try {
+            const order = await Order.updateOne({ id }, { status });
+            return res.json({ order });
+
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
 }

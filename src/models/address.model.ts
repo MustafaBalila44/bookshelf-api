@@ -4,7 +4,7 @@ export type AdressDocument = Document & {
     street: string;
     neighborhood: string;
     state: string;
-    locallity: string;
+    locality: string;
 };
 
 // tslint:disable: object-literal-sort-keys
@@ -21,7 +21,7 @@ const addressSchema = new Schema({
         type: String,
         required: true,
     },
-    locallity: {
+    locality: {
         type: String,
         required: true,
     },

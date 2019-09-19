@@ -2,15 +2,22 @@ import { Request, Response } from "express";
 import { validationResult } from 'express-validator/check';
 import _ from 'lodash';
 import { Book } from '../models/book.model';
+import { Category } from "../models/category";
 export class BookController {
 
     /**
      * @description findAll gets all the books in the DB
      */
     public static findAll = async (req: Request, res: Response) => {
+        const category = req.query.category;
         try {
-            const books = await Book.find({});
-            return res.json({ books });
+            if (category) {
+                const books = await Book.find({ category });
+                return res.json({ books });
+            } else {
+                const books = await Book.find({});
+                return res.json({ books });
+            }
         } catch (error) {
             return res.status(500).json({ error });
         }
@@ -38,7 +45,7 @@ export class BookController {
         const updatedFields = _.pick(body, ['name', 'priceSdg', 'priceXp',]);
         try {
             const doc = await Book.findByIdAndUpdate(req.params.id, updatedFields);
-            return res.json({ message: "updated successfuly", book: doc });
+            return res.json({ message: "updated successfully", book: doc });
         } catch (error) {
             return res.status(500).json({ error });
         }
@@ -50,7 +57,7 @@ export class BookController {
     public static deleteOne = async (req: Request, res: Response) => {
         try {
             const doc = await Book.findByIdAndDelete(req.params.id);
-            return res.json({ message: "deleted successfuly", book: doc });
+            return res.json({ message: "deleted successfully", book: doc });
         } catch (error) {
             return res.status(500).json({ error });
         }
@@ -78,5 +85,29 @@ export class BookController {
             return res.status(500).json({ error });
         }
 
+    }
+
+    public static createCategory = async (req: Request, res: Response) => {
+        const fields = _.pick(req.body, ['name']);
+
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ error: errors.array() });
+            }
+            const category = await Category.create(fields);
+            return res.status(201).json({ category });
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    public static findCategories = async (req: Request, res: Response) => {
+        try {
+            const categories = await Category.find();
+            return res.json({ categories });
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
     }
 }

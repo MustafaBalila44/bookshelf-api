@@ -155,4 +155,8 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), BookControl
  */
 router.delete('/:id', passport.authenticate('jwt', { session: false }), BookController.deleteOne);
 
+router.post('/categories', passport.authenticate('jwt', { session: false }), BookController.createCategory);
+
+router.get('/categories', BookController.findCategories);
+
 export default router;

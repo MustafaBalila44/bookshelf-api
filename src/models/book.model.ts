@@ -1,4 +1,5 @@
 import { Document, Schema, Error, model } from "mongoose";
+import { CategoryDocument } from "./category";
 
 export type BookDocument = Document & {
     name: string;
@@ -9,7 +10,7 @@ export type BookDocument = Document & {
     note: string;
     pages: number;
     status: string;
-    category: string;
+    category: CategoryDocument;
 };
 
 // tslint:disable: object-literal-sort-keys
@@ -59,7 +60,11 @@ const bookSchema = new Schema({
         type: String,
         default: "https://bookshelf5000.herokuapp.com/images/book.jpg",
         required: true,
-    }
+    },
+    hidden: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 export const Book = model<BookDocument>("Book", bookSchema);
