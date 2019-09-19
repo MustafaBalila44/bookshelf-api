@@ -50,7 +50,19 @@ export class BasketService {
     }
 
     getorder(){
-        return this.http.get(`${this.globals.apiUrl}users/orders` )
+        return this.http.get(`${this.globals.apiUrl}users/orders/?type=purchase` )
+
+    }
+    getorderex(){
+        return this.http.get(`${this.globals.apiUrl}users/orders/?type=trading` )
+
+    }
+    getorderuser(id){
+        return this.http.get(`${this.globals.apiUrl}users/${id}/orders/?type=purchase` )
+
+    }
+    getorderexuser(id){
+        return this.http.get(`${this.globals.apiUrl}users/${id}/orders/?type=trading` )
 
     }
 

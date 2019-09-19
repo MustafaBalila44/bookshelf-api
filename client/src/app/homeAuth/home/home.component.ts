@@ -20,6 +20,14 @@ export class HomeComponent implements OnInit {
  request: Requestbook = new Requestbook();
   books: Book[] = [];
   riwayat : Book[] = [];
+  a : Book[] = [];
+  b : Book[] = [];
+  c : Book[] = [];
+  d : Book[] = [];
+  e : Book[] = [];
+  f : Book[] = [];
+  g : Book[] = [];
+
   bookLength : number;
   constructor(
     private sendrequestService: SendrequestService,
@@ -47,16 +55,27 @@ export class HomeComponent implements OnInit {
       console.log(err);
     });
       
-  }
-    /*
+  
+    
     this.cpanelService.getBooksbycategory(1).subscribe((res: any[]) => {
       this.riwayat = res.slice(0,8);
     }, (err) => {
       console.log(err);
     });
-    */
-  
+    
+    this.cpanelService.getBooksbycategory(2).subscribe((res: any[]) => {
+      this.a = res.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
 
+    this.cpanelService.getBooksbycategory(3).subscribe((res: any[]) => {
+      this.b = res.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+  
+  }
   onSubmit(form) {
 
     this.sendrequestService.Requestbook(this.request).subscribe((response) => {

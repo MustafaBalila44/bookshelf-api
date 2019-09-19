@@ -19,7 +19,7 @@ export class CpanelService {
     return this.httpClinet.get<{ books: Book[] }>(this.globalsService.apiUrl + 'books');
   }
   getBooksbycategory(id): Observable<any> {
-    return this.httpClinet.get<any>(this.globalsService.apiUrl + 'books/?category=' + id + '/');
+    return this.httpClinet.get<any>(this.globalsService.apiUrl + 'books/?category=' + id );
   }
 
   addAuthor(author: Author) {

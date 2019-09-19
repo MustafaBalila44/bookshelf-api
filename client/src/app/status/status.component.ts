@@ -16,8 +16,8 @@ import { AuthService } from '../auth/auth.service';
 
 export class  StatusComponent implements OnInit {
   user = {} as any;
-  order = {} as any;
-
+  order = [];
+  trading = [] ;
   value1 = 33;
   bufferValue1 = 40;
 
@@ -42,12 +42,22 @@ export class  StatusComponent implements OnInit {
     }, (err: any) => {
       console.log(err);
     });
-this.cart.getorder().subscribe((res:any) =>
+    const id = localStorage.getItem('_id');
+this.cart.getorderuser(id).subscribe((res:any) =>
 {
   console.log(res)
   this.order= res.orders;
   console.log(this.order)
-  
+
+
+}
+)
+this.cart.getorderexuser(id).subscribe((res:any) =>
+{
+  console.log(res)
+  this.trading= res.orders;
+  console.log(this.order)
+
 
 }
 )
