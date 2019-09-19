@@ -46,7 +46,7 @@ const bookSchema = new Schema({
     category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
-        // required: false,
+         required: false,
     },
     pages: {
         type: Number,

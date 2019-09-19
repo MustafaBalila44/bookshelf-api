@@ -35,6 +35,7 @@ const bookSchema = new mongoose_1.Schema({
     category: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Category',
+        required: false,
     },
     pages: {
         type: Number,

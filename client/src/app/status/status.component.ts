@@ -21,8 +21,8 @@ export class  StatusComponent implements OnInit {
   value1 = 33;
   bufferValue1 = 40;
 
-  value2 = 33;
-  bufferValue2 = 40;
+  value2 = 66;
+  bufferValue2 = 80;
   mode = 'buffer';
   
   /*
@@ -47,6 +47,7 @@ this.cart.getorder().subscribe((res:any) =>
   console.log(res)
   this.order= res.orders;
   console.log(this.order)
+  
 
 }
 )
