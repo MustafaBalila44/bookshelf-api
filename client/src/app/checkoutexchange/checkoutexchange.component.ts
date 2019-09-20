@@ -24,7 +24,8 @@ export class CheckoutexchangeComponent implements OnInit {
  
      ngOnInit() {
        console.log(this.route.snapshot.queryParamMap.get('bookscuont'))
-  // this.order.booksCount = this.route.snapshot.queryParamMap.get('bookscuont')
+   const a = this.route.snapshot.queryParamMap.get('bookscuont');
+    this.order.booksCount = +a;
      this.auth.getLoggedInUser().subscribe((response: any) => {
       console.log(response)
       this.user = response.user;
@@ -38,6 +39,10 @@ export class CheckoutexchangeComponent implements OnInit {
     /*  this.order.booksCount= this.cart.books.length;
   console.log(this.order);
   */
+ this.order.type = "trading";
+ this.order.priceSDG= 0;
+    this.order.priceXP= 0;
+    this.order.totalPrice= 0;
       this.cartService.order(this.order).subscribe((res:any) =>{
   console.log(res);
   this.router.navigate(['/user/status/']);

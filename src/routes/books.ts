@@ -160,3 +160,4 @@ router.post('/categories', passport.authenticate('jwt', { session: false }), Boo
 router.get('/categories', BookController.findCategories);
 
 export default router;
+ 

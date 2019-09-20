@@ -46,10 +46,6 @@ const bookSchema = new mongoose_1.Schema({
     },
     image: {
         type: String,
-        //
-        //
-        //
-        //صلح دي
         default: "http://localhost:8000/api/books/images/book.jpg",
         required: true,
     },

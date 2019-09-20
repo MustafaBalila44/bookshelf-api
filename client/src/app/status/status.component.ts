@@ -16,13 +16,13 @@ import { AuthService } from '../auth/auth.service';
 
 export class  StatusComponent implements OnInit {
   user = {} as any;
-  order = [];
-  trading = [] ;
-  value1 = 33;
-  bufferValue1 = 40;
+  order : Order[] = [];
+  trading = {} as any ;
+  value1 = 0;
+  bufferValue1 = 0;
 
-  value2 = 66;
-  bufferValue2 = 80;
+  value2 = 0;
+  bufferValue2 = 0;
   mode = 'buffer';
   
   /*
@@ -31,6 +31,7 @@ export class  StatusComponent implements OnInit {
   isEditable = false;
   com = true;
   */
+ 
   constructor(private cart: BasketService , private authService : AuthService) {
   }
 
@@ -56,12 +57,40 @@ this.cart.getorderexuser(id).subscribe((res:any) =>
 {
   console.log(res)
   this.trading= res.orders;
-  console.log(this.order)
+  console.log(this.trading)
 
 
 }
 )
+/*
+if(this.order.status === "processing" && this.order.type== "purchase" ){
+  this.value1 = 40 ;
+  this.bufferValue1 = 100 ;
+  }
+  else if(this.order.going =="going" && this.order.type== "purchase" ){
+    this.value1 = 80 ;
+    this.bufferValue1 = 90 ;
+    }
+    else if(this.order.going =="finshed" && this.order.type== "purchase" ){
+      this.value1 = 100 ;
+      this.bufferValue1 = 100 ;
+      }
 
+  
+      if(this.trading.status =="processing" && this.order.type== "trading" ){
+        this.value2 = 40 ;
+        this.bufferValue2 = 50 ;
+        }
+       else if(this.trading.going =="going" && this.order.type== "trading" ){
+          this.value2 = 80 ;
+          this.bufferValue2 = 90 ;
+          }
+         else if(this.trading.going =="finshed" && this.order.type== "trading" ){
+            this.value2 = 100 ;
+            this.bufferValue2 = 100 ;
+            }
+
+*/
   }
 
 }

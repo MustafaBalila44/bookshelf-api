@@ -11,29 +11,33 @@
         !</span></h3>
   
       <br>
-    <select class="form-control" style="width:100%;text-align: center">
-      <option>
+    <select (change)="openPage($event.target.value)" class="form-control" style="width:100%;text-align: center">
+      <option routerLink="/user/home">
         كل الفئات
       </option>
-      <option>
+      <option value="5d848afbec077669242fb623">
         روايات
       </option>
-      <option>
+      <option value="5d848c20ec077669242fb624">
         تنمية ذاتية
       </option>
-      <option>
+      <option value="5d848c66ec077669242fb626">
         سياسة واقتصاد وتاريخ
       </option>
-      <option>
+      <option value=" 5d848c20ec077669242fb625">
         سيرة ذاتية
       </option>
-      <option>
+      <option value="5d848c77ec077669242fb627">
+        دينية
+      </option>
+
+      <option value="5d848c98ec077669242fb629">
 علمية وتعليمية
       </option>
-      <option>
+      <option value="5d848c86ec077669242fb628">
         لغات
       </option>
-      <option>
+      <option value="5d848caaec077669242fb62a">
         مجلات
       </option>
 
@@ -57,7 +61,7 @@
   <div style="text-align:center">
 
 
-   <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+   <span (click)="openPage('5d848afbec077669242fb623')"  class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
 
 الروايات         
 
@@ -66,7 +70,7 @@
     </div>
   <div class="row" style="font-size:16px;padding-bottom:5%">
     
-    <div *ngFor="let book of books" class="col-sm-3 col-6"
+    <div *ngFor="let book of riwayat" class="col-sm-3 col-6"
       style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
       <div class="card" style="cursor: pointer;">
         <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
@@ -101,7 +105,7 @@
   </div>
   <div style="text-align:center">
 
-      <span class="btn btn-primary">
+      <span (click)="openPage('5d848afbec077669242fb623')" class="btn btn-primary">
 المزيد <<         
     
       </span>
@@ -119,7 +123,7 @@
 <div style="text-align:center">
 
 
-  <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+  <span (click)="openPage('5d848c20ec077669242fb624')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
 
 التنمية الذاتية         
 
@@ -128,7 +132,7 @@
    </div>
  <div class="row" style="font-size:16px;padding-bottom:5%">
    
-   <div *ngFor="let book of books" class="col-sm-3 col-6"
+   <div *ngFor="let book of tnmia" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
        <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
@@ -163,7 +167,7 @@
  </div>
  <div style="text-align:center">
 
-     <span class="btn btn-primary">
+     <span (click)="openPage('5d848c20ec077669242fb624')" class="btn btn-primary">
 المزيد <<         
    
      </span>
@@ -181,16 +185,15 @@
 <div style="text-align:center">
 
 
-  <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+  <span (click)="openPage('5d848c20ec077669242fb625')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
 
-سياسة واقتصاد وتاريخ         
-
+سيرة ذاتية
      </span>
 <hr>
    </div>
  <div class="row" style="font-size:16px;padding-bottom:5%">
    
-   <div *ngFor="let book of books" class="col-sm-3 col-6"
+   <div *ngFor="let book of sira" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
        <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
@@ -203,7 +206,7 @@
 
              المؤلف: {{book.author.name}}
            <hr>
-             السعر بالجنيه: {{book.priceSdg}}
+             السعر بالجنيه: {{book.priceSdg}} 
              <hr>
 
              السعر بالنقاط: {{book.priceXp}}
@@ -225,7 +228,7 @@
  </div>
  <div style="text-align:center">
 
-     <span class="btn btn-primary">
+     <span (click)="openPage('5d848c20ec077669242fb625')" class="btn btn-primary">
 المزيد <<         
    
      </span>
@@ -250,15 +253,15 @@
 <div style="text-align:center">
 
 
-  <span class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+  <span (click)="openPage('5d848c20ec077669242fb626')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
 
-سيرة ذاتية
+سياسة واقتصاد وتاريخ
      </span>
 <hr>
    </div>
  <div class="row" style="font-size:16px;padding-bottom:5%">
    
-   <div *ngFor="let book of books" class="col-sm-3 col-6"
+   <div *ngFor="let book of politic" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
        <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
@@ -293,13 +296,272 @@
  </div>
  <div style="text-align:center">
 
-     <span class="btn btn-primary">
+     <span (click)="openPage('5d848c20ec077669242fb626')" class="btn btn-primary">
 المزيد <<         
    
      </span>
      <hr>
    </div>
 <br>
+
+
+
+
+
+
+
+
+
+
+<div style="text-align:center">
+
+
+  <span (click)="openPage('5d848c20ec077669242fb627')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+دينية
+     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of den" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCartCheck(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span (click)="openPage('5d848c20ec077669242fb627')" class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
+
+
+
+
+
+
+
+<div style="text-align:center">
+
+
+  <span (click)="openPage('5d848c86ec077669242fb628')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+لغات     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of lang" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCartCheck(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span (click)="openPage('5d848c86ec077669242fb628')" class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+<div style="text-align:center">
+
+
+  <span (click)="openPage('5d848c98ec077669242fb629')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+علمية وتعليمية 
+     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of olom" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCartCheck(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span (click)="openPage('5d848c98ec077669242fb629')" class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="text-align:center">
+
+
+  <span (click)="openPage('5d848caaec077669242fb62a')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+
+مجلات
+     </span>
+<hr>
+   </div>
+ <div class="row" style="font-size:16px;padding-bottom:5%">
+   
+   <div *ngFor="let book of news" class="col-sm-3 col-6"
+     style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
+     <div class="card" style="cursor: pointer;">
+       <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+       <br>
+         <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
+{{book.name}}         
+</h5>
+         <br>
+       <span dir="rtl" style="text-align: center">
+
+             المؤلف: {{book.author.name}}
+           <hr>
+             السعر بالجنيه: {{book.priceSdg}}
+             <hr>
+
+             السعر بالنقاط: {{book.priceXp}}
+             <hr>
+
+
+           <button class="btn btn-sm btn-danger"
+           (click)="addToCartCheck(book._id)">
+أضف الى السلة
++
+           </button>
+           <br>
+           &nbsp;
+       </span>
+
+     </div>
+   </div>
+
+ </div>
+ <div style="text-align:center">
+
+     <span (click)="openPage('5d848caaec077669242fb62a')" class="btn btn-primary">
+المزيد <<         
+   
+     </span>
+     <hr>
+   </div>
+<br>
+
+
+
 
 
 

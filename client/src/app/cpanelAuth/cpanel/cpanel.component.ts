@@ -33,6 +33,7 @@ export class CpanelComponent implements OnInit {
   ngOnInit() {
     this.cpanelService.getAuthors().subscribe(response => {
       this.authors = response.authors;
+      console.log(response)
     });
   }
 

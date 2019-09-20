@@ -12,7 +12,7 @@ import { Order } from './order';
   styleUrls: ['./checkoutpurchase.component.css']
 })
 export class CheckoutpurchaseComponent implements OnInit {
-
+type : any;
   user = {} as any;
   cart = new Cart();
   payment = { cash: false, points: false };
@@ -83,8 +83,7 @@ else{
         this.cartService.getbookLength();
     })
   })
-   
-
+   this.order.type = "purchase";
     this.cartService.order(this.order).subscribe((res:any) =>{
 console.log(res);
 this.router.navigate(['/user/status/']);

@@ -6,31 +6,39 @@
 
 
 
-  <mat-progress-bar [mode]="mode" [value]="value1" [bufferValue]="bufferValue1">
+  
+    <div  *ngFor="let order of order" >
+        <mat-progress-bar  [mode]="mode" [value]="value1" [bufferValue]="bufferValue1">
 
 
-  </mat-progress-bar>  
-
-
-
-  <span>
-    جاري معالجة الطلب
-  </span>
-  <div style="padding:5%"> 
-
-    <h4 style="font-family:cairo">
-      يجري الان معالجة الطلب ويتوقع ان يصلك في خلال 24 ساعة
-
-    </h4>
-    <br>
-    <br>
+          </mat-progress-bar>  
+        
+        {{order.status}}
+        <!--
+          <span *ngIf="order.status">
+            جاري معالجة الطلب
+          </span>
+          <span *ngIf="order.status==going">
+        الطلب في طريقه إليك
+          </span>
+          <span *ngIf="order.status==finished">
+        تم وصول الطلب
+          </span>
+          -->
+          <div style="padding:5%"> 
+        
+            <h4 style="font-family:cairo">
+              يجري الان معالجة الطلب ويتوقع ان يصلك في خلال 24 ساعة
+        
+            </h4>
+            <br>
+            <br>
     <table class="table table-striped fony" style="font-size:25px" dir="rtl">
-      <!--    <table *ngFor="let order of order" class="table table-striped fony" style="font-size:25px" dir="rtl">    -->
       <tbody>
         <tr>
           <td> رقم الطلب: </td>
           <td class="text-success">
-            {{order.id}}
+            {{order._id}}
           </td>
 
         </tr>
@@ -48,7 +56,7 @@
             -->
         <tr>
           <td> عدد الكتب: </td>
-          <td class="text-success">10<span>
+          <td class="text-success"><span>
               {{order.booksCount}}</span> كتب </td>
 
         </tr>
@@ -56,13 +64,13 @@
           <td> سعر الكتب: </td>
           <td class="text-success">
             
-            <span *ngif="!(order.priceSDG ==0)">
+            <span *ngIf="order.priceSDG > 0 " >
 {{order.priceSDG}}
             ج
           
           </span>
           
-            <span *ngif="!(order.priceXP == 0)">  {{order.priceXP}} XP </span> </td>
+            <span *ngIf="order.priceXP > 0 " >  {{order.priceXP}} XP </span> </td>
         </tr>
         <tr>
           <td>سعر التوصيل:</td>
@@ -89,9 +97,11 @@
 
                 -->
 
+
+                <!--
             المكافح العنيد <br>/ <br> ستيف جوبز / تاريخ المملكة <br> / <br>رؤية الاقتصاد 2020
 
-
+-->
           </td>
 
         </tr>
@@ -102,6 +112,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
     <br>
     <h5 style="font-family: Tajawal">
       <a class="btn btn-primary">الغاء الطلب</a>
@@ -115,7 +126,7 @@
       </span>
 
     </h5>
-  </div>
+ 
 
 
 
@@ -124,6 +135,7 @@
   <br>
 
 
+</div>
 
   <h2 style="padding-bottom:5%">
     حالة طلب تبديل الكتب
@@ -131,7 +143,9 @@
 
 
 
-  <mat-progress-bar [mode]="mode" [value]="value1" [bufferValue]="bufferValue1">
+ 
+  <div  *ngFor="let order of trading" >
+     <mat-progress-bar [mode]="mode" [value]="value1" [bufferValue]="bufferValue1">
 
 
   </mat-progress-bar>
@@ -158,22 +172,21 @@
   <br>
   <br>
   <h4 style="font-family:cairo">
-    يجري الان معالجة الطلب ويتوقع ان يصلك في خلال 48 ساعة
+    يجري الان معالجة الطلب ويتوقع ان يصلك في خلال  24 ساعة
 
   </h4>
   <br>
   <br>
   <table class="table table-striped fony" style="font-size:25px" dir="rtl">
-    <!--
+    
 
-      <table *ngFor="order of order" class="table table-striped fony" style="font-size:25px" dir="rtl">
 
--->
+
     <tbody>
       <tr>
         <td> رقم الطلب: </td>
         <td class="text-success">
-          {{order.id}}
+          {{order._id}}
         </td>
 
       </tr>
@@ -222,10 +235,11 @@
       </tr>
       <tr>
         <td>عدد نقاطك بعد التقييم :</td>
-        <td class="text-success"> 10 XP</td>
+        <td class="text-success">  XP</td>
       </tr>
     </tbody>
   </table>
+</div>
   <br>
   <h5 style="font-family: Tajawal">
     <a class="btn btn-primary">الغاء الطلب</a>
@@ -1551,7 +1565,3 @@
 
 
 
-
-
-
-</div>
