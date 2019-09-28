@@ -46,6 +46,8 @@ constructor(private auth : AuthService) {}
 
   onS(id) {
     this.user.points = 0 ;
+console.log(this.user.phone)
+console.log(this.user.points)
 
     this.auth.update(this.id,this.user.phone ,this.user.points).subscribe((response: any) => {
       console.log(response);

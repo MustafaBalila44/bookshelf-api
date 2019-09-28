@@ -31,6 +31,23 @@
       <div *ngIf="(this.user.points < this.xpPrice && this.payment['points'])" class="bg-danger">
      لا يمكن اتمام عملية الشراء لان عدد نقاطك اقل من سعر الكتب ، قم بتبديل كتبك أولا
       </div>
+      <!--
+      <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="1">التوصيل للمنزل</mat-radio-button>
+          <br>
+          <mat-radio-button value="2" #ref>التوصيل لأحد نقاط البيع</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field >
+            <mat-label>اختر نقطة البيع :</mat-label>
+            <mat-select >
+                <mat-option selected disabled></mat-option>
+
+              <mat-option value="option1">جامعة الخرطوم</mat-option>
+              <mat-option value="option2" disabled>(غير متوفرة حاليا) جامعة السودان</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+          -->
       <table class="table table-striped fony" style="font-size:30px;">
 
         <tbody>
@@ -51,7 +68,9 @@
           </tr>
           <tr>
             <td>سعر التوصيل:</td>
-            <td class="text-success"> 60ج
+            <td class="text-success"> 
+              {{delivery}}
+              ج
               <!--
               <span class="btn btn-outline-success "
                 style="font-size:16px">استخدام الكوبون</span>
@@ -77,6 +96,7 @@
         </tbody>
       </table>
       <br>
+      <!--
       <h3>من فضلك ادخل الموقع على الخريطة:</h3>
       <br>
 
@@ -89,7 +109,7 @@
         </div>
 
       </div>
-
+-->
 
 </div>
 

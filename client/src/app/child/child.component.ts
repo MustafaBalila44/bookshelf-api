@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service'
 import { BasketService } from '../basket/basket.service';
 import { Cart } from '../basket/basket.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-child',
@@ -21,7 +22,7 @@ export class ChildComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor(public auth : AuthService , public cartService : BasketService) { }
+  constructor(public auth : AuthService , private router : Router , public cartService : BasketService) { }
   
   ngOnInit() {
 
@@ -37,6 +38,14 @@ this.cartService.getbookLength();
 
 
   getbookLength(){
+  }
+
+
+
+
+  openPage(a){
+    this.router.navigate(['/user/book'], { queryParams: { category: a } });
+  
   }
 }
 

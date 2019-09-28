@@ -48,13 +48,7 @@ cat = "5d848afbec077669242fb623";
     });
     
 
-    this.cpanelService.getBooks().subscribe((res) => {
-      this.books = res.books;
-      
-    }, (err) => {
-      console.log(err);
-    });
-      
+    
   
     
     this.cpanelService.getBooksbycategory("5d848afbec077669242fb623").subscribe((res) => {

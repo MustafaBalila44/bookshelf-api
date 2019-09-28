@@ -234,7 +234,7 @@ router.post('/orders',
 router.put('/orders',
     passport.authenticate('jwt', { session: false }), UserController.updateOrder);
 
-// get all orders
+// get all orders     
 router.get('/orders', UserController.getOrders);
 
 // get orders of a user
