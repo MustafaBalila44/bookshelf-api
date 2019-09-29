@@ -216,7 +216,7 @@ router.put('/update_address/:id', passport_1.default.authenticate('jwt', { sessi
 // create a new order
 router.post('/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.createOrder);
 router.put('/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.updateOrder);
-// get all orders
+// get all orders     
 router.get('/orders', users_1.UserController.getOrders);
 // get orders of a user
 router.get('/:id/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.getOrdersByUser);

@@ -156,6 +156,29 @@
   
     </span>
 
+
+    <!--
+      <label style="padding-right:5px;" for="tel"> رقم الهاتف:</label>
+    <br>
+    <span style="display:inline-block;width:60.5%;padding:5px" class="feldd">
+
+    
+      <input pattern="[+ 0-9]{10,14}" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched"  [class.is-valid]="phone.valid"   required type="text" class="form-control" id="tel" placeholder="رقم الهاتف" name="phone" [(ngModel)]="signup.phone">
+      <div *ngIf="phone.errors && ( phone.touched)">
+          <small class="text-danger" *ngIf="phone.errors.pattern">رقم الهاتف غير صحيح </small>
+          <small class="text-danger" *ngIf="phone.errors.required"> رقم الهاتف مطلوب</small>
+        
+        
+        
+        
+        </div> 
+  
+  
+  
+  
+    </span>
+    -->
+
   
 </div>
 
@@ -205,13 +228,12 @@
             امدرمان
             </option>
             <option>
-                جبل اولياء
+ام بدة
                 </option>
                 <option>
-                    بلا بلا بلا
-                    </option>
+الخرطوم                    </option>
                     <option>
-                        بلا بلا بلا
+جبل اولياء
                         </option>
 </select>
 

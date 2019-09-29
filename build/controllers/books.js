@@ -56,7 +56,7 @@ BookController.findOne = (req, res) => __awaiter(void 0, void 0, void 0, functio
  */
 BookController.updateOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    const updatedFields = lodash_1.default.pick(body, ['name', 'priceSdg', 'priceXp',]);
+    const updatedFields = lodash_1.default.pick(body, ['name', 'priceSdg', 'priceXp', 'hidden ', 'image']);
     try {
         const doc = yield book_model_1.Book.findByIdAndUpdate(req.params.id, updatedFields);
         return res.json({ message: "updated successfully", book: doc });

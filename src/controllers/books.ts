@@ -42,7 +42,7 @@ export class BookController {
 
     public static updateOne = async (req: Request, res: Response) => {
         const body = req.body;
-        const updatedFields = _.pick(body, ['name', 'priceSdg', 'priceXp',]);
+        const updatedFields = _.pick(body, ['name', 'priceSdg', 'priceXp', 'hidden ' , 'image']);
         try {
             const doc = await Book.findByIdAndUpdate(req.params.id, updatedFields);
             return res.json({ message: "updated successfully", book: doc });

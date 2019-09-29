@@ -71,9 +71,11 @@ export class UserController {
         const body = req.body;
         const id = req.params.id;
         const updatedFields = _.pick(body, ['street', 'neighborhood', 'state', 'locality']);
+        /*
         if (req.user.address !== id) {
             return res.status(401).json("Unauthorized");
         }
+        */
         try {
             const address = await Address.
                 findByIdAndUpdate(id, updatedFields, { new: true, runValidators: true });

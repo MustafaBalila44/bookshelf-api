@@ -4,6 +4,8 @@ export class Order {
     priceXP: number;
     totalPrice: number;
     booksCount: number;
+    type : string;
+    status?: string;
 }
 
 

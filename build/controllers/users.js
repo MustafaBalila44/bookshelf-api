@@ -80,9 +80,11 @@ UserController.updateUserAddress = (req, res) => __awaiter(void 0, void 0, void 
     const body = req.body;
     const id = req.params.id;
     const updatedFields = lodash_1.default.pick(body, ['street', 'neighborhood', 'state', 'locality']);
+    /*
     if (req.user.address !== id) {
         return res.status(401).json("Unauthorized");
     }
+    */
     try {
         const address = yield address_model_1.Address.
             findByIdAndUpdate(id, updatedFields, { new: true, runValidators: true });

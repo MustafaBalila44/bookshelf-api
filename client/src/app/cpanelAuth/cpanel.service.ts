@@ -18,9 +18,10 @@ export class CpanelService {
   getBooks(): Observable<{ books: Book[] }> {
     return this.httpClinet.get<{ books: Book[] }>(this.globalsService.apiUrl + 'books');
   }
-  getBooksbycategory(id): Observable<any> {
+  getBooksbycategory(id): Observable<{ books: Book[] }> {
     return this.httpClinet.get<any>(this.globalsService.apiUrl + 'books/?category=' + id );
   }
+  
 
   addAuthor(author: Author) {
     return this.httpClinet.post(this.globalsService.apiUrl + 'authors/create', author);
@@ -38,6 +39,7 @@ export class CpanelService {
     return this.httpClinet.get(`${this.globalsService.apiUrl}users/orders` )
 
 } 
+ 
 
 getusers(id){
   return this.httpClinet.get(this.globalsService.apiUrl + 'users/' + id );

@@ -20,14 +20,14 @@ export class HomeComponent implements OnInit {
  request: Requestbook = new Requestbook();
   books: Book[] = [];
   riwayat : Book[] = [];
-  a : Book[] = [];
-  b : Book[] = [];
-  c : Book[] = [];
-  d : Book[] = [];
-  e : Book[] = [];
-  f : Book[] = [];
-  g : Book[] = [];
-
+  tnmia : Book[] = [];
+  sira : Book[] = [];
+  politic : Book[] = [];
+  den : Book[] = [];
+  lang : Book[] = [];
+  olom : Book[] = [];
+  news : Book[] = [];
+cat = "5d848afbec077669242fb623";
   bookLength : number;
   constructor(
     private sendrequestService: SendrequestService,
@@ -48,29 +48,48 @@ export class HomeComponent implements OnInit {
     });
     
 
-    this.cpanelService.getBooks().subscribe((res) => {
-      this.books = res.books;
-      
-    }, (err) => {
-      console.log(err);
-    });
-      
+    
   
     
-    this.cpanelService.getBooksbycategory(1).subscribe((res: any[]) => {
-      this.riwayat = res.slice(0,8);
+    this.cpanelService.getBooksbycategory("5d848afbec077669242fb623").subscribe((res) => {
+      this.riwayat = res.books.slice(0,8);
     }, (err) => {
       console.log(err);
     });
     
-    this.cpanelService.getBooksbycategory(2).subscribe((res: any[]) => {
-      this.a = res.slice(0,8);
+    this.cpanelService.getBooksbycategory("5d848c20ec077669242fb624").subscribe((res) => {
+      this.tnmia = res.books.slice(0,8);
     }, (err) => {
       console.log(err);
     });
 
-    this.cpanelService.getBooksbycategory(3).subscribe((res: any[]) => {
-      this.b = res.slice(0,8);
+    this.cpanelService.getBooksbycategory("5d848c46ec077669242fb625").subscribe((res) => {
+      this.sira = res.books.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+    this.cpanelService.getBooksbycategory("5d848c66ec077669242fb626").subscribe((res) => {
+      this.politic = res.books.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+    this.cpanelService.getBooksbycategory("5d848c77ec077669242fb627").subscribe((res) => {
+      this.den = res.books.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+    this.cpanelService.getBooksbycategory("5d848c86ec077669242fb628").subscribe((res) => {
+      this.lang = res.books.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+    this.cpanelService.getBooksbycategory("5d848c98ec077669242fb629").subscribe((res) => {
+      this.olom = res.books.slice(0,8);
+    }, (err) => {
+      console.log(err);
+    });
+    this.cpanelService.getBooksbycategory("5d848caaec077669242fb62a").subscribe((res) => {
+      this.news = res.books.slice(0,8);
     }, (err) => {
       console.log(err);
     });
@@ -127,8 +146,13 @@ export class HomeComponent implements OnInit {
   openBook(bookId) {
     this.router.navigate(['/user', 'bookdetail', bookId]);
   }
+
+
+openPage(a){
+  this.router.navigate(['/user/book'], { queryParams: { category: a } });
+
 }
 
-
+}
 
 

@@ -41,7 +41,10 @@ export class BasketService {
     }
 
     order(order){
-        return this.http.post(`${this.globals.apiUrl}users/order/` , {...order})
+        return this.http.post(`${this.globals.apiUrl}users/orders/` , {...order})
+    }
+    orderex(order){
+        return this.http.post(`${this.globals.apiUrl}users/order/?type=trading` , {...order})
     }
  
 
