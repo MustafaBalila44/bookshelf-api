@@ -73,13 +73,15 @@ export class BookController {
             'author', 'description',
             'category', 'pages',
         ]);
-
         try {
+            // get the file name and remove the st
+            const image = req.file.filename;
+
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ error: errors.array() });
             }
-            const book = await Book.create(fields);
+            const book = await Book.create({ ...fields, image });
             return res.status(201).json({ book });
         } catch (error) {
             return res.status(500).json({ error });

@@ -59,7 +59,7 @@ router.get('/', BookController.findAll);
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
  */
-router.post('/create', BookController.create);
+router.post('/create', upload.single("image"), BookController.create);
 
 /**
  * @api {get} /books/:id Get a single book
@@ -155,7 +155,7 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), BookControl
  */
 router.delete('/:id', passport.authenticate('jwt', { session: false }), BookController.deleteOne);
 // add a new category
-router.post('/categories', passport.authenticate('jwt', { session: false }), BookController.createCategory);
+router.post('/categories', BookController.createCategory);
 // list all the categories
 router.get('/categories', BookController.findCategories);
 

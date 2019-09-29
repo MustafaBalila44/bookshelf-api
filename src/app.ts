@@ -1,7 +1,5 @@
 import express from "express";
 import morgan from "morgan";
-import { join } from "path";
-import { createWriteStream } from "fs";
 import bodyParser from "body-parser";
 import compression from "compression";  // compresses requests
 import cors from "cors";
@@ -16,11 +14,12 @@ app.use(passport.initialize());
 app.use(morgan("common"));
 app.use(compression());
 app.use(cors({ preflightContinue: true }));
-app.set("view engine", "ejs");
 // provide extra security features
 app.use(helmet());
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+
 app.use("/", express.static("static"));
 app.use("/admin", admin);
 

@@ -88,11 +88,13 @@ BookController.create = (req, res) => __awaiter(void 0, void 0, void 0, function
         'category', 'pages',
     ]);
     try {
+        // get the file name and remove the st
+        const image = req.file.filename;
         const errors = check_1.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });
         }
-        const book = yield book_model_1.Book.create(fields);
+        const book = yield book_model_1.Book.create(Object.assign(Object.assign({}, fields), { image }));
         return res.status(201).json({ book });
     }
     catch (error) {

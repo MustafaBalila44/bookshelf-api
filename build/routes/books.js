@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const passport_1 = __importDefault(require("passport"));
+const multer_1 = require("../config/multer");
 const books_1 = require("../controllers/books");
 const router = express_1.Router();
 /**
@@ -60,7 +61,7 @@ router.get('/', books_1.BookController.findAll);
  * @apiErrorExample {json} List error
  *    HTTP/1.1 500 Internal Server Error
  */
-router.post('/create', books_1.BookController.create);
+router.post('/create', multer_1.upload.single("image"), books_1.BookController.create);
 /**
  * @api {get} /books/:id Get a single book
  * @apiGroup Books
@@ -153,7 +154,7 @@ router.put('/:id', passport_1.default.authenticate('jwt', { session: false }), b
  */
 router.delete('/:id', passport_1.default.authenticate('jwt', { session: false }), books_1.BookController.deleteOne);
 // add a new category
-router.post('/categories', passport_1.default.authenticate('jwt', { session: false }), books_1.BookController.createCategory);
+router.post('/categories', books_1.BookController.createCategory);
 // list all the categories
 router.get('/categories', books_1.BookController.findCategories);
 exports.default = router;

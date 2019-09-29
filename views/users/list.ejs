@@ -42,8 +42,18 @@
                   <td><%= user.email %></td>
                   <td><%= user.firstName %> <%= user.lastName %></td>
                   <td><%= user.phone %></td>
-                  <td>click</td>
-                  <td>click</td>
+                  <td><a
+                    href="/admin/users/<%= user.id %>">
+                    <i class="material-icons">
+                        visibility
+                    </i>
+                </a></td>
+                  <td><a
+                    href="/admin/add_points/<%= user.id %>">
+                    <i class="material-icons">
+                        add
+                    </i>
+                </a></td>
                 </tr>
                 <% } %>
               </tbody>
