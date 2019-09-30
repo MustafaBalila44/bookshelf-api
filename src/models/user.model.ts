@@ -1,7 +1,8 @@
 import { Document, Schema, Error, model, SchemaType } from "mongoose";
 import bcrypt from "bcryptjs";
 import { Cart, CartDocument } from "./cart.model";
-import { OrderDocument, Order } from "./order.model";
+import { OrderDocument } from "./order.model";
+import { AdressDocument } from "./address.model";
 
 export type UserDocument = Document & {
     // user defenition
@@ -10,7 +11,7 @@ export type UserDocument = Document & {
     lastName: string;
     password: string;
     dateOfBirth: Date;
-    address: any;
+    address: AdressDocument;
     points: number;
     phone: string;
     privileges: any[];
@@ -89,6 +90,10 @@ const comparePassword: comparePasswordFunction = function (password: string, cb:
 };
 
 userSchema.methods.comparePassword = comparePassword;
+
+userSchema.virtual("fullName").get(function () {
+    return `${this.firstName} ${this.lastName}`;
+});
 
 userSchema.pre("save", function (next) {
     const user = this as UserDocument;

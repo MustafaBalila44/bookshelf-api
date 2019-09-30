@@ -141,6 +141,7 @@ export class UserController {
         ]);
         const addressFields = _.pick(req.body,
             ['street', 'neighborhood', 'state', 'locality']);
+        addressFields.locality = req.body.locallity;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });

@@ -79,6 +79,9 @@ const comparePassword = function (password, cb) {
     });
 };
 userSchema.methods.comparePassword = comparePassword;
+userSchema.virtual("fullName").get(function () {
+    return `${this.firstName} ${this.lastName}`;
+});
 userSchema.pre("save", function (next) {
     const user = this;
     if (!user.isModified()) {

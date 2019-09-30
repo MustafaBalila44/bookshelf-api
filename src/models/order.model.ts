@@ -50,6 +50,10 @@ export const orderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Deliverer',
     },
+    date: {
+        type: Date,
+        default: new Date()
+    },
     totalPrice: {
         type: Number,
         min: 0,

@@ -8,7 +8,7 @@ export class Signup {
     phone: string;
     country: string;
     state: string;
-    locallity: string;
+    locality: string;
     neighborhood: string;
     street: string;
     address?: string

@@ -144,6 +144,7 @@
             <i class="nav-icon fa fa-book"></i>
             <p>
               الكتب
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
 
@@ -175,15 +176,15 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href='/admin/orders?status=processing' class="nav-link">
+              <a href='/admin/orders?status=processing&type=purchase' class="nav-link">
                 تحت المعالجة</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href='/admin/orders?status=ongoing'>جارية</a>
+              <a class="nav-link" href='/admin/orders?status=ongoing&type=purchase'>جارية</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
-                href='/admin/orders?status=finished'>منتهية</a></li>
+                href='/admin/orders?status=finished&type=purchase'>منتهية</a></li>
           </ul>
         </li>
       </ul>

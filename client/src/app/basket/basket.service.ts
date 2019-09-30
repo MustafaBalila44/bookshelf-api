@@ -41,13 +41,12 @@ export class BasketService {
     }
 
     order(order){
-        return this.http.post(`${this.globals.apiUrl}users/orders/` , {...order})
+        return this.http.post(`${this.globals.apiUrl}users/orders/` , {...order, type: "purchase"})
     }
     orderex(order){
-        return this.http.post(`${this.globals.apiUrl}users/order/?type=trading` , {...order})
+        return this.http.post(`${this.globals.apiUrl}users/orders/` , {...order, type: "trading"})
     }
  
-
     removeAllFromCart(bookId: string){
         return this.http.post(`${this.globals.apiUrl}users/remove_from_cart/` , { bookId })
     }

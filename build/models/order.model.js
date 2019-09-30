@@ -40,6 +40,10 @@ exports.orderSchema = new mongoose_1.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Deliverer',
     },
+    date: {
+        type: Date,
+        default: new Date()
+    },
     totalPrice: {
         type: Number,
         min: 0,
