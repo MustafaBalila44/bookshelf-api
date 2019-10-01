@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 import { Cart } from "../models/cart.model";
 import { Address } from "../models/address.model";
 import { Order } from "../models/order.model";
+import { Book } from "../models/book.model";
 export class UserController {
 
     /**
@@ -51,16 +52,8 @@ export class UserController {
         const updatedFields = _.pick(body, ['phone', 'points',]);
 
         try {
-            const user = await User.findById(req.user.id);
-            user.phone = updatedFields.phone;
-            user.points += updatedFields.points;
-
-            user.save({ validateBeforeSave: true }, (err, updatedUser) => {
-                if (err) {
-                    return res.status(400).json({ error: err });
-                }
-                return res.json({ message: "updated successfully", user: updatedUser });
-            });
+            const user = await User.updateOne({ _id: req.user.id }, { phone: updatedFields.phone }, { runValidators: true });
+            return res.json({ message: "updated successfully", user });
 
         } catch (error) {
             return res.status(500).json({ error });
@@ -231,15 +224,14 @@ export class UserController {
     public static createOrder = async (req: Request, res: Response) => {
         const fields = _.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
         const user = req.user;
-        // const errors = validationResult(req);
-        // if (!errors.isEmpty()) {
-        //     return res.status(400).json({ errors: errors.array() });
-        // }
-        if (!user) {
-            return res.sendStatus(403);
+        const cart = await Cart.findOne({ user: user.id });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
+        await Book.updateMany({ _id: { $in: cart.books } }, { isHidden: true });
         try {
-            const order = await Order.create({ ...fields, user: user.id });
+            const order = await Order.create({ ...fields, user: user.id, books: cart.books });
             await order.save();
             return res.json({ message: "Order was created successfully", order, user });
         } catch (error) {
@@ -291,7 +283,8 @@ export class UserController {
         const user = req.user;
 
         try {
-            const order = await Order.findById(id);
+            const order = await Order.findById(id)
+                .populate({ path: "books", model: "Book" });
             return res.json({ order, user });
 
         } catch (error) {
@@ -304,6 +297,18 @@ export class UserController {
         const status = req.body.status;
         try {
             const order = await Order.updateOne({ id }, { status });
+            return res.json({ order });
+
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    }
+
+    public static cancelOrder = async (req: Request, res: Response) => {
+        const id = req.params.id;
+        try {
+            const order = await Order.updateOne({ _id: id }, { cancelled: true });
+            await Book.updateMany({ _id: { $in: order.books } }, { isHidden: false });
             return res.json({ order });
 
         } catch (error) {

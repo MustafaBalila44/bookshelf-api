@@ -26,11 +26,11 @@ BookController.findAll = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const category = req.query.category;
     try {
         if (category) {
-            const books = yield book_model_1.Book.find({ category });
+            const books = yield book_model_1.Book.find({ category, isHidden: false });
             return res.json({ books });
         }
         else {
-            const books = yield book_model_1.Book.find({});
+            const books = yield book_model_1.Book.find({ isHidden: false });
             return res.json({ books });
         }
     }
@@ -44,7 +44,8 @@ BookController.findAll = (req, res) => __awaiter(void 0, void 0, void 0, functio
 BookController.findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const book = yield book_model_1.Book.findOne({ _id: id });
+        const book = yield book_model_1.Book.findOne({ _id: id })
+            .populate("author", ["_id", "firstName", "lastName",], "Author");
         return res.json({ book });
     }
     catch (error) {
@@ -88,8 +89,8 @@ BookController.create = (req, res) => __awaiter(void 0, void 0, void 0, function
         'category', 'pages',
     ]);
     try {
-        // get the file name and remove the st
-        const image = req.file.filename;
+        // get the filename and create an image path
+        const image = `/assets/images/${req.file.filename}`;
         const errors = check_1.validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });

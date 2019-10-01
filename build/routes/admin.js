@@ -136,7 +136,7 @@ router.post("/orders/:id", (req, res) => __awaiter(void 0, void 0, void 0, funct
     const id = req.params.id;
     try {
         const order = yield order_model_1.Order.updateOne({ _id: id }, { status: req.body.status }, { runValidators: true });
-        return res.redirect(`/orders/${id}`);
+        return res.redirect(`/admin/orders/${id}`);
     }
     catch (error) {
         console.error(error);

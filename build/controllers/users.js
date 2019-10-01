@@ -20,6 +20,7 @@ const user_model_1 = require("../models/user.model");
 const cart_model_1 = require("../models/cart.model");
 const address_model_1 = require("../models/address.model");
 const order_model_1 = require("../models/order.model");
+const book_model_1 = require("../models/book.model");
 class UserController {
 }
 exports.UserController = UserController;
@@ -231,15 +232,14 @@ UserController.removeFromCart = (req, res) => __awaiter(void 0, void 0, void 0, 
 UserController.createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
     const user = req.user;
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
-    if (!user) {
-        return res.sendStatus(403);
+    const cart = yield cart_model_1.Cart.findOne({ user: user.id });
+    const errors = check_1.validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
+    yield book_model_1.Book.updateMany({ _id: { $in: cart.books } }, { isHidden: true });
     try {
-        const order = yield order_model_1.Order.create(Object.assign(Object.assign({}, fields), { user: user.id }));
+        const order = yield order_model_1.Order.create(Object.assign(Object.assign({}, fields), { user: user.id, books: cart.books }));
         yield order.save();
         return res.json({ message: "Order was created successfully", order, user });
     }
@@ -290,7 +290,8 @@ UserController.getOrder = (req, res) => __awaiter(void 0, void 0, void 0, functi
     const id = req.params.id;
     const user = req.user;
     try {
-        const order = yield order_model_1.Order.findById(id);
+        const order = yield order_model_1.Order.findById(id)
+            .populate({ path: "books", model: "Book" });
         return res.json({ order, user });
     }
     catch (error) {
@@ -302,6 +303,17 @@ UserController.updateOrder = (req, res) => __awaiter(void 0, void 0, void 0, fun
     const status = req.body.status;
     try {
         const order = yield order_model_1.Order.updateOne({ id }, { status });
+        return res.json({ order });
+    }
+    catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+UserController.cancelOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const order = yield order_model_1.Order.updateOne({ _id: id }, { cancelled: true });
+        yield book_model_1.Book.updateMany({ _id: { $in: order.books } }, { isHidden: false });
         return res.json({ order });
     }
     catch (error) {

@@ -12,10 +12,10 @@ export class BookController {
         const category = req.query.category;
         try {
             if (category) {
-                const books = await Book.find({ category });
+                const books = await Book.find({ category, isHidden: false });
                 return res.json({ books });
             } else {
-                const books = await Book.find({});
+                const books = await Book.find({ isHidden: false });
                 return res.json({ books });
             }
         } catch (error) {
@@ -29,7 +29,8 @@ export class BookController {
     public static findOne = async (req: Request, res: Response) => {
         const id = req.params.id;
         try {
-            const book = await Book.findOne({ _id: id });
+            const book = await Book.findOne({ _id: id })
+                .populate("author", ["_id", "firstName", "lastName",], "Author");
             return res.json({ book });
         } catch (error) {
             return res.status(500).json({ error });
@@ -74,9 +75,8 @@ export class BookController {
             'category', 'pages',
         ]);
         try {
-            // get the file name and remove the st
-            const image = req.file.filename;
-
+            // get the filename and create an image path
+            const image = `/assets/images/${req.file.filename}`;
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ error: errors.array() });

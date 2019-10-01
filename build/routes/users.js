@@ -222,5 +222,6 @@ router.get('/orders', users_1.UserController.getOrders);
 router.get('/:id/orders', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.getOrdersByUser);
 // get one order by it's id
 router.get('/orders/:id', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.getOrder);
+router.post('/cancel_order/:id', passport_1.default.authenticate('jwt', { session: false }), users_1.UserController.cancelOrder);
 exports.default = router;
 //# sourceMappingURL=users.js.map
