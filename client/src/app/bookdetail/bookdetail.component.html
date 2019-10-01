@@ -4,7 +4,7 @@
 <div class="row">
         <div class="col-sm-4">
 
-                <img style="width:100%;" class="img responsive" src="http://localhost:8000/assets/images/{{book.image}}" >
+                <img style="width:100%;" class="img responsive" src="http://localhost:8000/{{book.image}}" >
             
               </div>
 <div class="col-sm-8">
@@ -13,7 +13,9 @@
 </h3>
 
 <h4>
-    {{book.author.name}}
+    {{book.author.firstName}}
+    {{book.author.lastName}}
+
   </h4>
 <br>
 <h6>

@@ -90,7 +90,8 @@
         </tr>
         <tr>
           <td> اسماء الكتب: </td>
-          <td class="text-success">
+          <td class="text-success"> 
+            
             <!--
 <span *ngFor="let book of books.name">
   {{book}} / <br>
@@ -213,7 +214,7 @@
       <tr>
         <td> عدد الكتب التي تم تبديلها: </td>
         <td class="text-success">
-          {{order.booksCount}}
+          {{order.books.length}}
 
           كتب
         </td>
@@ -240,7 +241,6 @@
       </tr>
     </tbody>
   </table>
-</div>
   <br>
   <h5 style="font-family: Tajawal">
     <a class="btn btn-primary">الغاء الطلب</a>
@@ -255,6 +255,8 @@
 
   </h5>
 
+</div>
+ 
 
 
 

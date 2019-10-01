@@ -62,7 +62,7 @@
               <tbody>
                 <% for (const order of orders) { %>
                 <tr>
-                  <td><%= order.user.fullName %></td>
+                  <td><%= order.user.fullName %></td>   
                   <td><%= order.status %></td>
                   <td><%= `${order.date.getFullYear()}/${order.date.getMonth()}/${order.date.getDate()}` %></td>
                   <td><a href="/admin/orders/<%= order.id %>">
