@@ -1,29 +1,31 @@
 import { Document, Schema, Error, model } from "mongoose";
+import { BookDocument } from "./book.model";
 
 export type OrderDocument = Document & {
     user: any;
     deliverer: any;
     date: Date;
     booksCount: number;
+    cancelled: boolean;
+    books: BookDocument[];
     priceSDG: number;
     priceXP: number;
-    status: string[];
+    status: string;
     delivereyPrice: number;
 };
 
 // tslint:disable: object-literal-sort-keys
 export const orderSchema = new Schema({
-    booksCount: {
-        type: Number,
-        min: 0,
-        default: 0,
-        required: true,
-    },
     priceSDG: {
         type: Number,
         min: 0,
         default: 0,
         required: true,
+    },
+    books: {
+        type: [Schema.Types.ObjectId],
+        default: [],
+        ref: "Book"
     },
     priceXP: {
         type: Number,
@@ -59,11 +61,19 @@ export const orderSchema = new Schema({
         min: 0,
         required: true,
     },
+    cancelled: {
+        type: Boolean,
+        default: false,
+    },
     type: {
         type: String,
         enum: ["trading", "purchase"],
         required: [true, "An order must have a type"],
     }
+});
+
+orderSchema.virtual("booksCount").get(function () {
+    return this.books.length;
 });
 
 export const Order = model("order", orderSchema);

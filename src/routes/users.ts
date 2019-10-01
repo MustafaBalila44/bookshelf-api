@@ -244,4 +244,7 @@ router.get('/:id/orders',
 router.get('/orders/:id',
     passport.authenticate('jwt', { session: false }), UserController.getOrder);
 
+router.post('/cancel_order/:id',
+    passport.authenticate('jwt', { session: false }), UserController.cancelOrder);
+
 export default router;

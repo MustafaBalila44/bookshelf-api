@@ -49,7 +49,7 @@ const bookSchema = new mongoose_1.Schema({
         //default: "http://localhost:8000/api/books/images/book.jpg",
         required: true,
     },
-    hidden: {
+    isHidden: {
         type: Boolean,
         default: false,
     },

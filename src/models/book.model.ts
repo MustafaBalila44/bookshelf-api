@@ -1,15 +1,17 @@
 import { Document, Schema, Error, model } from "mongoose";
 import { CategoryDocument } from "./category";
+import { AuthorDocument } from "./author.model";
 
 export type BookDocument = Document & {
     name: string;
     priceSdg: number;
     priceXp: number;
-    author: string;
+    author: AuthorDocument;
     descrisption: string;
     note: string;
     pages: number;
     status: string;
+    isHidden: boolean;
     category: CategoryDocument;
 };
 
@@ -62,7 +64,7 @@ const bookSchema = new Schema({
         //default: "http://localhost:8000/api/books/images/book.jpg",
         required: true,
     },
-    hidden: {
+    isHidden: {
         type: Boolean,
         default: false,
     },
