@@ -59,7 +59,7 @@ const bookSchema = new Schema({
     image: {
         type: String,
         
-        default: "http://localhost:8000/api/books/images/book.jpg",
+        //default: "http://localhost:8000/api/books/images/book.jpg",
         required: true,
     },
     hidden: {

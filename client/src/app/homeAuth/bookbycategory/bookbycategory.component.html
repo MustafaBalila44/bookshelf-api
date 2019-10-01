@@ -82,7 +82,7 @@
     <div *ngFor="let book of booksById" class="col-sm-3 col-6"
       style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
       <div class="card" style="cursor: pointer;">
-        <img style="width:100%;" class="card-img-top" src="{{book.image}}" (click)="openBook(book._id)">
+        <img style="width:100%;" class="card-img-top" src="http://localhost:8000/assets/images/{{book.image}}" (click)="openBook(book._id)">
         <br>
           <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         

@@ -108,7 +108,7 @@ router.post("/add_points/:id", async (req: Request, res: Response) => {
 router.get("/orders/", async (req: Request, res: Response) => {
     /// order status and type from the query string
     const { status, type } = req.query;
-
+//
     try {
         // if status was supplied
         if (status) {

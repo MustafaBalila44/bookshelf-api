@@ -96,8 +96,27 @@ export class CheckoutpurchaseComponent implements OnInit {
         }
 
         else {
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            ///
+            ////
+            ///
+            const a = this.user.points - this.order.priceXP;
+            this.user.points = a;
+            console.log(a);
+            console.log(this.user.points);
             this.cartService.getCart().subscribe((res: any) => {
                 this.cart = res.cart;
+                
             })
             this.cart.books.forEach(book => {
                 console.log(book._id)

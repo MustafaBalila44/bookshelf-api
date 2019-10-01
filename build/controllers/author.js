@@ -1,10 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -17,11 +16,10 @@ const lodash_1 = __importDefault(require("lodash"));
 const author_model_1 = require("../models/author.model");
 class AuthorController {
 }
-exports.AuthorController = AuthorController;
 /**
  * @description findAll gets all the authors in the DB
  */
-AuthorController.findAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+AuthorController.findAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         const authors = yield author_model_1.Author.find({});
         return res.json({ authors });
@@ -33,7 +31,7 @@ AuthorController.findAll = (req, res) => __awaiter(void 0, void 0, void 0, funct
 /**
  * @description findOne gets a single author by its id
  */
-AuthorController.findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+AuthorController.findOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const id = req.params.id;
     try {
         const author = yield author_model_1.Author.findOne({ _id: id });
@@ -46,7 +44,7 @@ AuthorController.findOne = (req, res) => __awaiter(void 0, void 0, void 0, funct
 /**
  * @description updateOne updates an author by its id
  */
-AuthorController.updateOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+AuthorController.updateOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const body = req.body;
     const updatedFields = lodash_1.default.pick(body, ['firstName', 'lastName', 'about',]);
     try {
@@ -60,7 +58,7 @@ AuthorController.updateOne = (req, res) => __awaiter(void 0, void 0, void 0, fun
 /**
  * @description deleteOne deletes an author by its id
  */
-AuthorController.deleteOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+AuthorController.deleteOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         const doc = yield author_model_1.Author.findByIdAndDelete(req.params.id);
         return res.json({ message: "deleted successfuly", author: doc });
@@ -72,7 +70,7 @@ AuthorController.deleteOne = (req, res) => __awaiter(void 0, void 0, void 0, fun
 /**
  * @description create Creates a new author and save to the DB
  */
-AuthorController.create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+AuthorController.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, ['firstName', 'lastName', 'about',]);
     try {
         const errors = check_1.validationResult(req);
@@ -87,4 +85,5 @@ AuthorController.create = (req, res) => __awaiter(void 0, void 0, void 0, functi
         return res.status(500).json({ error });
     }
 });
+exports.AuthorController = AuthorController;
 //# sourceMappingURL=author.js.map
