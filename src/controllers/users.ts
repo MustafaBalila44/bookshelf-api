@@ -52,7 +52,7 @@ export class UserController {
         const updatedFields = _.pick(body, ['phone', 'points',]);
 
         try {
-            const user = await User.updateOne({ _id: req.user.id }, { phone: updatedFields.phone }, { runValidators: true });
+            const user = await User.updateOne({ _id: req.user.id }, updatedFields, { runValidators: true });
             return res.json({ message: "updated successfully", user });
 
         } catch (error) {
@@ -247,7 +247,7 @@ export class UserController {
         try {
             // if status was supplied
             if (status) {
-                const orders = await Order.find({ status, type });
+                const orders = await Order.find({ status, type, cancelled: false });
                 return res.json({ orders });
             } else {
                 const orders = await Order.find({ type });
@@ -267,7 +267,7 @@ export class UserController {
         try {
             // if status was supplied
             if (status) {
-                const orders = await Order.find({ user: user.id, status, type });
+                const orders = await Order.find({ user: user.id, status, type, cancelled: false });
                 return res.json({ orders });
             } else {
                 const orders = await Order.find({ user: user.id, type });
@@ -309,7 +309,7 @@ export class UserController {
         try {
             const order = await Order.updateOne({ _id: id }, { cancelled: true });
             await Book.updateMany({ _id: { $in: order.books } }, { isHidden: false });
-            return res.json({ order });
+            return res.json({ message: "Order was cancelled" });
 
         } catch (error) {
             return res.status(500).json({ error });

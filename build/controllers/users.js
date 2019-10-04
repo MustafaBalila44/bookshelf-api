@@ -63,15 +63,8 @@ UserController.updateOne = (req, res) => __awaiter(void 0, void 0, void 0, funct
     const body = req.body;
     const updatedFields = lodash_1.default.pick(body, ['phone', 'points',]);
     try {
-        const user = yield user_model_1.User.findById(req.user.id);
-        user.phone = updatedFields.phone;
-        user.points += updatedFields.points;
-        user.save({ validateBeforeSave: true }, (err, updatedUser) => {
-            if (err) {
-                return res.status(400).json({ error: err });
-            }
-            return res.json({ message: "updated successfully", user: updatedUser });
-        });
+        const user = yield user_model_1.User.updateOne({ _id: req.user.id }, updatedFields, { runValidators: true });
+        return res.json({ message: "updated successfully", user });
     }
     catch (error) {
         return res.status(500).json({ error });
@@ -254,7 +247,7 @@ UserController.getOrders = (req, res) => __awaiter(void 0, void 0, void 0, funct
     try {
         // if status was supplied
         if (status) {
-            const orders = yield order_model_1.Order.find({ status, type });
+            const orders = yield order_model_1.Order.find({ status, type, cancelled: false });
             return res.json({ orders });
         }
         else {
@@ -274,7 +267,7 @@ UserController.getOrdersByUser = (req, res) => __awaiter(void 0, void 0, void 0,
     try {
         // if status was supplied
         if (status) {
-            const orders = yield order_model_1.Order.find({ user: user.id, status, type });
+            const orders = yield order_model_1.Order.find({ user: user.id, status, type, cancelled: false });
             return res.json({ orders });
         }
         else {
@@ -314,7 +307,7 @@ UserController.cancelOrder = (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const order = yield order_model_1.Order.updateOne({ _id: id }, { cancelled: true });
         yield book_model_1.Book.updateMany({ _id: { $in: order.books } }, { isHidden: false });
-        return res.json({ order });
+        return res.json({ message: "Order was cancelled" });
     }
     catch (error) {
         return res.status(500).json({ error });

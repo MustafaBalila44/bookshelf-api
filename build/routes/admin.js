@@ -106,8 +106,13 @@ router.get("/orders/", (req, res) => __awaiter(void 0, void 0, void 0, function*
     const { status, type } = req.query;
     try {
         // if status was supplied
-        if (status) {
-            const orders = yield order_model_1.Order.find({ status, type })
+        if (status === "cancelled") {
+            const orders = yield order_model_1.Order.find({ cancelled: true })
+                .populate("user");
+            return res.render("orders/list", { orders, query: req.query });
+        }
+        else if (status) {
+            const orders = yield order_model_1.Order.find({ status, type, cancelled: false })
                 .populate("user");
             return res.render("orders/list", { orders, query: req.query });
         }

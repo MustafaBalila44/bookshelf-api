@@ -111,8 +111,12 @@ router.get("/orders/", async (req: Request, res: Response) => {
 
     try {
         // if status was supplied
-        if (status) {
-            const orders = await Order.find({ status, type })
+        if (status === "cancelled") {
+            const orders = await Order.find({ cancelled: true })
+                .populate("user");
+            return res.render("orders/list", { orders, query: req.query });
+        } else if (status) {
+            const orders = await Order.find({ status, type, cancelled: false })
                 .populate("user");
             return res.render("orders/list", { orders, query: req.query });
         } else {
