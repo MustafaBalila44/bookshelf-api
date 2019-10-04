@@ -28,8 +28,9 @@
           <div style="padding:5%"> 
         
             <h4 style="font-family:cairo">
-              يجري الان معالجة الطلب ويتوقع ان يصلك في خلال 24 ساعة
-        
+              <!--
+    يجري الان معالجة الطلب ويتوقع ان يصلك في خلال  24 ساعة
+-->
             </h4>
             <br>
             <br>
@@ -57,7 +58,7 @@
         <tr>
           <td> عدد الكتب: </td>
           <td class="text-success"><span>
-              {{order.booksCount}}</span> كتب </td>
+              {{order.books.length}}</span> كتب </td>
 
         </tr>
         <tr>
@@ -117,12 +118,12 @@
   </div>
     <br>
     <h5 style="font-family: Tajawal">
-      <a class="btn btn-primary">الغاء الطلب</a>
+      <a class="btn btn-primary" (click)="cancel(order._id)">الغاء الطلب</a>
 
       هل تريد الغاء الطلب؟
       <br>
       <br>
-      <span class="text-danger">
+      <span class="text-danger" >
 
         ! لايمكنك الغاء الطلب بعد تخطي مرحلة معالجة الطلب
       </span>
@@ -174,8 +175,9 @@
   <br>
   <br>
   <h4 style="font-family:cairo">
+    <!--
     يجري الان معالجة الطلب ويتوقع ان يصلك في خلال  24 ساعة
-
+-->
   </h4>
   <br>
   <br>
@@ -243,12 +245,12 @@
   </table>
   <br>
   <h5 style="font-family: Tajawal">
-    <a class="btn btn-primary">الغاء الطلب</a>
+    <a class="btn btn-primary" (click)="cancel(order._id)">الغاء الطلب</a>
 
     هل تريد الغاء الطلب؟
     <br>
     <br>
-    <span class="text-danger">
+    <span class="text-danger" >
 
       ! لايمكنك الغاء الطلب بعد تخطي مرحلة معالجة الطلب
     </span>

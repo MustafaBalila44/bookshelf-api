@@ -59,7 +59,7 @@ UserController.findOne = (req, res) => __awaiter(this, void 0, void 0, function*
  */
 UserController.updateOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
     const body = req.body;
-    const updatedFields = lodash_1.default.pick(body, ['phone', 'points',]);
+    const updatedFields = lodash_1.default.pick(body, ['phone', 'points']);
     try {
         const user = yield user_model_1.User.updateOne({ _id: req.user.id }, { phone: updatedFields.phone }, { runValidators: true });
         return res.json({ message: "updated successfully", user });
@@ -136,7 +136,7 @@ UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* 
         'phone', 'dateOfBirth',
     ]);
     const addressFields = lodash_1.default.pick(req.body, ['street', 'neighborhood', 'state', 'locality']);
-    addressFields.locality = req.body.locallity;
+    addressFields.locality = req.body.locality;
     const errors = check_1.validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ error: errors.array() });

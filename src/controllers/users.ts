@@ -49,7 +49,7 @@ export class UserController {
 
     public static updateOne = async (req: Request, res: Response) => {
         const body = req.body;
-        const updatedFields = _.pick(body, ['phone', 'points',]);
+        const updatedFields = _.pick(body, ['phone', 'points']);
 
         try {
             const user = await User.updateOne({ _id: req.user.id }, { phone: updatedFields.phone }, { runValidators: true });
@@ -134,7 +134,7 @@ export class UserController {
         ]);
         const addressFields = _.pick(req.body,
             ['street', 'neighborhood', 'state', 'locality']);
-        addressFields.locality = req.body.locallity;
+        addressFields.locality = req.body.locality;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: errors.array() });

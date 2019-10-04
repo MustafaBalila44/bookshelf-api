@@ -7,8 +7,8 @@ exports.emailPassword = [
     check_1.check('password').isLength({ min: 8 }),
 ];
 exports.authorValidtors = [
-    check_1.check('firstName').isString().isLength({ min: 5 }),
-    check_1.check('lastName').isString().isLength({ min: 5 }),
+    check_1.check('firstName').isString().isLength({ min: 2 }),
+    check_1.check('lastName').isString().isLength({ min: 2 }),
 ];
 exports.bookValidators = [
     check_1.check('name').isString(),

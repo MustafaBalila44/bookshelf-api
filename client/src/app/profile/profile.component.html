@@ -25,14 +25,24 @@ xp : {{user.points}}
             <br>
             <span style="display:inline-block;width:60.5%;padding:5px" class="feldd">
         
-            <input [(ngModel)]="user.phone" [disabled]="b"  required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="phone">
+            <input [(ngModel)]="user.phone" [disabled]="abc"  required type="number" class="form-control" id="tel" placeholder="رقم الهاتف" name="phone">
           </span>
+          <span style="padding: 10px">
         
+              <button (click)="ab()" style="width:15%;padding:5px" class="btn btn-secondary bot">تعديل</button>
+      
+              </span>
+              <span style="padding: 10px" >
+      
+              <button (click)="onSub(id)"  style="width:15%;padding:5px" type="submit" class="btn btn-outline-secondary bot">ارسال</button>
+      
+              </span>
           
         </div>
-        
+        </form>
+
   
-        
+        <form #fv="ngForm" >
         <div class="form-group" >
             <label style="padding-right:5px;" for=""> اختر الولاية والمحلية:</label>
             <br>
@@ -47,7 +57,7 @@ xp : {{user.points}}
         </span>
         <span style="display:inline-block;width:30%;" class="feld">
         
-        <select [(ngModel)]="user.address.locallity" name="locallity" [disabled]="b" class="form-control" style="padding:5px">
+        <select [(ngModel)]="user.address.locality" name="locality" [disabled]="b" class="form-control" style="padding:5px">
         
         <option>
         بحري

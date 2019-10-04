@@ -29,7 +29,7 @@ export class Updatepass{
 export class Update {
     phone: string;
     state: string;
-    locallity: string;
+    locality: string;
     neighborhood: string;
     street: string;
     address?: string
