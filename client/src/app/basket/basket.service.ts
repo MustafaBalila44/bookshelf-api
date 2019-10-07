@@ -55,6 +55,10 @@ export class BasketService {
         return this.http.get(`${this.globals.apiUrl}users/orders/?type=purchase` )
 
     }
+    cancel(id){
+        return this.http.post(`${this.globals.apiUrl}users/cancel_order/${id}` , id)
+
+    }
     getorderex(){
         return this.http.get(`${this.globals.apiUrl}users/orders/?type=trading` )
 

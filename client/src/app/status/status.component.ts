@@ -40,26 +40,26 @@ export class StatusComponent implements OnInit {
       console.log(response)
 
       this.user = response.user;
-      console.log(this.user.address.locallity)
-      if (this.user.address.locallity == "جبل اولياء") {
+      console.log(this.user.address.locality)
+      if (this.user.address.locality == "جبل اولياء") {
         this.delivery = 95;
     }
-    if (this.user.address.locallity == "بحري") {
+    if (this.user.address.locality == "بحري") {
         this.delivery = 65;
     }
-    if (this.user.address.locallity == "ام درمان") {
+    if (this.user.address.locality == "ام درمان") {
         this.delivery = 85;
     }
-    if (this.user.address.locallity == "شرق النيل") {
+    if (this.user.address.locality == "شرق النيل") {
         this.delivery = 85;
     }
-    if (this.user.address.locallity == "ام بدة") {
+    if (this.user.address.locality == "ام بدة") {
         this.delivery = 95;
     }
-    if (this.user.address.locallity == "كرري") {
+    if (this.user.address.locality == "كرري") {
         this.delivery = 95;
     }
-    if (this.user.address.locallity == "الخرطوم") {
+    if (this.user.address.locality == "الخرطوم") {
         this.delivery = 75;
     }
 
@@ -120,7 +120,13 @@ export class StatusComponent implements OnInit {
     
     */
   }
+cancel(id){
+  this.cart.cancel(id).subscribe((res: any) => {
+    console.log(res)
 
+  },(err)=>{
+    console.log(err);
+  });
 }
 
 
@@ -137,4 +143,4 @@ export class StatusComponent implements OnInit {
 
 
 
-
+}

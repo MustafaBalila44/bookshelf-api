@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   updatepass = new Updatepass();
 
   b = true;
+  abc = true;
   user = {} as any;
   id = localStorage.getItem('_id');
 
@@ -42,23 +43,19 @@ constructor(private auth : AuthService) {}
   a(){
     this.b = false;
   }
-
+  ab(){
+    this.abc = false;
+  }
+  onSub() {
+    this.auth.update(this.user._id ,this.user).subscribe((response: any) => {
+      console.log(response);
+    })
+   
+  }
 
   onS(id) {
-    this.user.points = 0 ;
-console.log(this.user.phone)
-console.log(this.user.points)
-
-    this.auth.update(this.id,this.user.phone ,this.user.points).subscribe((response: any) => {
-      console.log(response);
-      if (response.message === 'Account was Updated') {
-      } else {
-        this.errorMSG = response.message
-      }
-    }, (error) => {
-      this.errorMSG = error.statusText
-    });
-    this.auth.updateaddress(this.user.address._id,this.user.address.locallity).subscribe((response: any) => {
+   
+    this.auth.updateaddress(this.user.address._id,this.user.address).subscribe((response: any) => {
       console.log(response);
       if (response.message === 'Account was Updated') {
       } else {

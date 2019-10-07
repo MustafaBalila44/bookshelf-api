@@ -21,7 +21,7 @@ export class CheckoutpurchaseComponent implements OnInit {
     sdgPrice = 0;
     order = new Order();
     delivery: number = 60;
-    constructor(private router: Router, private authService: AuthService, private cartService: BasketService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private authService: AuthService, private cartService: BasketService, private route: ActivatedRoute , private auth : AuthService) { }
 
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
@@ -33,26 +33,26 @@ export class CheckoutpurchaseComponent implements OnInit {
             console.log(response)
 
             this.user = response.user;
-            console.log(this.user.address.locallity)
-            if (this.user.address.locallity == "جبل اولياء") {
+            console.log(this.user.address.locality)
+            if (this.user.address.locality == "جبل اولياء") {
                 this.delivery = 95;
             }
-            if (this.user.address.locallity == "بحري") {
+            if (this.user.address.locality == "بحري") {
                 this.delivery = 65;
             }
-            if (this.user.address.locallity == "ام درمان") {
+            if (this.user.address.locality == "ام درمان") {
                 this.delivery = 85;
             }
-            if (this.user.address.locallity == "شرق النيل") {
+            if (this.user.address.locality == "شرق النيل") {
                 this.delivery = 85;
             }
-            if (this.user.address.locallity == "ام بدة") {
+            if (this.user.address.locality == "ام بدة") {
                 this.delivery = 95;
             }
-            if (this.user.address.locallity == "كرري") {
+            if (this.user.address.locality == "كرري") {
                 this.delivery = 95;
             }
-            if (this.user.address.locallity == "الخرطوم") {
+            if (this.user.address.locality == "الخرطوم") {
                 this.delivery = 75;
             }
 
@@ -114,6 +114,9 @@ export class CheckoutpurchaseComponent implements OnInit {
             this.user.points = a;
             console.log(a);
             console.log(this.user.points);
+            this.auth.update(this.user._id ,this.user).subscribe((response: any) => {
+                console.log(response);
+              })
             this.cartService.getCart().subscribe((res: any) => {
                 this.cart = res.cart;
                 

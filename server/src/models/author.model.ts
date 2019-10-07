@@ -10,15 +10,15 @@ export type AuthorDocument = Document & {
 const authorSchema = new Schema({
     firstName: {
         type: String,
-        minlength: 5,
+        minlength: 2,
         required: true,
-        match: /[a-zA-Z0-9_]/,
+        //match: /[a-zA-Z0-9_]/,
     },
     lastName: {
         type: String,
-        min: 5,
+        min: 2,
         required: true,
-        match: /[a-zA-Z0-9_]/,
+        //match: /[a-zA-Z0-9_]/,
     },
     books: {
         type: [Schema.Types.ObjectId],

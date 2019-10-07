@@ -52,7 +52,7 @@ if(this.name == "5d848afbec077669242fb623"){
 }
 if(this.name == "5d848c20ec077669242fb624"){
   this.cat =   "التنمية الذاتية"
-}if(this.name == "5d848c20ec077669242fb625"){
+}if(this.name == "5d848c46ec077669242fb625"){
   this.cat = "سيرة ذاتية "
 }if(this.name == "5d848c66ec077669242fb626"){
   this.cat = " سياسة تاريخ اقتصاد"
@@ -145,7 +145,7 @@ console.log(a)
     }
     if(this.name == "5d848c20ec077669242fb624"){
       this.cat =   "التنمية الذاتية"
-    }if(this.name == "5d848c20ec077669242fb625"){
+    }if(this.name == "5d848c46ec077669242fb625"){
       this.cat = "سيرة ذاتية "
     }if(this.name == "5d848c66ec077669242fb626"){
       this.cat = " سياسة تاريخ اقتصاد"
