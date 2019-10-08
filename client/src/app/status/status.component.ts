@@ -16,7 +16,7 @@ import { AuthService } from '../auth/auth.service';
 
 export class StatusComponent implements OnInit {
   user = {} as any;
-  order: Order[] = [];
+  order = new Order();
   trading = {} as any;
   value1 = 0;
   bufferValue1 = 0;
@@ -127,6 +127,8 @@ cancel(id){
   },(err)=>{
     console.log(err);
   });
+
+     
 }
 
 
