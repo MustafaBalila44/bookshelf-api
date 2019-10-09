@@ -12,7 +12,7 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useFindAndModify: 
     process.exit(1);
   });
 
-app.listen(+port,() => {
+app.listen(port,() => {
   console.log(`
 \t\t\tListining on port ${port}
 \t\t\tENV: ${ENV}
