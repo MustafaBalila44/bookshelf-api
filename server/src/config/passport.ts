@@ -43,3 +43,35 @@ passport.use(new LocalStrategy({
         })
         .catch((err) => done(err));
 }));
+
+passport.use("admin", new LocalStrategy({
+    passwordField: 'password',
+    usernameField: 'email',
+}, (email, password, done: Function) => {
+    console.log(email)
+    User.findOne({ email, isAdmin: true })
+        .then((user) => {
+            console.log(user)
+            if (!user) {
+                return done(null, false, { message: "Wrong email" });
+            }
+            user.comparePassword(password, (err: Error, isMatch: boolean) => {
+                if (err) {
+                    return done(err.message, false, { err });
+                }
+                if (isMatch) {
+                    return done(null, user);
+                }
+                return done(null, false, { message: "Wrong password" });
+            });
+        })
+        .catch((err) => done(err));
+}));
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });

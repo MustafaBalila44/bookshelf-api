@@ -27,11 +27,11 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form accept="/admin/add_points/<%= user.id %>" method="POST">
+                        <form accept="/admin/add_points/<%= app_user.id %>" method="POST">
                             <div class="form-group">
                                 <label for="points">Points</label>
                                 <input type="number" class="form-control"
-                                    id="points" value="<%= user.points %>" name="points">
+                                    id="points" value="<%= app_user.points %>" name="points">
                             </div>
                             <button type="submit" class="btn btn-primary">Add</button>
                         </form>

@@ -35,22 +35,22 @@ export const orderSchema = new Schema({
     },
     note: {
         type: String,
-        default: '',
+        default: "",
     },
     status: {
         type: String,
-        default: 'processing',
-        enum: ['going', 'processing', 'finished'],
+        default: "processing",
+        enum: ["going", "processing", "finished",],
         required: true,
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         required: true,
     },
     deliverer: {
         type: Schema.Types.ObjectId,
-        ref: 'Deliverer',
+        ref: "Deliverer",
     },
     date: {
         type: Date,
@@ -76,4 +76,4 @@ orderSchema.virtual("booksCount").get(function () {
     return this.books.length;
 });
 
-export const Order = model("order", orderSchema);
+export const Order = model<OrderDocument>("order", orderSchema);

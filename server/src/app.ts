@@ -6,11 +6,18 @@ import cors from "cors";
 import helmet from "helmet";
 import { router, admin } from "./routes";
 import passport from "passport";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import "./config/passport";
 
 const app = express();
 
+const Store = MongoStore(session);
+
+app.use(session({ secret: process.env.SESSION_KEY, store: new Store({ url: process.env.DB_URI, autoReconnect: true, ttl: 60 * 60 })}));
 app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(morgan("common"));
 app.use(compression());
 app.use(cors({ preflightContinue: true }));
