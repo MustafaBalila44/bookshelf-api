@@ -10,8 +10,7 @@ before_script:
   - npm install -g @angular/cli
   - npm install -g typescript@~3.4.5
 script:
-- cd clinet && ng build --prod --base-href / --outputPath=../server/public
-- cd server && npm run build
+- bash index.sh
 deploy:
   provider: heroku
   api_key:
