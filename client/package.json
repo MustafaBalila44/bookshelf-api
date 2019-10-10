@@ -7,9 +7,8 @@
     "build": "ng build --prod --base-href / --outputPath=../server/public",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "preinstall": "npm install typescript@~3.4.5 @angular/cli @angular/compiler-cli @angular-devkit/build-angular @angular/language-service"
-  },
+    "e2e": "ng e2e"
+    },
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.7",
@@ -38,12 +37,12 @@
     "popper.js": "^1.14.7",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@angular/cli": "~8.1.2",
+    "@angular/compiler-cli": "~8.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.2",
-    "@angular/cli": "~8.1.2",
-    "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
     "@types/express-validator": "^3.0.0",
     "@types/googlemaps": "^3.37.0",
