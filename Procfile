@@ -1,1 +1,1 @@
-web: node server/build/server.js
+web: bash index.sh
