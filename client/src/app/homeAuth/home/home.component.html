@@ -73,7 +73,7 @@
     <div *ngFor="let book of riwayat" class="col-sm-3 col-6"
       style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
       <div class="card" style="cursor: pointer;">
-        <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+        <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
         <br>
           <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -138,7 +138,7 @@
    <div *ngFor="let book of tnmia" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 (click)="openBook(book._id)" class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -201,7 +201,7 @@
    <div *ngFor="let book of sira" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -259,7 +259,7 @@
 <div style="text-align:center">
 
 
-  <span (click)="openPage('5d848c20ec077669242fb626')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+  <span (click)="openPage('5d848c66ec077669242fb626')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
 
 سياسة واقتصاد وتاريخ
      </span>
@@ -270,7 +270,7 @@
    <div *ngFor="let book of politic" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -304,7 +304,7 @@
  </div>
  <div style="text-align:center">
 
-     <span (click)="openPage('5d848c20ec077669242fb626')" class="btn btn-primary">
+     <span (click)="openPage('5d848c66ec077669242fb626')" class="btn btn-primary">
 المزيد <<         
    
      </span>
@@ -324,7 +324,7 @@
 <div style="text-align:center">
 
 
-  <span (click)="openPage('5d848c20ec077669242fb627')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
+  <span (click)="openPage('5d848c77ec077669242fb627')" class="btn-outline-primary btn text-black " style="text-align:center;padding-right:15%;padding-left:15%;display: inline;padding-top:5px;padding-bottom:5px">
 
 دينية
      </span>
@@ -335,7 +335,7 @@
    <div *ngFor="let book of den" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -369,7 +369,7 @@
  </div>
  <div style="text-align:center">
 
-     <span (click)="openPage('5d848c20ec077669242fb627')" class="btn btn-primary">
+     <span (click)="openPage('5d848c77ec077669242fb627')" class="btn btn-primary">
 المزيد <<         
    
      </span>
@@ -398,7 +398,7 @@
    <div *ngFor="let book of lang" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -464,7 +464,7 @@
    <div *ngFor="let book of olom" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         
@@ -534,7 +534,7 @@
    <div *ngFor="let book of news" class="col-sm-3 col-6"
      style="padding-top:5%;padding-right:2.5%;padding-left:2.5%"  >
      <div class="card" style="cursor: pointer;">
-       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/{{book.image}}" (click)="openBook(book._id)">
+       <img style="width:100%;" class="card-img-top" src="http://localhost:8000/static{{book.image}}" (click)="openBook(book._id)">
        <br>
          <h5 class="card-title" dir="rtl" style="text-align:center" (click)="openBook(book._id)">
 {{book.name}}         

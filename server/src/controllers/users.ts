@@ -282,7 +282,7 @@ export class UserController {
                 const orders = await Order.find({ user: user.id, status, type, cancelled: false });
                 return res.json({ orders });
             } else {
-                const orders = await Order.find({ user: user.id });
+                const orders = await Order.find({ user: user.id , type });
                 return res.json({ orders });
             }
         } catch (error) {

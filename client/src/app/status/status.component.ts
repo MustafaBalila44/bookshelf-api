@@ -3,9 +3,10 @@
 
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Order } from '../checkoutpurchase/order';
+import { Order , Trading } from '../checkoutpurchase/order';
 import { BasketService } from '../basket/basket.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-status',
@@ -16,8 +17,8 @@ import { AuthService } from '../auth/auth.service';
 
 export class StatusComponent implements OnInit {
   user = {} as any;
-  order: Order[] = [];
-  trading = {} as any;
+  order = new Order();
+  trading = new Trading();
   value1 = 0;
   bufferValue1 = 0;
 
@@ -32,7 +33,7 @@ export class StatusComponent implements OnInit {
   com = true;
   */
 
-  constructor(private cart: BasketService, private authService: AuthService) {
+  constructor(private cart: BasketService, private authService: AuthService , private router : Router) {
   }
 
   ngOnInit() {
@@ -45,13 +46,13 @@ export class StatusComponent implements OnInit {
         this.delivery = 95;
     }
     if (this.user.address.locality == "بحري") {
-        this.delivery = 65;
+        this.delivery = 75;
     }
-    if (this.user.address.locality == "ام درمان") {
-        this.delivery = 85;
+    if (this.user.address.locality == "امدرمان") {
+        this.delivery = 95;
     }
     if (this.user.address.locality == "شرق النيل") {
-        this.delivery = 85;
+        this.delivery = 95;
     }
     if (this.user.address.locality == "ام بدة") {
         this.delivery = 95;
@@ -122,11 +123,14 @@ export class StatusComponent implements OnInit {
   }
 cancel(id){
   this.cart.cancel(id).subscribe((res: any) => {
-    console.log(res)
+    console.log(res);
+    this.router.navigate(['/user/home/']);
 
   },(err)=>{
     console.log(err);
   });
+
+     
 }
 
 

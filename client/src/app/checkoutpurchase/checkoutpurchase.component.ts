@@ -38,13 +38,13 @@ export class CheckoutpurchaseComponent implements OnInit {
                 this.delivery = 95;
             }
             if (this.user.address.locality == "بحري") {
-                this.delivery = 65;
+                this.delivery = 75;
             }
-            if (this.user.address.locality == "ام درمان") {
-                this.delivery = 85;
+            if (this.user.address.locality == "امدرمان") {
+                this.delivery = 95;
             }
             if (this.user.address.locality == "شرق النيل") {
-                this.delivery = 85;
+                this.delivery = 95;
             }
             if (this.user.address.locality == "ام بدة") {
                 this.delivery = 95;
@@ -94,7 +94,7 @@ export class CheckoutpurchaseComponent implements OnInit {
         if (this.user.points < this.xpPrice && this.payment['points']) {
             console.log("sorry")
         }
-
+  
         else {
             //
             //
@@ -109,14 +109,15 @@ export class CheckoutpurchaseComponent implements OnInit {
             //
             ///
             ////
-            ///
-            const a = this.user.points - this.order.priceXP;
+            /*
+                        const a = this.user.points - this.order.priceXP;
             this.user.points = a;
             console.log(a);
             console.log(this.user.points);
             this.auth.update(this.user._id ,this.user).subscribe((response: any) => {
                 console.log(response);
               })
+              */
             this.cartService.getCart().subscribe((res: any) => {
                 this.cart = res.cart;
                 

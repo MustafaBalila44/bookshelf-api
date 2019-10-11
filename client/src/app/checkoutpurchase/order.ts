@@ -9,3 +9,11 @@ export class Order {
 }
 
 
+export class Trading {
+    note?: string;
+    booksCount: number;
+    type : string;
+    status?: string;
+}
+
+
