@@ -6,9 +6,6 @@ sudo: required
 branches:
   only:
   - master
-before_script:
-  - npm install -g @angular/cli
-  - npm install -g typescript@~3.4.5
 script:
 - bash index.sh
 deploy:
