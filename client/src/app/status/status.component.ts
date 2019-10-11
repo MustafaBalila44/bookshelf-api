@@ -123,7 +123,6 @@ export class StatusComponent implements OnInit {
 cancel(id){
   this.cart.cancel(id).subscribe((res: any) => {
     console.log(res)
-
   },(err)=>{
     console.log(err);
   });

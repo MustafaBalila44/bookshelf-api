@@ -229,9 +229,21 @@ export class UserController {
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
+        // if user doesn't have enough points 
+        if (fields.priceXP > user.points) {
+            return res.json({ message: "You don't have enough points" });
+        }
+
         await Book.updateMany({ _id: { $in: cart.books } }, { isHidden: true });
+
         try {
             const order = await Order.create({ ...fields, user: user.id, books: cart.books });
+            await User.updateOne(
+                { _id: req.user.id },
+                {
+                    $inc: { points: -fields.priceXP, },
+                    $push: { orders: order._id }
+                });
             await order.save();
             return res.json({ message: "Order was created successfully", order, user });
         } catch (error) {
@@ -270,7 +282,7 @@ export class UserController {
                 const orders = await Order.find({ user: user.id, status, type, cancelled: false });
                 return res.json({ orders });
             } else {
-                const orders = await Order.find({ user: user.id, type });
+                const orders = await Order.find({ user: user.id });
                 return res.json({ orders });
             }
         } catch (error) {
@@ -307,7 +319,9 @@ export class UserController {
     public static cancelOrder = async (req: Request, res: Response) => {
         const id = req.params.id;
         try {
-            const order = await Order.updateOne({ _id: id }, { cancelled: true });
+            await Order.updateOne({ _id: id }, { cancelled: true });
+            const order = await Order.findById(id);
+            await User.updateOne({ _id: req.user.id }, { $inc: { points: order.priceXP } });
             await Book.updateMany({ _id: { $in: order.books } }, { isHidden: false });
             return res.json({ message: "Order was cancelled" });
 

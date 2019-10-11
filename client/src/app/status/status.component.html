@@ -8,6 +8,7 @@
 
   
     <div  *ngFor="let order of order" >
+      <div *ngIf="order.cancelled==false" >
         <mat-progress-bar  [mode]="mode" [value]="value1" [bufferValue]="bufferValue1">
 
 
@@ -136,7 +137,7 @@
   <br>
   <br>
   <br>
-
+</div>
 
 </div>
 
@@ -148,6 +149,7 @@
 
  
   <div  *ngFor="let order of trading" >
+      <div *ngIf="order.cancelled==false" >
      <mat-progress-bar [mode]="mode" [value]="value1" [bufferValue]="bufferValue1">
 
 
@@ -257,6 +259,8 @@
 
   </h5>
 
+
+  </div>
 </div>
  
 
