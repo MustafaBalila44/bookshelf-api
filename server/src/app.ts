@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import compression from "compression";  // compresses requests
@@ -27,8 +28,8 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
-app.use("/", express.static("public"));
-app.use("/static", express.static("static"));
+app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/admin", admin);
 
 app.use("/api", router);

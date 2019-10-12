@@ -279,7 +279,7 @@ UserController.getOrdersByUser = (req, res) => __awaiter(void 0, void 0, void 0,
             return res.json({ orders });
         }
         else {
-            const orders = yield order_model_1.Order.find({ user: user.id });
+            const orders = yield order_model_1.Order.find({ user: user.id, type });
             return res.json({ orders });
         }
     }
