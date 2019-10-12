@@ -8,6 +8,12 @@ branches:
   - master
 script:
 - npm start
+
+env:
+ - JWT_KEY="l0calho$t"
+ - DB_URI="mongodb://bookshelf-dev:bookshelf-dev-password5000@ds046027.mlab.com:46027/bookshelf5000"
+ - SESSION_KEY="e7e42$f%b433g7hc2a4535"
+
 deploy:
   provider: heroku
   api_key:
