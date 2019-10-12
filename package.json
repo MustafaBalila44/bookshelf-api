@@ -1,6 +1,7 @@
 {
   "name": "bookshelf",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "",
   "main": "./server/src/server.ts",
   "scripts": {
     "ng": "ng",
@@ -12,8 +13,7 @@
     "test": "jest --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "preinstall": "npm install typescript"
+    "e2e": "ng e2e"
   },
   "private": true,
   "repository": {
