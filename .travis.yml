@@ -6,9 +6,6 @@ sudo: required
 branches:
   only:
   - master
-script:
-- npm start
-
 env:
  - JWT_KEY="l0calho$t"
  - DB_URI="mongodb://bookshelf-dev:bookshelf-dev-password5000@ds046027.mlab.com:46027/bookshelf5000"
