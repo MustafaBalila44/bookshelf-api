@@ -1,11 +1,9 @@
 {
   "name": "bookshelf",
   "version": "1.0.0",
-  "description": "",
-  "main": "./server/src/server.ts",
   "scripts": {
     "ng": "ng",
-    "start": "node server/build/server.js",
+    "start": "node build/server.js",
     "build": "tsc -b",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon -r dotenv/config build/server.js",
@@ -13,7 +11,8 @@
     "test": "jest --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "preinstall": "npm install typescript"
   },
   "private": true,
   "repository": {

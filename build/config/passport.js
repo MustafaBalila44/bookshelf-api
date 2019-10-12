@@ -46,10 +46,8 @@ passport_1.default.use("admin", new LocalStrategy({
     passwordField: 'password',
     usernameField: 'email',
 }, (email, password, done) => {
-    console.log(email);
     user_model_1.User.findOne({ email, isAdmin: true })
         .then((user) => {
-        console.log(user);
         if (!user) {
             return done(null, false, { message: "Wrong email" });
         }

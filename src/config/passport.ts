@@ -48,10 +48,8 @@ passport.use("admin", new LocalStrategy({
     passwordField: 'password',
     usernameField: 'email',
 }, (email, password, done: Function) => {
-    console.log(email)
     User.findOne({ email, isAdmin: true })
         .then((user) => {
-            console.log(user)
             if (!user) {
                 return done(null, false, { message: "Wrong email" });
             }

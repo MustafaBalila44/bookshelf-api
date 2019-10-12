@@ -7,7 +7,7 @@ branches:
   only:
   - master
 script:
-- bash index.sh
+- npm start
 deploy:
   provider: heroku
   api_key:
