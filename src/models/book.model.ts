@@ -3,6 +3,8 @@ import { CategoryDocument } from "./category";
 import { AuthorDocument } from "./author.model";
 
 export type BookDocument = Document & {
+    id: any;
+    _id: any;
     name: string;
     priceSdg: number;
     priceXp: number;

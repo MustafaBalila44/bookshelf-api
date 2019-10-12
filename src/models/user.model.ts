@@ -6,6 +6,8 @@ import { AdressDocument } from "./address.model";
 
 export type UserDocument = Document & {
     // user defenition
+    id: any;
+    _id: any;
     email: string;
     firstName: string;
     lastName: string;

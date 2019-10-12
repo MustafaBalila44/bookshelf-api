@@ -2,6 +2,8 @@ import { Document, Schema, Error, model } from "mongoose";
 import { BookDocument } from "./book.model";
 
 export type OrderDocument = Document & {
+    id: any;
+    _id: any;
     user: any;
     deliverer: any;
     date: Date;

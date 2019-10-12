@@ -2,6 +2,8 @@ import { Document, Schema, model } from "mongoose";
 import { BookDocument } from "./book.model";
 
 export type CartDocument = Document & {
+    id: any;
+    _id: any;
     user: any;
     books: any
     price: number;

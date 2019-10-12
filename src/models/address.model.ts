@@ -1,6 +1,8 @@
 import { Document, Schema, model } from "mongoose";
 
 export type AdressDocument = Document & {
+    id: any;
+    _id: any;
     street: string;
     neighborhood: string;
     state: string;

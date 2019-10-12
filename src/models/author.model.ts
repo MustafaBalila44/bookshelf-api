@@ -1,6 +1,8 @@
 import { Document, Schema, Error, model } from "mongoose";
 
 export type AuthorDocument = Document & {
+    id: any;
+    _id: any;
     firstName: string;
     lastName: string;
     about: string;

@@ -1,6 +1,8 @@
 import { Document, Schema, model } from "mongoose";
 
 export type CategoryDocument = Document & {
+    id: any;
+    _id: any;
     name: string;
     books: any[]
 };
