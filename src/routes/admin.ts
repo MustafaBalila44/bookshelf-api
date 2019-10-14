@@ -5,6 +5,7 @@ import { Author } from "../models/author.model";
 import { Category } from "../models/category";
 import { Order } from "../models/order.model";
 import passport from "passport";
+import { upload } from "../config/multer";
 
 const router = Router();
 
@@ -50,10 +51,13 @@ router.get("/books", async (req: Request, res: Response) => {
     return res.render("books/list", { books, user: req.user });
 });
 
-router.post("/update_book/:id", async (req: Request, res: Response) => {
+router.post("/update_book/:id", upload.any(),async (req: Request, res: Response) => {
     try {
-        delete req.body.image;
-        const book = await Book.updateOne({ _id: req.params.id }, req.body, { runValidators: true });
+        console.log(Object.keys(req.files));return;
+        if (req.files !== []) {
+            const image = `/assets/images/${req.file}`;
+            const book = await Book.updateOne({ _id: req.params.id }, req.body, { runValidators: true });
+        }
         return res.redirect(`/admin/books/${req.params.id}`);
     } catch {
         return res.redirect("/admin/books");

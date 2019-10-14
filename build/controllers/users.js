@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -22,13 +23,14 @@ const order_model_1 = require("../models/order.model");
 const book_model_1 = require("../models/book.model");
 class UserController {
 }
+exports.UserController = UserController;
 /**
  * @section CRUD operations
  */
 /**
  * @description findAll gets all the users in the DB
  */
-UserController.findAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.findAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield user_model_1.User.find({}, { password: 0 });
         return res.json({ users });
@@ -40,7 +42,7 @@ UserController.findAll = (req, res) => __awaiter(this, void 0, void 0, function*
 /**
  * @description findOne gets a single user by its id
  */
-UserController.findOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
         const user = yield user_model_1.User.findOne({ _id: id }, { password: 0, })
@@ -57,7 +59,7 @@ UserController.findOne = (req, res) => __awaiter(this, void 0, void 0, function*
  * the id is not required in this function but it's used only for
  * code consistency
  */
-UserController.updateOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.updateOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const updatedFields = lodash_1.default.pick(body, ['phone', 'points']);
     try {
@@ -68,7 +70,7 @@ UserController.updateOne = (req, res) => __awaiter(this, void 0, void 0, functio
         return res.status(500).json({ error });
     }
 });
-UserController.updateUserAddress = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.updateUserAddress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const id = req.params.id;
     const updatedFields = lodash_1.default.pick(body, ['street', 'neighborhood', 'state', 'locality']);
@@ -91,7 +93,7 @@ UserController.updateUserAddress = (req, res) => __awaiter(this, void 0, void 0,
  * the id is not required in this function but it's used only for
  * code consistency
  */
-UserController.deleteOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.deleteOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
     if (!user) {
         return res.sendStatus(403);
@@ -110,8 +112,8 @@ UserController.deleteOne = (req, res) => __awaiter(this, void 0, void 0, functio
 /**
  * @description login authenticate an existing user and generates a jwt
  */
-UserController.login = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    passport_1.default.authenticate('local', { session: false }, (err, user, info) => __awaiter(this, void 0, void 0, function* () {
+UserController.login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    passport_1.default.authenticate('local', { session: false }, (err, user, info) => __awaiter(void 0, void 0, void 0, function* () {
         if (err) {
             return next(err);
         }
@@ -130,7 +132,7 @@ UserController.login = (req, res, next) => __awaiter(this, void 0, void 0, funct
 /**
  * @description signup Creates a new user and save to the DB
  */
-UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, [
         'email', 'password', 'firstName', 'lastName',
         'phone', 'dateOfBirth',
@@ -160,7 +162,7 @@ UserController.signup = (req, res) => __awaiter(this, void 0, void 0, function* 
 /**
  * @section Cart
  */
-UserController.findCart = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.findCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
     try {
         const cart = yield cart_model_1.Cart.findOne({ user: user.id })
@@ -180,7 +182,7 @@ UserController.findCart = (req, res) => __awaiter(this, void 0, void 0, function
         return res.status(500).json({ error });
     }
 });
-UserController.addToCart = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.addToCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.body.bookId;
     const user = req.user;
     const errors = check_1.validationResult(req);
@@ -200,7 +202,7 @@ UserController.addToCart = (req, res) => __awaiter(this, void 0, void 0, functio
         return res.status(500).json({ error });
     }
 });
-UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.removeFromCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.body.bookId;
     const user = req.user;
     const errors = check_1.validationResult(req);
@@ -220,7 +222,7 @@ UserController.removeFromCart = (req, res) => __awaiter(this, void 0, void 0, fu
         return res.status(500).json({ error });
     }
 });
-UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const fields = lodash_1.default.pick(req.body, ["type", "note", "totalPrice", "priceSDG", "priceXP", "booksCount"]);
     const user = req.user;
     const cart = yield cart_model_1.Cart.findOne({ user: user.id });
@@ -234,7 +236,7 @@ UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, funct
     }
     yield book_model_1.Book.updateMany({ _id: { $in: cart.books } }, { isHidden: true });
     try {
-        const order = yield order_model_1.Order.create(Object.assign({}, fields, { user: user.id, books: cart.books }));
+        const order = yield order_model_1.Order.create(Object.assign(Object.assign({}, fields), { user: user.id, books: cart.books }));
         yield user_model_1.User.updateOne({ _id: req.user.id }, {
             $inc: { points: -fields.priceXP, },
             $push: { orders: order._id }
@@ -247,7 +249,7 @@ UserController.createOrder = (req, res) => __awaiter(this, void 0, void 0, funct
     }
 });
 // get the order
-UserController.getOrders = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     /// order status and type from the query string
     const { status, type } = req.query;
     try {
@@ -266,7 +268,7 @@ UserController.getOrders = (req, res) => __awaiter(this, void 0, void 0, functio
     }
 });
 // get the orders of a user
-UserController.getOrdersByUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.getOrdersByUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     /// order status and type from the query string
     const { status, type } = req.query;
     const user = req.user;
@@ -285,7 +287,7 @@ UserController.getOrdersByUser = (req, res) => __awaiter(this, void 0, void 0, f
         return res.status(500).json({ error });
     }
 });
-UserController.getOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const user = req.user;
     try {
@@ -297,7 +299,7 @@ UserController.getOrder = (req, res) => __awaiter(this, void 0, void 0, function
         return res.status(500).json({ error });
     }
 });
-UserController.updateOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.updateOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const status = req.body.status;
     try {
@@ -308,7 +310,7 @@ UserController.updateOrder = (req, res) => __awaiter(this, void 0, void 0, funct
         return res.status(500).json({ error });
     }
 });
-UserController.cancelOrder = (req, res) => __awaiter(this, void 0, void 0, function* () {
+UserController.cancelOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
         yield order_model_1.Order.updateOne({ _id: id }, { cancelled: true });
@@ -321,5 +323,4 @@ UserController.cancelOrder = (req, res) => __awaiter(this, void 0, void 0, funct
         return res.status(500).json({ error });
     }
 });
-exports.UserController = UserController;
 //# sourceMappingURL=users.js.map
