@@ -28,7 +28,7 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.7.1",
     "express": "^4.16.3",
-    "express-fileupload": "^1.1.5",
+    "express-fileupload": "^1.1.9",
     "express-jwt": "^5.3.1",
     "express-redirect": "^1.2.2",
     "express-session": "^1.16.2",
