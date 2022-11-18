@@ -42,7 +42,7 @@
     "@angular/compiler-cli": "~8.1.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.801.2",
+    "@angular-devkit/build-angular": "~15.0.0",
     "@angular/language-service": "~8.1.2",
     "@types/express-validator": "^3.0.0",
     "@types/googlemaps": "^3.37.0",
